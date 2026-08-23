@@ -225,7 +225,7 @@
     <span class="crop-hub-icon" id="cropHubIcon"></span>
     <div>
       <h1 id="cropHubTitle"></h1>
-      <p id="cropHubSub">Seeds, fertilizer, pesticide, tools aur is fasal ke liye zaroori har saman ek jagah.</p>
+      <p id="cropHubSub" data-i18n="shop.cropHubSub">Seeds, fertilizer, pesticide, tools aur is fasal ke liye zaroori har saman ek jagah.</p>
     </div>
   </div>
 </section>
@@ -233,64 +233,64 @@
 <!-- ===== Shop header (breadcrumb-style, shown when no crop-hub banner) ===== -->
 <section class="shop-plain-head" id="shopPlainHead">
   <div class="container">
-    <h1>ZatraMart Store</h1>
-    <p>ZatraMart Direct aur Verified local sellers dono se — genuine quality guaranteed.</p>
+    <h1 data-i18n="shop.storeTitle">ZatraMart Store</h1>
+    <p data-i18n="shop.storeSub">ZatraMart Direct aur Verified local sellers dono se — genuine quality guaranteed.</p>
   </div>
 </section>
 
 <section class="products reveal" id="products">
   <div class="container">
 
-    <button class="filters-toggle-btn" id="filtersToggleBtn">🔧 Filters</button>
+    <button class="filters-toggle-btn" id="filtersToggleBtn" data-i18n="shop.filtersOpen">🔧 Filters</button>
 
     <div class="products-layout">
       <aside class="filters-sidebar" id="filtersSidebar">
         <div class="filter-block">
-          <h5>📦 Category</h5>
+          <h5>📦 <span data-i18n="shop.category">Category</span></h5>
           <div id="filterCategoryList"></div>
         </div>
 
         <div class="filter-block">
-          <h5>⭐ Customer Rating</h5>
-          <label><input type="radio" name="ratingFilter" value="0" checked> Sabhi Ratings</label>
-          <label><input type="radio" name="ratingFilter" value="4.5">★★★★★ (4.5 &amp; Up)</label>
-          <label><input type="radio" name="ratingFilter" value="4">★★★★☆ (4 &amp; Up)</label>
-          <label><input type="radio" name="ratingFilter" value="3">★★★☆☆ (3 &amp; Up)</label>
+          <h5>⭐ <span data-i18n="shop.customerRating">Customer Rating</span></h5>
+          <label><input type="radio" name="ratingFilter" value="0" checked> <span data-i18n="shop.allRatings">Sabhi Ratings</span></label>
+          <label><input type="radio" name="ratingFilter" value="4.5">★★★★★ (4.5 <span data-i18n="shop.andUp">&amp; Up</span>)</label>
+          <label><input type="radio" name="ratingFilter" value="4">★★★★☆ (4 <span data-i18n="shop.andUp">&amp; Up</span>)</label>
+          <label><input type="radio" name="ratingFilter" value="3">★★★☆☆ (3 <span data-i18n="shop.andUp">&amp; Up</span>)</label>
         </div>
 
         <div class="filter-block">
-          <h5>🏷️ Discount</h5>
-          <label><input type="checkbox" data-discount="10"> 10% Off ya zyada</label>
-          <label><input type="checkbox" data-discount="20"> 20% Off ya zyada</label>
-          <label><input type="checkbox" data-discount="30"> 30% Off ya zyada</label>
+          <h5>🏷️ <span data-i18n="shop.discount">Discount</span></h5>
+          <label><input type="checkbox" data-discount="10"> <span data-i18n="shop.discount10">10% Off ya zyada</span></label>
+          <label><input type="checkbox" data-discount="20"> <span data-i18n="shop.discount20">20% Off ya zyada</span></label>
+          <label><input type="checkbox" data-discount="30"> <span data-i18n="shop.discount30">30% Off ya zyada</span></label>
         </div>
 
         <div class="filter-block">
-          <h5>💰 Price</h5>
+          <h5>💰 <span data-i18n="shop.price">Price</span></h5>
           <input type="range" class="price-slider" id="priceRange" min="0" max="30000" step="500" value="30000">
           <div class="price-range-labels"><span>₹0</span><span id="priceRangeVal">₹30,000+</span></div>
         </div>
 
         <div class="filter-block">
-          <h5>🏪 Seller</h5>
-          <label><input type="checkbox" id="sellerDirect"> ZatraMart Direct</label>
-          <label><input type="checkbox" id="sellerThird"> Verified Seller</label>
+          <h5>🏪 <span data-i18n="shop.seller">Seller</span></h5>
+          <label><input type="checkbox" id="sellerDirect"> <span data-i18n="shop.zatramartDirect">ZatraMart Direct</span></label>
+          <label><input type="checkbox" id="sellerThird"> <span data-i18n="shop.verifiedSeller">Verified Seller</span></label>
         </div>
 
-        <button class="btn-chip clear-filters-btn" id="clearFiltersBtn">✕ Sabhi Filters Hatayein</button>
+        <button class="btn-chip clear-filters-btn" id="clearFiltersBtn">✕ <span data-i18n="shop.clearAllFilters">Sabhi Filters Hatayein</span></button>
       </aside>
 
       <div class="products-main">
         <div class="products-toolbar">
           <p class="filter-count" id="filterCount"></p>
           <div class="sort-wrap">
-            <label for="sortSelect">Sort by:</label>
+            <label for="sortSelect" data-i18n="shop.sortBy">Sort by:</label>
             <select id="sortSelect">
-              <option value="featured">Featured</option>
-              <option value="priceLow">Price: Low to High</option>
-              <option value="priceHigh">Price: High to Low</option>
-              <option value="rating">Avg. Customer Rating</option>
-              <option value="discount">Discount</option>
+              <option value="featured" data-i18n="shop.sortFeatured">Featured</option>
+              <option value="priceLow" data-i18n="shop.sortPriceLow">Price: Low to High</option>
+              <option value="priceHigh" data-i18n="shop.sortPriceHigh">Price: High to Low</option>
+              <option value="rating" data-i18n="shop.sortRating">Avg. Customer Rating</option>
+              <option value="discount" data-i18n="shop.sortDiscount">Discount</option>
             </select>
           </div>
         </div>
@@ -307,7 +307,7 @@
 <footer class="footer">
   <div class="container footer-grid">
     <div class="footer-col footer-brand">
-      <a href="#top" class="logo"><span class="logo-icon">🌾</span><span class="logo-text">Zatra<span class="accent">Mart</span></span></a>
+      <a href="index.html" class="logo"><span class="logo-icon">🌾</span><span class="logo-text">Zatra<span class="accent">Mart</span></span></a>
       <p data-i18n="footer.tagline">Kisan ka apna bazaar — dalaal-mukt, bharosemand, seedha.</p>
       <div class="social-row">
         <a href="#" aria-label="Facebook">f</a>
@@ -363,6 +363,6 @@
 <script src="js/supabase-client.js"></script>
 <script src="js/i18n.js?v=1"></script>
 <script src="js/common.js?v=36"></script>
-<script src="js/shop.js?v=6"></script>
+<script src="js/shop.js?v=7"></script>
 </body>
 </html>

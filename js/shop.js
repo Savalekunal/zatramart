@@ -3,7 +3,12 @@
    (nav/cart/wishlist/mega-menu/auth live in js/common.js)
    ============================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  if (window.KM_I18N) await window.KM_I18N.ready;
+  const t = window.KM_I18N ? window.KM_I18N.t : (k) => k;
+  const catName = (key) => t('catalog.category.' + key) !== ('catalog.category.' + key) ? t('catalog.category.' + key)
+    : t('catalog.farmType.' + key) !== ('catalog.farmType.' + key) ? t('catalog.farmType.' + key)
+    : t('catalog.crop.' + key) !== ('catalog.crop.' + key) ? t('catalog.crop.' + key) : key;
 
   const { farmTypes, categories, catLabels, products } = window.KM_DATA;
   let allProducts = products.slice();
@@ -33,19 +38,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const farmTypeKeys = new Set(farmTypes.map(f => f.key));
   const cropHubBanner = document.getElementById('cropHubBanner');
   const shopPlainHead = document.getElementById('shopPlainHead');
-  if (urlCat && farmTypeKeys.has(urlCat) && !urlSearch) {
-    const farmType = farmTypes.find(f => f.key === urlCat);
-    document.getElementById('cropHubIcon').textContent = farmType.icon;
-    document.getElementById('cropHubTitle').textContent = farmType.name;
-    cropHubBanner.hidden = false;
-    shopPlainHead.hidden = true;
-    document.title = `${farmType.name} — Seeds, Fertilizer, Tools aur Zaroori Saman | ZatraMart`;
+  function renderCropHub() {
+    if (urlCat && farmTypeKeys.has(urlCat) && !urlSearch) {
+      const farmType = farmTypes.find(f => f.key === urlCat);
+      document.getElementById('cropHubIcon').textContent = farmType.icon;
+      document.getElementById('cropHubTitle').textContent = catName(urlCat);
+      cropHubBanner.hidden = false;
+      shopPlainHead.hidden = true;
+      document.title = `${catName(urlCat)} — Seeds, Fertilizer, Tools aur Zaroori Saman | ZatraMart`;
+    }
   }
+  renderCropHub();
 
   const usedCats = [...new Set(products.map(p => p.cat))];
-  filterCategoryList.innerHTML = usedCats.map(c => `
-    <label><input type="checkbox" data-cat-filter="${c}" ${selectedCats.has(c) ? 'checked' : ''}> ${catLabels[c]}</label>
-  `).join('');
+  function renderCategoryFilterList() {
+    filterCategoryList.innerHTML = usedCats.map(c => `
+      <label><input type="checkbox" data-cat-filter="${c}" ${selectedCats.has(c) ? 'checked' : ''}> ${catName(c)}</label>
+    `).join('');
+    filterCategoryList.querySelectorAll('[data-cat-filter]').forEach(cb => {
+      cb.addEventListener('change', (e) => {
+        const cat = e.target.dataset.catFilter;
+        if (e.target.checked) selectedCats.add(cat); else selectedCats.delete(cat);
+        renderProducts();
+      });
+    });
+  }
+  renderCategoryFilterList();
 
   const maxProductPrice = Math.ceil(Math.max(...products.map(p => p.price)) / 500) * 500;
   priceRange.max = maxProductPrice;
@@ -66,20 +84,20 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="product.html?id=${p.id}" class="product-img-link">
               <img src="${window.KM.esc(p.img)}" alt="${name}" loading="lazy">
             </a>
-            <span class="seller-badge third">🏪 Community Seller</span>
+            <span class="seller-badge third">${t('shop.communitySeller')}</span>
             <button class="wish-icon ${wished ? 'active' : ''}" data-wish="${p.id}" aria-label="Add to wishlist">${wished ? '♥' : '♡'}</button>
           </div>
           <div class="product-info">
-            <span class="product-cat-tag">${catLabels[p.cat] || p.cat}</span>
+            <span class="product-cat-tag">${catName(p.cat)}</span>
             <a href="product.html?id=${p.id}" class="product-title-link"><h4>${name}</h4></a>
             <p class="delivery-line">👤 ${sellerName}${condition ? ' · ' + condition : ''}</p>
             <div class="price-line">
               <span class="price-now">₹${p.price.toLocaleString('en-IN')}</span>
-              ${p.negotiable ? '<small class="negotiable-badge">NEGOTIABLE</small>' : ''}
+              ${p.negotiable ? `<small class="negotiable-badge">${t('shop.negotiable')}</small>` : ''}
             </div>
             <div style="display:flex; gap:8px;">
-              <button class="btn btn-primary" data-buy="${p.id}" style="flex:1; padding:9px; font-size:.84rem;">⚡ Buy Now</button>
-              <button class="add-cart-btn" data-add="${p.id}" style="flex:1;">🛒 Add to Cart</button>
+              <button class="btn btn-primary" data-buy="${p.id}" style="flex:1; padding:9px; font-size:.84rem;">⚡ ${t('common.buyNow')}</button>
+              <button class="add-cart-btn" data-add="${p.id}" style="flex:1;">🛒 ${t('common.addToCart')}</button>
             </div>
           </div>
         </div>`;
@@ -94,20 +112,20 @@ document.addEventListener('DOMContentLoaded', () => {
           <a href="product.html?id=${p.id}" class="product-img-link">
             <img src="${p.img}" alt="${p.name}" loading="lazy">
           </a>
-          <span class="seller-badge ${p.seller === 'third' ? 'third' : ''}">${p.seller === 'third' ? 'Verified Seller' : 'ZatraMart Direct'}</span>
-          <span class="discount-badge">${discount}% OFF</span>
+          <span class="seller-badge ${p.seller === 'third' ? 'third' : ''}">${p.seller === 'third' ? t('shop.verifiedSeller') : t('shop.zatramartDirect')}</span>
+          <span class="discount-badge">${t('common.off', { pct: discount })}</span>
           <button class="wish-icon ${wished ? 'active' : ''}" data-wish="${p.id}" aria-label="Add to wishlist">${wished ? '♥' : '♡'}</button>
         </div>
         <div class="product-info">
-          <span class="product-cat-tag">${catLabels[p.cat]}</span>
+          <span class="product-cat-tag">${catName(p.cat)}</span>
           <a href="product.html?id=${p.id}" class="product-title-link"><h4>${p.name}</h4></a>
           <div class="stars-sm">★★★★★ <span>(${p.rating} · ${p.rev})</span></div>
           <div class="price-line">
             <span class="price-now">₹${p.price.toLocaleString('en-IN')}</span>
             <span class="price-old">₹${p.old.toLocaleString('en-IN')}</span>
           </div>
-          <p class="delivery-line">🚚 FREE delivery <strong>${eta}</strong></p>
-          <button class="add-cart-btn" data-add="${p.id}">🛒 Cart Mein Daalein</button>
+          <p class="delivery-line">${t('shop.freeDelivery')} <strong>${eta}</strong></p>
+          <button class="add-cart-btn" data-add="${p.id}">🛒 ${t('common.addToCart')}</button>
         </div>
       </div>`;
   }
@@ -117,17 +135,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Distinguish "you searched for something specific and it's not here" from a plain empty filter result —
     // pretending a searched product exists somewhere is worse than saying plainly that it doesn't.
     const title = searchTerm
-      ? `"${window.KM.esc(searchTerm)}" ke liye koi exact match nahi mila`
-      : 'Yeh cheez jald ZatraMart par aa rahi hai 🌱';
-    const sub = searchTerm
-      ? 'Spelling check karein, ya neeche in categories mein dekhein:'
-      : 'Abhi humare paas iske liye product nahi hai — tab tak yeh categories dekhein:';
+      ? t('shop.emptyNoMatch', { term: window.KM.esc(searchTerm) })
+      : t('shop.emptyComingSoon');
+    const sub = searchTerm ? t('shop.emptySubSearch') : t('shop.emptySubGeneric');
     return `
       <div class="no-results">
         <p class="no-results-title">${title}</p>
         <p>${sub}</p>
         <div class="no-results-links">
-          ${suggestions.map(c => `<a href="shop.html?cat=${c.key}" class="btn-chip">${c.icon} ${c.name}</a>`).join('')}
+          ${suggestions.map(c => `<a href="shop.html?cat=${c.key}" class="btn-chip">${c.icon} ${catName(c.key)}</a>`).join('')}
         </div>
       </div>`;
   }
@@ -161,11 +177,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const singleFarmType = (!searchTerm && selectedCats.size === 1 && farmTypeKeys.has([...selectedCats][0])) ? [...selectedCats][0] : null;
 
     if (searchTerm) {
-      filterCount.innerHTML = `"${window.KM.esc(searchTerm)}" ke liye ${sorted.length} products mile <button class="clear-search-btn" id="clearSearchBtn">✕ Clear Search</button>`;
+      filterCount.innerHTML = `${t('shop.searchResultCount', { term: window.KM.esc(searchTerm), count: sorted.length })} <button class="clear-search-btn" id="clearSearchBtn">${t('shop.clearSearch')}</button>`;
     } else if (singleFarmType) {
-      filterCount.textContent = `${catLabels[singleFarmType]} ke liye ${sorted.length} products mile — seeds, fertilizer, pesticide, tools aur zaroori saman`;
+      filterCount.textContent = t('shop.farmTypeResultCount', { cat: catName(singleFarmType), count: sorted.length });
     } else {
-      filterCount.textContent = `${sorted.length} products dikha rahe hain — total catalog mein ${allProducts.length} hain`;
+      filterCount.textContent = t('shop.genericResultCount', { count: sorted.length, total: allProducts.length });
     }
 
     productGrid.innerHTML = sorted.length ? sorted.map(productCardHTML).join('') : emptyStateHTML();
@@ -173,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     productGrid.querySelectorAll('[data-add]').forEach(btn => {
       btn.addEventListener('click', () => {
         const p = allProducts.find(p => p.id === btn.dataset.add);
-        if (p) window.KM.addToCart({ id: p.id, name: p.name, price: p.price, img: p.img });
+        if (p) { window.KM.addToCart({ id: p.id, name: p.name, price: p.price, img: p.img }); window.KM.toast(t('common.addedToCartToast')); }
       });
     });
     productGrid.querySelectorAll('[data-buy]').forEach(btn => {
@@ -189,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const active = window.KM.toggleWishlist(btn.dataset.wish);
         btn.classList.toggle('active', active);
         btn.textContent = active ? '♥' : '♡';
+        window.KM.toast(active ? t('common.wishlistAddedToast') : t('common.wishlistRemovedToast'));
       });
     });
     const clearBtn = document.getElementById('clearSearchBtn');
@@ -200,14 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   renderProducts();
-
-  filterCategoryList.addEventListener('change', (e) => {
-    if (e.target.matches('[data-cat-filter]')) {
-      const cat = e.target.dataset.catFilter;
-      if (e.target.checked) selectedCats.add(cat); else selectedCats.delete(cat);
-      renderProducts();
-    }
-  });
 
   document.querySelectorAll('input[name="ratingFilter"]').forEach(radio => {
     radio.addEventListener('change', () => { selectedRating = parseFloat(radio.value); renderProducts(); });
@@ -253,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (filtersToggleBtn) {
     filtersToggleBtn.addEventListener('click', () => {
       const show = filtersSidebar.classList.toggle('show');
-      filtersToggleBtn.textContent = show ? '✕ Filters Band Karein' : '🔧 Filters';
+      filtersToggleBtn.textContent = show ? t('shop.filtersClose') : t('shop.filtersOpen');
     });
   }
 
@@ -282,5 +291,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   loadSellerProducts();
   window.KM.onSellerProductChange(loadSellerProducts);
+
+  document.addEventListener('km:langchange', () => {
+    renderCropHub();
+    renderCategoryFilterList();
+    renderProducts();
+  });
 
 });

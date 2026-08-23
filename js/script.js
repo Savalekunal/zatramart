@@ -3,41 +3,46 @@
    (nav/cart/wishlist/mega-menu/auth live in js/common.js)
    ============================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  if (window.KM_I18N) await window.KM_I18N.ready;
+  const t = window.KM_I18N ? window.KM_I18N.t : (k) => k;
 
-  const { farmTypes, categories, crops, catLabels, products, workers, workerLabels, yojanas, reels } = window.KM_DATA;
+  const { farmTypes, categories, crops, products, workers, yojanas, reels } = window.KM_DATA;
 
   /* ============================================
      RENDER — Top 10 Trending (homepage section)
      ============================================ */
-  const trendingTagByCat = {
-    seeds: { icon: '🌱', label: 'High Yield', color: '#e8f7ee', text: '#0f7a3d' },
-    fertilizer: { icon: '🌿', label: 'Growth Booster', color: '#e8f7ee', text: '#0f7a3d' },
-    pesticide: { icon: '🛡️', label: 'Pest Control', color: '#f2edfb', text: '#6d28d9' },
-    irrigation: { icon: '💧', label: 'Water Saver', color: '#e6f3fb', text: '#0369a1' },
-    motor: { icon: '⚡', label: 'Power Boost', color: '#fdf1e8', text: '#c2540a' },
-    tools: { icon: '🔧', label: 'Durable Build', color: '#fdf1e8', text: '#c2540a' },
-    machinery: { icon: '🚜', label: 'Field Ready', color: '#fdf1e8', text: '#c2540a' },
-    metal: { icon: '🏗️', label: 'Strong Build', color: '#f1f2f4', text: '#4b5563' },
-    solar: { icon: '☀️', label: 'Zero Running Cost', color: '#fdf6e0', text: '#a16207' },
-    organic: { icon: '🌾', label: 'Soil Health', color: '#e8f7ee', text: '#0f7a3d' },
-    packaging: { icon: '📦', label: 'Safe Storage', color: '#f1f2f4', text: '#4b5563' },
-  };
-  function trendingTagFor(cat) {
-    return trendingTagByCat[cat] || { icon: '🌾', label: 'Farm Essential', color: '#e8f7ee', text: '#0f7a3d' };
-  }
   const trendingScroll = document.getElementById('trendingScroll');
   const top10 = [...products].sort((a, b) => (b.rating * b.rev) - (a.rating * a.rev)).slice(0, 10);
-  trendingScroll.innerHTML = top10.map((p, i) => {
-    const tag = trendingTagFor(p.cat);
-    return `
-      <a href="product.html?id=${p.id}" class="trending-card">
-        <span class="trending-badge">${i + 1}</span>
-        <span class="trending-tag" style="background:${tag.color}; color:${tag.text};">${tag.icon} ${tag.label}</span>
-        <img src="${p.img}" alt="${p.name}" loading="lazy">
-        <h4>${p.name}</h4>
-      </a>`;
-  }).join('');
+  function renderTrending() {
+    trendingScroll.innerHTML = top10.map((p, i) => {
+      const tagLabel = t('catalog.trendingTag.' + p.cat) === ('catalog.trendingTag.' + p.cat) ? t('catalog.trendingTag.default') : t('catalog.trendingTag.' + p.cat);
+      const tagMeta = window.KM_DATA.trendingTagStyle ? window.KM_DATA.trendingTagStyle(p.cat) : { icon: '🌾', color: '#e8f7ee', text: '#0f7a3d' };
+      return `
+        <a href="product.html?id=${p.id}" class="trending-card">
+          <span class="trending-badge">${i + 1}</span>
+          <span class="trending-tag" style="background:${tagMeta.color}; color:${tagMeta.text};">${tagMeta.icon} ${tagLabel}</span>
+          <img src="${p.img}" alt="${p.name}" loading="lazy">
+          <h4>${p.name}</h4>
+        </a>`;
+    }).join('');
+  }
+  const trendingTagStyle = (cat) => ({
+    seeds: { icon: '🌱', color: '#e8f7ee', text: '#0f7a3d' },
+    fertilizer: { icon: '🌿', color: '#e8f7ee', text: '#0f7a3d' },
+    pesticide: { icon: '🛡️', color: '#f2edfb', text: '#6d28d9' },
+    irrigation: { icon: '💧', color: '#e6f3fb', text: '#0369a1' },
+    motor: { icon: '⚡', color: '#fdf1e8', text: '#c2540a' },
+    tools: { icon: '🔧', color: '#fdf1e8', text: '#c2540a' },
+    machinery: { icon: '🚜', color: '#fdf1e8', text: '#c2540a' },
+    metal: { icon: '🏗️', color: '#f1f2f4', text: '#4b5563' },
+    solar: { icon: '☀️', color: '#fdf6e0', text: '#a16207' },
+    organic: { icon: '🌾', color: '#e8f7ee', text: '#0f7a3d' },
+    packaging: { icon: '📦', color: '#f1f2f4', text: '#4b5563' },
+  }[cat] || { icon: '🌾', color: '#e8f7ee', text: '#0f7a3d' });
+  window.KM_DATA.trendingTagStyle = trendingTagStyle;
+  renderTrending();
+
   const trendingPrev = document.getElementById('trendingPrev');
   const trendingNext = document.getElementById('trendingNext');
   if (trendingPrev) trendingPrev.addEventListener('click', () => trendingScroll.scrollBy({ left: -420, behavior: 'smooth' }));
@@ -47,32 +52,41 @@ document.addEventListener('DOMContentLoaded', () => {
      RENDER — Farm Types (homepage section)
      ============================================ */
   const farmTypeGrid = document.getElementById('farmTypeGrid');
-  farmTypeGrid.innerHTML = farmTypes.map(f => `
-    <a href="shop.html?cat=${f.key}" class="cat-card farmtype-card">
-      <img src="${f.img}" alt="${f.name}">
-      <span>${f.icon} ${f.name}</span>
-    </a>`).join('');
+  function renderFarmTypes() {
+    farmTypeGrid.innerHTML = farmTypes.map(f => `
+      <a href="shop.html?cat=${f.key}" class="cat-card farmtype-card">
+        <img src="${f.img}" alt="${t('catalog.farmType.' + f.key)}">
+        <span>${f.icon} ${t('catalog.farmType.' + f.key)}</span>
+      </a>`).join('');
+  }
+  renderFarmTypes();
 
   /* ============================================
      RENDER — Categories (homepage section)
      ============================================ */
   const catGrid = document.getElementById('catGrid');
-  catGrid.innerHTML = categories.map(c => `
-    <a href="shop.html?cat=${c.key}" class="cat-card">
-      <img src="${c.img}" alt="${c.name}">
-      <span>${c.icon} ${c.name}</span>
-      <small>${c.count} items</small>
-    </a>`).join('');
+  function renderCategories() {
+    catGrid.innerHTML = categories.map(c => `
+      <a href="shop.html?cat=${c.key}" class="cat-card">
+        <img src="${c.img}" alt="${t('catalog.category.' + c.key)}">
+        <span>${c.icon} ${t('catalog.category.' + c.key)}</span>
+        <small>${c.count} ${t('common.items')}</small>
+      </a>`).join('');
+  }
+  renderCategories();
 
   /* ============================================
      RENDER — Shop By Crop (homepage section)
      ============================================ */
   const cropGrid = document.getElementById('cropGrid');
-  cropGrid.innerHTML = crops.map(c => `
-    <a href="shop.html?cat=${c.key}" class="olx-cat-item">
-      <span class="olx-cat-icon">${c.icon}</span>
-      <span>${c.name}</span>
-    </a>`).join('');
+  function renderCrops() {
+    cropGrid.innerHTML = crops.map(c => `
+      <a href="shop.html?cat=${c.key}" class="olx-cat-item">
+        <span class="olx-cat-icon">${c.icon}</span>
+        <span>${t('catalog.crop.' + c.key)}</span>
+      </a>`).join('');
+  }
+  renderCrops();
 
   /* ============================================
      RENDER — Today's Offer (teaser strip; full catalog lives on shop.html)
@@ -83,50 +97,57 @@ document.addEventListener('DOMContentLoaded', () => {
       const v = p.specs[k];
       if (v && v !== '—') return v;
     }
-    return 'Standard';
+    return t('common.standard');
   }
   const featuredGrid = document.getElementById('featuredGrid');
   const featured = [...products].sort((a, b) => b.rating - a.rating).slice(0, 8);
-  featuredGrid.innerHTML = featured.map(p => {
-    const discount = Math.round(((p.old - p.price) / p.old) * 100);
-    const savings = p.old - p.price;
-    const wished = window.KM.isWishlisted(p.id);
-    return `
-      <div class="product-card">
-        <div class="product-img">
-          <a href="product.html?id=${p.id}" class="product-img-link">
-            <img src="${p.img}" alt="${p.name}" loading="lazy">
-          </a>
-          <span class="discount-badge">${discount}% OFF</span>
-          <button class="wish-icon ${wished ? 'active' : ''}" data-wish="${p.id}" aria-label="Add to wishlist">${wished ? '♥' : '♡'}</button>
-          <span class="offer-rating-badge">${p.rating} ★ <small>| ${p.rev}</small></span>
-        </div>
-        <div class="product-info">
-          <a href="product.html?id=${p.id}" class="product-title-link"><h4>${p.name}</h4></a>
-          <span class="offer-brand">${p.brand}</span>
-          <div class="price-line">
-            <span class="price-now">₹${p.price.toLocaleString('en-IN')}</span>
-            <span class="price-old">₹${p.old.toLocaleString('en-IN')}</span>
+  function renderFeatured() {
+    featuredGrid.innerHTML = featured.map(p => {
+      const discount = Math.round(((p.old - p.price) / p.old) * 100);
+      const savings = p.old - p.price;
+      const wished = window.KM.isWishlisted(p.id);
+      return `
+        <div class="product-card">
+          <div class="product-img">
+            <a href="product.html?id=${p.id}" class="product-img-link">
+              <img src="${p.img}" alt="${p.name}" loading="lazy">
+            </a>
+            <span class="discount-badge">${t('common.off', { pct: discount })}</span>
+            <button class="wish-icon ${wished ? 'active' : ''}" data-wish="${p.id}" aria-label="Add to wishlist">${wished ? '♥' : '♡'}</button>
+            <span class="offer-rating-badge">${p.rating} ★ <small>| ${p.rev}</small></span>
           </div>
-          <p class="offer-savings">🏷️ Save ₹${savings.toLocaleString('en-IN')}</p>
-          <label class="offer-size-label">Size
-            <select class="offer-size-select"><option>${sizeOf(p)}</option></select>
-          </label>
-          <button class="add-cart-btn" data-add="${p.id}">🛒 Cart Mein Daalein</button>
-        </div>
-      </div>`;
-  }).join('');
+          <div class="product-info">
+            <a href="product.html?id=${p.id}" class="product-title-link"><h4>${p.name}</h4></a>
+            <span class="offer-brand">${p.brand}</span>
+            <div class="price-line">
+              <span class="price-now">₹${p.price.toLocaleString('en-IN')}</span>
+              <span class="price-old">₹${p.old.toLocaleString('en-IN')}</span>
+            </div>
+            <p class="offer-savings">🏷️ ${t('common.save', { amount: savings.toLocaleString('en-IN') })}</p>
+            <label class="offer-size-label">${t('common.size')}
+              <select class="offer-size-select"><option>${sizeOf(p)}</option></select>
+            </label>
+            <button class="add-cart-btn" data-add="${p.id}">🛒 ${t('common.addToCart')}</button>
+          </div>
+        </div>`;
+    }).join('');
 
-  featuredGrid.querySelectorAll('[data-add]').forEach(btn => {
-    btn.addEventListener('click', () => window.KM.addToCart(products.find(p => p.id === btn.dataset.add)));
-  });
-  featuredGrid.querySelectorAll('[data-wish]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const active = window.KM.toggleWishlist(btn.dataset.wish);
-      btn.classList.toggle('active', active);
-      btn.textContent = active ? '♥' : '♡';
+    featuredGrid.querySelectorAll('[data-add]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        window.KM.addToCart(products.find(p => p.id === btn.dataset.add));
+        window.KM.toast(t('common.addedToCartToast'));
+      });
     });
-  });
+    featuredGrid.querySelectorAll('[data-wish]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const active = window.KM.toggleWishlist(btn.dataset.wish);
+        btn.classList.toggle('active', active);
+        btn.textContent = active ? '♥' : '♡';
+        window.KM.toast(active ? t('common.wishlistAddedToast') : t('common.wishlistRemovedToast'));
+      });
+    });
+  }
+  renderFeatured();
 
   /* ============================================
      RENDER — Reels
@@ -152,10 +173,20 @@ document.addEventListener('DOMContentLoaded', () => {
   let activeSkill = 'all';
 
   const usedSkills = [...new Set(workers.map(w => w.skill))];
-  majdoorFilters.innerHTML = ['all', ...usedSkills].map(s => `
-    <button class="chip-filter light ${s === 'all' ? 'active' : ''}" data-skill="${s}">
-      ${s === 'all' ? '🌐 Sabhi' : workerLabels[s]}
-    </button>`).join('');
+  function renderMajdoorFilters() {
+    majdoorFilters.innerHTML = ['all', ...usedSkills].map(s => `
+      <button class="chip-filter light ${s === activeSkill ? 'active' : ''}" data-skill="${s}">
+        ${s === 'all' ? '🌐 ' + t('search.all') : t('catalog.workerSkill.' + s)}
+      </button>`).join('');
+    majdoorFilters.querySelectorAll('.chip-filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeSkill = btn.dataset.skill;
+        renderMajdoorFilters();
+        renderWorkers();
+      });
+    });
+  }
+  renderMajdoorFilters();
 
   function renderWorkers() {
     const list = activeSkill === 'all' ? workers : workers.filter(w => w.skill === activeSkill);
@@ -163,53 +194,47 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="worker-card">
         <div class="worker-top">
           <img src="${w.img}" alt="${w.name}">
-          <span class="worker-status ${w.available ? 'online' : 'offline'}">${w.available ? '🟢 Available' : '⚪ Busy'}</span>
+          <span class="worker-status ${w.available ? 'online' : 'offline'}">${w.available ? t('common.available') : t('common.busy')}</span>
         </div>
         <h4>${w.name}</h4>
-        <p class="worker-skill">${w.label} · ${w.exp} anubhav</p>
+        <p class="worker-skill">${t('catalog.workerSkill.' + w.skill)} · ${t('common.experienceSuffix', { exp: w.exp })}</p>
         <p class="worker-loc">📍 ${w.loc}</p>
         <div class="worker-bottom">
           <div>
             <span class="worker-stars">★ ${w.rating}</span>
-            <span class="worker-wage">₹${w.wage}<small>/din</small></span>
+            <span class="worker-wage">₹${w.wage}<small>${t('common.perDay')}</small></span>
           </div>
-          <button class="btn-chip worker-contact">Book Karein</button>
+          <button class="btn-chip worker-contact">${t('common.bookNow')}</button>
         </div>
       </div>`).join('');
 
     workerGrid.querySelectorAll('.worker-contact').forEach(btn => {
-      btn.addEventListener('click', () => window.KM.toast('Majdoor ki jaankari WhatsApp par bheji ja rahi hai... 📲'));
+      btn.addEventListener('click', () => window.KM.toast(t('common.workerContactToast')));
     });
   }
   renderWorkers();
-
-  majdoorFilters.querySelectorAll('.chip-filter').forEach(btn => {
-    btn.addEventListener('click', () => {
-      activeSkill = btn.dataset.skill;
-      majdoorFilters.querySelectorAll('.chip-filter').forEach(c => c.classList.remove('active'));
-      btn.classList.add('active');
-      renderWorkers();
-    });
-  });
 
   /* ============================================
      RENDER — Yojana (govt schemes)
      ============================================ */
   const yojanaGrid = document.getElementById('yojanaGrid');
-  yojanaGrid.innerHTML = yojanas.map(y => `
-    <div class="yojana-card">
-      <div class="yojana-icon">${y.icon}</div>
-      <h4>${y.name}</h4>
-      <p class="yojana-benefit">${y.benefit}</p>
-      <div class="yojana-docs">
-        ${y.docs.map(d => `<span>📄 ${d}</span>`).join('')}
-      </div>
-      <button class="btn-chip yojana-btn">Aur Jaanein →</button>
-    </div>`).join('');
+  function renderYojanaGrid() {
+    yojanaGrid.innerHTML = yojanas.map(y => `
+      <div class="yojana-card">
+        <div class="yojana-icon">${y.icon}</div>
+        <h4>${y.name}</h4>
+        <p class="yojana-benefit">${y.benefit}</p>
+        <div class="yojana-docs">
+          ${y.docs.map(d => `<span>📄 ${d}</span>`).join('')}
+        </div>
+        <button class="btn-chip yojana-btn">${t('common.learnMore')}</button>
+      </div>`).join('');
 
-  yojanaGrid.querySelectorAll('.yojana-btn').forEach(btn => {
-    btn.addEventListener('click', () => window.KM.toast('Yojana ki poori jaankari jald hi yahan milegi 📜'));
-  });
+    yojanaGrid.querySelectorAll('.yojana-btn').forEach(btn => {
+      btn.addEventListener('click', () => window.KM.toast(t('common.yojanaMoreInfoToast')));
+    });
+  }
+  renderYojanaGrid();
 
   /* ---------- Animated counters ---------- */
   const statNums = document.querySelectorAll('.stat-num');
@@ -259,7 +284,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Bazaar "Contact" buttons ---------- */
   document.querySelectorAll('.bazaar-card .btn-chip').forEach(btn => {
-    btn.addEventListener('click', () => window.KM.toast('Seller ki jaankari WhatsApp par bheji ja rahi hai... 📲'));
+    btn.addEventListener('click', () => window.KM.toast(t('common.sellerContactToast')));
+  });
+
+  /* ---------- Re-render every dynamic section when the language changes ---------- */
+  document.addEventListener('km:langchange', () => {
+    renderTrending();
+    renderFarmTypes();
+    renderCategories();
+    renderCrops();
+    renderFeatured();
+    renderMajdoorFilters();
+    renderWorkers();
+    renderYojanaGrid();
   });
 
 });
