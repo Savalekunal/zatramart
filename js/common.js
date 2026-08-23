@@ -544,6 +544,7 @@ window.KM = (function () {
       if (!hamburger) return;
       hamburger.classList.remove('open');
       navLinks.classList.remove('open');
+      if (navbar) navbar.classList.remove('menu-above-overlay');
       if (!cartDrawer.classList.contains('open') && !authModal.classList.contains('open')) {
         overlay.classList.remove('show');
       }
@@ -553,6 +554,10 @@ window.KM = (function () {
         const isOpen = navLinks.classList.toggle('open');
         hamburger.classList.toggle('open', isOpen);
         overlay.classList.toggle('show', isOpen);
+        // #navLinks lives inside the sticky <header>, which has its own z-index and
+        // therefore its own stacking context — no z-index on #navLinks itself can ever
+        // paint above the blurred .overlay unless the header's own stacking is raised too.
+        if (navbar) navbar.classList.toggle('menu-above-overlay', isOpen);
       });
       navLinks.querySelectorAll(':scope > a').forEach(a => a.addEventListener('click', closeMobileMenu));
     }

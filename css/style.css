@@ -671,6 +671,10 @@ ul.yojana-modal-list { list-style: disc; }
     box-shadow: -10px 0 30px rgba(0,0,0,.15); z-index: 900; gap: 26px; font-size: 1.05rem;
     transform: translateX(0); transition: transform .35s var(--ease);
   }
+  /* #navLinks is a descendant of the sticky <header>, which establishes its own stacking
+     context at z-index 500 — no z-index on #navLinks can paint above the blurred .overlay
+     (z-index 800) unless the header's own context is raised while the menu is open. */
+  .navbar.menu-above-overlay { z-index: 900; }
 }
 
 /* ============================================
