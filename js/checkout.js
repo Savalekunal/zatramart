@@ -2,7 +2,9 @@
    ZatraMart — Checkout script
    ============================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  if (window.KM_I18N) await window.KM_I18N.ready;
+  const t = window.KM_I18N ? window.KM_I18N.t : (k) => k;
 
   const loginGuard = document.getElementById('loginGuard');
   const emptyGuard = document.getElementById('emptyGuard');
@@ -30,11 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('summaryItems').innerHTML = cart.map(i => `
       <div class="summary-item">
         <img src="${i.img}" alt="${i.name}">
-        <div class="summary-item-info"><h5>${i.name}</h5><span>Qty: ${i.qty} × ₹${i.price}</span></div>
+        <div class="summary-item-info"><h5>${i.name}</h5><span>${t('checkout.qtyPrice', { qty: i.qty, price: i.price })}</span></div>
         <strong>₹${(i.price * i.qty).toLocaleString('en-IN')}</strong>
       </div>`).join('');
     document.getElementById('summarySubtotal').textContent = money(subtotal);
-    document.getElementById('summaryDelivery').textContent = delivery === 0 ? 'FREE' : money(delivery);
+    document.getElementById('summaryDelivery').textContent = delivery === 0 ? t('checkout.free') : money(delivery);
     document.getElementById('summaryCod').textContent = money(codCharge);
     document.getElementById('summaryTotal').textContent = money(total);
     document.getElementById('payAmount').textContent = total.toLocaleString('en-IN');
@@ -96,8 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </label>`).join('') + `
       <div class="address-card-actions">
-        <button class="btn-chip add-new-addr-btn" id="addNewAddrBtn" type="button">+ Nayi Address Jodein</button>
-        <button class="btn btn-primary" id="continueToPaymentBtn" type="button">Aage Badhein →</button>
+        <button class="btn-chip add-new-addr-btn" id="addNewAddrBtn" type="button">${t('checkout.addNewAddress')}</button>
+        <button class="btn btn-primary" id="continueToPaymentBtn" type="button">${t('checkout.continueBtn')}</button>
       </div>`;
     form.style.display = 'none';
 
@@ -124,12 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const type = document.querySelector('#addrTypePick .role-chip.active')?.dataset.type || 'Home';
 
     if (!name || !/^\d{10}$/.test(phone) || !line || !/^\d{6}$/.test(pincode) || !city || !state) {
-      window.KM.toast('⚠️ Kripya sabhi fields sahi se bharein');
+      window.KM.toast(t('checkout.errFillFields'));
       return;
     }
     selectedAddress = await window.KM.addAddress({ name, phone, line, pincode, city, state, type });
     if (!selectedAddress) return;
-    window.KM.toast('✅ Address save ho gaya');
+    window.KM.toast(t('checkout.addressSavedToast'));
     await renderAddresses();
     goToStep(2);
   });
@@ -168,14 +170,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Pay now (COD only — Card/UPI are "coming soon") ---------- */
   document.getElementById('payNowBtn').addEventListener('click', async () => {
-    if (!selectedAddress) { window.KM.toast('⚠️ Pehle delivery address chunein'); goToStep(1); return; }
+    if (!selectedAddress) { window.KM.toast(t('checkout.errSelectAddress')); goToStep(1); return; }
     const { subtotal, delivery, codCharge, total, cart } = computeCharges();
 
     const processing = document.getElementById('payProcessing');
     processing.classList.add('show');
 
     const now = Date.now();
-    const methodLabel = '💵 Cash on Delivery';
+    const methodLabel = t('checkout.codMethodLabel');
+    // Tracking steps store a stable `key` (not the translated label) so orders.js can display
+    // them in whatever language is active later, instead of freezing the text at order time —
+    // see the note in orders.js's currentStatus()/tracking render for the read side of this.
     const order = {
       id: 'ORD' + now,
       items: cart,
@@ -184,11 +189,11 @@ document.addEventListener('DOMContentLoaded', () => {
       paymentMethod: methodLabel,
       status: 'Placed',
       tracking: [
-        { label: 'Order Placed', at: now },
-        { label: 'Packed', at: now + 2 * 60 * 1000 },
-        { label: 'Shipped', at: now + 5 * 60 * 1000 },
-        { label: 'Out for Delivery', at: now + 8 * 60 * 1000 },
-        { label: 'Delivered', at: now + 12 * 60 * 1000 },
+        { key: 'placed', at: now },
+        { key: 'packed', at: now + 2 * 60 * 1000 },
+        { key: 'shipped', at: now + 5 * 60 * 1000 },
+        { key: 'outForDelivery', at: now + 8 * 60 * 1000 },
+        { key: 'delivered', at: now + 12 * 60 * 1000 },
       ],
     };
     await window.KM.addOrder(order);
@@ -199,17 +204,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const eta = new Date(now + 4 * 24 * 60 * 60 * 1000);
     document.getElementById('orderSuccessBox').innerHTML = `
       <span class="success-tick">✅</span>
-      <h2>Order Confirm Ho Gaya!</h2>
-      <p>Dhanyavaad! Aapka order safaltapoorvak place ho gaya hai.</p>
-      <div class="order-id-box">Order ID: <strong>${order.id}</strong></div>
-      <p class="eta-note">📅 Estimated Delivery: <strong>${eta.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</strong></p>
-      <p class="eta-note">💰 Total Paid: <strong>${money(total)}</strong> via ${methodLabel}</p>
+      <h2>${t('checkout.orderConfirmedTitle')}</h2>
+      <p>${t('checkout.orderConfirmedSub')}</p>
+      <div class="order-id-box">${t('checkout.orderIdLabel')} <strong>${order.id}</strong></div>
+      <p class="eta-note">${t('checkout.etaLabel')} <strong>${eta.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</strong></p>
+      <p class="eta-note">${t('checkout.totalPaidLabel')} <strong>${money(total)}</strong> ${t('checkout.via')} ${methodLabel}</p>
       <div class="success-actions">
-        <a href="orders.html?id=${order.id}" class="btn btn-primary">📦 Order Track Karein</a>
-        <a href="shop.html" class="btn btn-outline">Shopping Jaari Rakhein</a>
+        <a href="orders.html?id=${order.id}" class="btn btn-primary">${t('checkout.trackOrderBtn')}</a>
+        <a href="shop.html" class="btn btn-outline">${t('checkout.continueShoppingBtn')}</a>
       </div>
     `;
     goToStep(3);
+  });
+
+  document.addEventListener('km:langchange', () => {
+    if (!checkoutFlow || checkoutFlow.style.display === 'none') return;
+    renderSummary();
+    renderAddresses();
   });
 
 });

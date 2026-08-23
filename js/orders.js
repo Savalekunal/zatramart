@@ -2,7 +2,9 @@
    ZatraMart — Orders (list + tracking) script
    ============================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  if (window.KM_I18N) await window.KM_I18N.ready;
+  const t = window.KM_I18N ? window.KM_I18N.t : (k) => k;
 
   const loginGuard = document.getElementById('loginGuard');
   const listView = document.getElementById('ordersListView');
@@ -22,11 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function money(n) { return '₹' + n.toLocaleString('en-IN'); }
   function fmtDate(iso) { return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }); }
 
+  // Orders placed after the tracking-key change (see checkout.js) carry step.key ('placed',
+  // 'packed', ...) and get a live-translated label. Orders placed before that change only have
+  // step.label frozen in whatever language was active at checkout — shown as-is rather than
+  // guessing a key from old English text.
+  function stepLabel(step) { return step.key ? t('orders.status.' + step.key) : step.label; }
+  function isDeliveredStep(step) { return step.key ? step.key === 'delivered' : step.label === 'Delivered'; }
+
   function currentStatus(order) {
     const now = Date.now();
-    let status = order.tracking[0].label;
-    order.tracking.forEach(step => { if (now >= step.at) status = step.label; });
-    return status;
+    let step = order.tracking[0];
+    order.tracking.forEach(s => { if (now >= s.at) step = s; });
+    return step;
   }
 
   async function renderList() {
@@ -36,13 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
       wrap.innerHTML = `
         <div class="orders-empty">
           <span>📦</span>
-          <p>Abhi tak koi order nahi hai.</p>
-          <a href="shop.html" class="btn btn-primary">Shopping Shuru Karein</a>
+          <p>${t('orders.noOrdersYet')}</p>
+          <a href="shop.html" class="btn btn-primary">${t('orders.startShoppingBtn')}</a>
         </div>`;
       return;
     }
     wrap.innerHTML = orders.map(o => {
-      const status = currentStatus(o);
+      const step = currentStatus(o);
       const thumbs = o.items.slice(0, 4);
       const extra = o.items.length - thumbs.length;
       return `
@@ -50,17 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="order-card-top">
           <div>
             <div class="order-card-id">${o.id}</div>
-            <div class="order-card-date">Placed on ${fmtDate(o.date)}</div>
+            <div class="order-card-date">${t('orders.placedOn', { date: fmtDate(o.date) })}</div>
           </div>
-          <span class="order-status-badge ${status === 'Delivered' ? 'delivered' : ''}">${status}</span>
+          <span class="order-status-badge ${isDeliveredStep(step) ? 'delivered' : ''}">${stepLabel(step)}</span>
         </div>
         <div class="order-card-items">
           ${thumbs.map(i => `<img src="${i.img}" alt="${i.name}">`).join('')}
           ${extra > 0 ? `<div class="order-card-more">+${extra}</div>` : ''}
         </div>
         <div class="order-card-bottom">
-          <span class="order-card-total">${money(o.total)} · ${o.items.reduce((s, i) => s + i.qty, 0)} items</span>
-          <span class="order-card-track">Track Order →</span>
+          <span class="order-card-total">${money(o.total)} · ${o.items.reduce((s, i) => s + i.qty, 0)} ${t('common.items')}</span>
+          <span class="order-card-track">${t('orders.trackOrderLink')}</span>
         </div>
       </div>`;
     }).join('');
@@ -73,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function renderDetail(id) {
     const order = await window.KM.getOrder(id);
     if (!order) {
-      detailView.innerHTML = '<p class="orders-empty">Order nahi mila.</p>';
+      detailView.innerHTML = `<p class="orders-empty">${t('orders.orderNotFound')}</p>`;
       detailView.style.display = '';
       listView.style.display = 'none';
       return;
@@ -82,23 +91,23 @@ document.addEventListener('DOMContentLoaded', () => {
     detailView.style.display = '';
 
     document.getElementById('detailOrderId').textContent = order.id;
-    document.getElementById('detailOrderMeta').textContent = `Placed on ${fmtDate(order.date)} · ${order.paymentMethod}`;
-    const status = currentStatus(order);
+    document.getElementById('detailOrderMeta').textContent = `${t('orders.placedOn', { date: fmtDate(order.date) })} · ${order.paymentMethod}`;
+    const step = currentStatus(order);
     const badge = document.getElementById('detailStatusBadge');
-    badge.textContent = status;
-    badge.classList.toggle('delivered', status === 'Delivered');
+    badge.textContent = stepLabel(step);
+    badge.classList.toggle('delivered', isDeliveredStep(step));
 
     const now = Date.now();
-    document.getElementById('trackingStepper').innerHTML = order.tracking.map(step => {
-      const done = now >= step.at;
+    document.getElementById('trackingStepper').innerHTML = order.tracking.map(s => {
+      const done = now >= s.at;
       const timeStr = done
-        ? new Date(step.at).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
-        : 'Expected ' + new Date(step.at).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+        ? new Date(s.at).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+        : t('orders.expected', { time: new Date(s.at).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) });
       return `
         <div class="tracking-step ${done ? 'done' : ''}">
           <div class="tracking-dot">${done ? '✓' : ''}</div>
           <div class="tracking-step-info">
-            <h5>${step.label}</h5>
+            <h5>${stepLabel(s)}</h5>
             <span>${timeStr}</span>
           </div>
         </div>`;
@@ -109,21 +118,21 @@ document.addEventListener('DOMContentLoaded', () => {
         <img src="${i.img}" alt="${i.name}">
         <div class="order-line-item-info">
           <h5>${i.name}</h5>
-          <span>Qty: ${i.qty} × ₹${i.price}</span>
+          <span>${t('checkout.qtyPrice', { qty: i.qty, price: i.price })}</span>
         </div>
         <strong>₹${(i.price * i.qty).toLocaleString('en-IN')}</strong>
       </div>`).join('') + `
-      <div class="summary-row" style="margin-top:14px;"><span>Subtotal</span><span>${money(order.subtotal)}</span></div>
-      <div class="summary-row"><span>Delivery</span><span>${order.delivery === 0 ? 'FREE' : money(order.delivery)}</span></div>
-      ${order.codCharge ? `<div class="summary-row"><span>COD Charge</span><span>${money(order.codCharge)}</span></div>` : ''}
-      <div class="summary-row total"><span>Total Paid</span><span>${money(order.total)}</span></div>
+      <div class="summary-row" style="margin-top:14px;"><span>${t('orders.subtotal')}</span><span>${money(order.subtotal)}</span></div>
+      <div class="summary-row"><span>${t('orders.delivery')}</span><span>${order.delivery === 0 ? t('checkout.free') : money(order.delivery)}</span></div>
+      ${order.codCharge ? `<div class="summary-row"><span>${t('orders.codCharge')}</span><span>${money(order.codCharge)}</span></div>` : ''}
+      <div class="summary-row total"><span>${t('orders.totalPaid')}</span><span>${money(order.total)}</span></div>
     `;
 
     const a = order.address;
     document.getElementById('detailAddress').innerHTML = `
       <p><strong>${a.name}</strong> · 📞 ${a.phone}</p>
       <p>${a.line}, ${a.city}, ${a.state} - ${a.pincode} (${a.type})</p>
-      <p style="margin-top:10px;">💳 Payment: <strong>${order.paymentMethod}</strong></p>
+      <p style="margin-top:10px;">${t('orders.paymentLabel')} <strong>${order.paymentMethod}</strong></p>
     `;
   }
 
@@ -141,5 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const id = new URLSearchParams(location.search).get('id');
     if (id && window.KM.isLoggedIn()) renderDetail(id);
   }, 10000);
+
+  document.addEventListener('km:langchange', render);
 
 });

@@ -221,14 +221,14 @@
 
 <main id="top">
 <div class="container checkout-wrap">
-  <div class="section-head pdp-section-head"><h2>Checkout</h2></div>
+  <div class="section-head pdp-section-head"><h2 data-i18n="checkout.title">Checkout</h2></div>
 
   <div class="checkout-stepper" id="checkoutStepper">
-    <div class="step active" data-step="1"><span>1</span>Address</div>
+    <div class="step active" data-step="1"><span>1</span><span data-i18n="checkout.stepAddress">Address</span></div>
     <div class="step-line"></div>
-    <div class="step" data-step="2"><span>2</span>Payment</div>
+    <div class="step" data-step="2"><span>2</span><span data-i18n="checkout.stepPayment">Payment</span></div>
     <div class="step-line"></div>
-    <div class="step" data-step="3"><span>3</span>Confirm</div>
+    <div class="step" data-step="3"><span>3</span><span data-i18n="checkout.stepConfirm">Confirm</span></div>
   </div>
 
   <div class="checkout-grid">
@@ -236,67 +236,67 @@
 
       <div class="checkout-guard" id="loginGuard" hidden>
         <span class="guard-icon">🔒</span>
-        <p>Checkout jaari rakhne ke liye pehle login karein.</p>
-        <button class="btn btn-primary" id="guardLoginBtn">Login Karein</button>
+        <p data-i18n="checkout.loginToContinue">Checkout jaari rakhne ke liye pehle login karein.</p>
+        <button class="btn btn-primary" id="guardLoginBtn" data-i18n="header.login">Login Karein</button>
       </div>
 
       <div class="checkout-guard" id="emptyGuard" hidden>
         <span class="guard-icon">🛒</span>
-        <p>Aapki cart khaali hai.</p>
-        <a href="index.html#shop" class="btn btn-primary">Shopping Shuru Karein</a>
+        <p data-i18n="checkout.cartEmpty">Aapki cart khaali hai.</p>
+        <a href="index.html#shop" class="btn btn-primary" data-i18n="orders.startShoppingBtn">Shopping Shuru Karein</a>
       </div>
 
       <div id="checkoutFlow">
         <!-- STEP 1: Address -->
         <section class="checkout-section active" id="sectionAddress">
-          <h3>📍 Delivery Address</h3>
+          <h3>📍 <span data-i18n="checkout.deliveryAddress">Delivery Address</span></h3>
           <div class="saved-addresses" id="savedAddresses"></div>
           <div class="address-form" id="addressForm">
             <div class="form-row">
-              <div class="form-field"><label>Poora Naam</label><input type="text" id="addrName"></div>
-              <div class="form-field"><label>Mobile Number</label><input type="tel" maxlength="10" id="addrPhone"></div>
+              <div class="form-field"><label data-i18n="auth.fullName">Poora Naam</label><input type="text" id="addrName"></div>
+              <div class="form-field"><label data-i18n="auth.mobileNumber">Mobile Number</label><input type="tel" maxlength="10" id="addrPhone"></div>
             </div>
-            <div class="form-field"><label>Address (Ghar No, Gali, Gaon)</label><textarea id="addrLine" rows="2"></textarea></div>
+            <div class="form-field"><label data-i18n="checkout.addressLine">Address (Ghar No, Gali, Gaon)</label><textarea id="addrLine" rows="2"></textarea></div>
             <div class="form-row form-row-3">
-              <div class="form-field"><label>Pincode</label><input type="text" maxlength="6" id="addrPincode"></div>
-              <div class="form-field"><label>Sheher / Gaon</label><input type="text" id="addrCity"></div>
-              <div class="form-field"><label>Rajya</label><input type="text" id="addrState"></div>
+              <div class="form-field"><label data-i18n="checkout.pincode">Pincode</label><input type="text" maxlength="6" id="addrPincode"></div>
+              <div class="form-field"><label data-i18n="checkout.cityVillage">Sheher / Gaon</label><input type="text" id="addrCity"></div>
+              <div class="form-field"><label data-i18n="checkout.state">Rajya</label><input type="text" id="addrState"></div>
             </div>
             <div class="form-field">
-              <label>Address Type</label>
+              <label data-i18n="checkout.addressType">Address Type</label>
               <div class="role-pick" id="addrTypePick">
-                <button class="role-chip active" type="button" data-type="Home">🏠 Home</button>
-                <button class="role-chip" type="button" data-type="Farm">🌾 Farm</button>
-                <button class="role-chip" type="button" data-type="Work">🏪 Work</button>
+                <button class="role-chip active" type="button" data-type="Home">🏠 <span data-i18n="checkout.home">Home</span></button>
+                <button class="role-chip" type="button" data-type="Farm">🌾 <span data-i18n="checkout.farm">Farm</span></button>
+                <button class="role-chip" type="button" data-type="Work">🏪 <span data-i18n="checkout.work">Work</span></button>
               </div>
             </div>
-            <button class="btn btn-primary" id="saveAddressBtn">Address Save Karein &amp; Aage Badhein →</button>
+            <button class="btn btn-primary" id="saveAddressBtn" data-i18n="checkout.saveAddressContinue">Address Save Karein &amp; Aage Badhein →</button>
           </div>
         </section>
 
         <!-- STEP 2: Payment -->
         <section class="checkout-section" id="sectionPayment">
-          <h3>💳 Payment Method</h3>
+          <h3>💳 <span data-i18n="checkout.paymentMethod">Payment Method</span></h3>
           <div class="payment-methods" id="paymentMethods">
             <label class="pay-option disabled">
               <input type="radio" name="pay" value="card" disabled>
-              <span class="pay-icon">💳</span> Credit / Debit Card <span class="pay-soon-badge">Jald Aayega</span>
+              <span class="pay-icon">💳</span> <span data-i18n="checkout.creditDebitCard">Credit / Debit Card</span> <span class="pay-soon-badge" data-i18n="checkout.comingSoon">Jald Aayega</span>
             </label>
             <label class="pay-option disabled">
               <input type="radio" name="pay" value="upi" disabled>
-              <span class="pay-icon">📱</span> UPI <span class="pay-soon-badge">Jald Aayega</span>
+              <span class="pay-icon">📱</span> UPI <span class="pay-soon-badge" data-i18n="checkout.comingSoon">Jald Aayega</span>
             </label>
             <label class="pay-option active">
               <input type="radio" name="pay" value="cod" checked>
-              <span class="pay-icon">💵</span> Cash on Delivery
+              <span class="pay-icon">💵</span> <span data-i18n="checkout.codMethodLabel2">Cash on Delivery</span>
             </label>
           </div>
 
           <div class="pay-detail" id="cardDetail" hidden>
-            <div class="form-field"><label>Card Number</label><input type="text" maxlength="19" id="cardNumber" placeholder="1234 5678 9012 3456"></div>
-            <div class="form-field"><label>Naam Card Par</label><input type="text" id="cardName" placeholder="Card par likha naam"></div>
+            <div class="form-field"><label data-i18n="checkout.cardNumber">Card Number</label><input type="text" maxlength="19" id="cardNumber" placeholder="1234 5678 9012 3456"></div>
+            <div class="form-field"><label data-i18n="checkout.nameOnCard">Naam Card Par</label><input type="text" id="cardName" data-i18n-placeholder="checkout.nameOnCardPlaceholder" placeholder="Card par likha naam"></div>
             <div class="form-row">
-              <div class="form-field"><label>Expiry (MM/YY)</label><input type="text" maxlength="5" id="cardExpiry" placeholder="MM/YY"></div>
+              <div class="form-field"><label data-i18n="checkout.expiry">Expiry (MM/YY)</label><input type="text" maxlength="5" id="cardExpiry" placeholder="MM/YY"></div>
               <div class="form-field"><label>CVV</label><input type="password" maxlength="3" id="cardCvv" placeholder="123"></div>
             </div>
           </div>
@@ -306,12 +306,12 @@
           </div>
 
           <div class="pay-detail" id="codDetail">
-            <p class="pay-secure-note">💵 Order milne par cash dena hoga. Extra ₹25 COD charge lagega.</p>
+            <p class="pay-secure-note" data-i18n="checkout.codNote">💵 Order milne par cash dena hoga. Extra ₹25 COD charge lagega.</p>
           </div>
 
           <div class="checkout-actions">
-            <button class="btn btn-outline" id="backToAddressBtn">← Address Badlein</button>
-            <button class="btn btn-primary" id="payNowBtn">Pay ₹<span id="payAmount">0</span></button>
+            <button class="btn btn-outline" id="backToAddressBtn" data-i18n="checkout.changeAddress">← Address Badlein</button>
+            <button class="btn btn-primary" id="payNowBtn"><span data-i18n="checkout.payLabel">Pay</span> ₹<span id="payAmount">0</span></button>
           </div>
         </section>
 
@@ -323,13 +323,13 @@
     </div>
 
     <aside class="checkout-summary">
-      <h4>Order Summary</h4>
+      <h4 data-i18n="checkout.orderSummary">Order Summary</h4>
       <div class="summary-items" id="summaryItems"></div>
-      <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">₹0</span></div>
-      <div class="summary-row"><span>Delivery</span><span id="summaryDelivery">₹0</span></div>
-      <div class="summary-row"><span>COD Charge</span><span id="summaryCod">₹0</span></div>
-      <div class="summary-row total"><span>Total</span><span id="summaryTotal">₹0</span></div>
-      <p class="summary-safe">🔒 100% Safe &amp; Secure Checkout (Demo)</p>
+      <div class="summary-row"><span data-i18n="orders.subtotal">Subtotal</span><span id="summarySubtotal">₹0</span></div>
+      <div class="summary-row"><span data-i18n="orders.delivery">Delivery</span><span id="summaryDelivery">₹0</span></div>
+      <div class="summary-row"><span data-i18n="orders.codCharge">COD Charge</span><span id="summaryCod">₹0</span></div>
+      <div class="summary-row total"><span data-i18n="checkout.totalLabel">Total</span><span id="summaryTotal">₹0</span></div>
+      <p class="summary-safe" data-i18n="checkout.safeCheckoutNote">🔒 100% Safe &amp; Secure Checkout (Demo)</p>
     </aside>
   </div>
 </div>
@@ -400,6 +400,6 @@
 <script src="js/supabase-client.js"></script>
 <script src="js/i18n.js?v=1"></script>
 <script src="js/common.js?v=37"></script>
-<script src="js/checkout.js?v=1"></script>
+<script src="js/checkout.js?v=2"></script>
 </body>
 </html>

@@ -224,17 +224,17 @@
 
   <div class="checkout-guard" id="loginGuard" hidden>
     <span class="guard-icon">🔒</span>
-    <p>Apne orders dekhne ke liye login karein.</p>
-    <button class="btn btn-primary" id="guardLoginBtn">Login Karein</button>
+    <p data-i18n="orders.loginToView">Apne orders dekhne ke liye login karein.</p>
+    <button class="btn btn-primary" id="guardLoginBtn" data-i18n="header.login">Login Karein</button>
   </div>
 
   <div id="ordersListView">
-    <div class="section-head pdp-section-head"><h2>My Orders</h2></div>
+    <div class="section-head pdp-section-head"><h2 data-i18n="orders.myOrders">My Orders</h2></div>
     <div id="ordersList"></div>
   </div>
 
   <div id="orderDetailView" style="display:none;">
-    <a href="orders.html" class="pdp-breadcrumb" style="display:block; padding:0 0 20px;">← Sabhi Orders</a>
+    <a href="orders.html" class="pdp-breadcrumb" style="display:block; padding:0 0 20px;" data-i18n="orders.allOrders">← Sabhi Orders</a>
     <div class="order-detail-head">
       <div>
         <h2 id="detailOrderId"></h2>
@@ -244,17 +244,17 @@
     </div>
 
     <div class="tracking-card">
-      <h4 style="margin-bottom:20px;">📍 Order Tracking</h4>
+      <h4 style="margin-bottom:20px;">📍 <span data-i18n="orders.orderTracking">Order Tracking</span></h4>
       <div class="tracking-stepper" id="trackingStepper"></div>
     </div>
 
     <div class="order-items-card">
-      <h4>🛒 Items</h4>
+      <h4>🛒 <span data-i18n="orders.itemsHeading">Items</span></h4>
       <div id="detailItems"></div>
     </div>
 
     <div class="order-address-card">
-      <h4>📍 Delivery Address &amp; Payment</h4>
+      <h4>📍 <span data-i18n="orders.deliveryAddressPayment">Delivery Address &amp; Payment</span></h4>
       <div id="detailAddress"></div>
     </div>
   </div>
@@ -322,6 +322,6 @@
 <script src="js/supabase-client.js"></script>
 <script src="js/i18n.js?v=1"></script>
 <script src="js/common.js?v=37"></script>
-<script src="js/orders.js?v=1"></script>
+<script src="js/orders.js?v=2"></script>
 </body>
 </html>
