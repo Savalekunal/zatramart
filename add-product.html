@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="hi-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Apna Product List Karein | ZatraMart</title>
+<meta name="description" content="ZatraMart Shop par apna product list karein — naam, category, price, photos.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=9">
+<link rel="stylesheet" href="css/product.css">
+<link rel="stylesheet" href="css/flow.css">
+</head>
+<body>
+
+<!-- ===== PRELOADER ===== -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <span class="preloader-leaf">🌾</span>
+    <p>ZatraMart लोड हो रहा है...</p>
+  </div>
+</div>
+
+<!-- ===== SELLER CENTRAL NAV (distinct from the customer site — no cart/search/mega-menu) ===== -->
+<header class="seller-nav">
+  <div class="container seller-nav-inner">
+    <a href="index.html" class="seller-nav-exit">← 🌾 ZatraMart Home</a>
+    <a href="my-listings.html" class="seller-nav-logo">🏪 Seller <span class="accent">Central</span></a>
+    <nav class="seller-nav-links">
+      <a href="my-listings.html" class="seller-nav-link">📊 Dashboard</a>
+      <a href="#" class="seller-nav-link active seller-bane-link">➕ Add Product</a>
+      <a href="become-seller.html" class="seller-nav-link">⚙️ Store Settings</a>
+    </nav>
+    <div class="seller-nav-right">
+      <span class="seller-nav-greet" id="sellerNavGreet"></span>
+      <a href="#" id="logoutBtn" class="seller-nav-logout">🚪 Logout</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MINI CART DRAWER ===== -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-head">
+    <h3>🛒 Aapki Cart</h3>
+    <button id="closeCart" aria-label="Close">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty">Cart khaali hai. Kuch achha khareedein! 🌱</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">Total: <strong id="cartTotal">₹0</strong></div>
+    <button class="btn btn-primary btn-block" id="checkoutBtn">Checkout Karein</button>
+  </div>
+</div>
+
+<!-- ===== LOGIN / SIGNUP MODAL ===== -->
+<div class="auth-modal" id="authModal">
+  <div class="auth-card">
+    <button class="auth-close" id="authClose" aria-label="Close">✕</button>
+    <div class="auth-logo"><span class="logo-icon">🌾</span> Zatra<span class="accent">Mart</span></div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Login</button>
+      <button class="auth-tab" data-tab="signup">Sign Up</button>
+    </div>
+
+    <div class="auth-panel active" id="panelLogin">
+      <div class="auth-step" id="loginStepForm">
+        <label>Mobile Number</label>
+        <div class="auth-input-row">
+          <span class="auth-prefix">🇮🇳 +91</span>
+          <input type="tel" maxlength="10" placeholder="98765 43210" id="loginPhone">
+        </div>
+        <button class="btn btn-primary btn-block" id="loginSendOtpBtn">OTP Bhejein</button>
+        <p class="auth-note">Registered mobile number daalein — OTP aapke email par bheja jaayega.</p>
+      </div>
+      <div class="auth-step" id="loginStepOtp" hidden>
+        <p class="auth-otp-sent" id="loginOtpSentMsg"></p>
+        <div class="otp-row show" id="loginOtpRow">
+          <input type="text" class="otp-single" inputmode="numeric" placeholder="Email mein aaya OTP daalein">
+        </div>
+        <button class="btn btn-primary btn-block" id="loginVerifyBtn">Verify &amp; Login</button>
+        <button class="auth-link-btn" id="loginBackBtn" type="button">← Number badlein</button>
+      </div>
+    </div>
+
+    <div class="auth-panel" id="panelSignup">
+      <div class="auth-step" id="signupStepForm">
+        <label>Poora Naam</label>
+        <input type="text" placeholder="Aapka naam" class="auth-field" id="signupName">
+        <label>Mobile Number</label>
+        <div class="auth-input-row">
+          <span class="auth-prefix">🇮🇳 +91</span>
+          <input type="tel" maxlength="10" placeholder="98765 43210" id="signupPhone">
+        </div>
+        <label>Email ID</label>
+        <input type="email" placeholder="aapka@email.com" class="auth-field" id="signupEmail">
+        <label>Main Hoon</label>
+        <div class="role-pick">
+          <button class="role-chip active" type="button">🌾 Kisan</button>
+          <button class="role-chip" type="button">🏪 Seller</button>
+          <button class="role-chip" type="button">👷 Majdoor</button>
+        </div>
+        <button class="btn btn-primary btn-block" id="signupSendOtpBtn">Account Banayein</button>
+      </div>
+      <div class="auth-step" id="signupStepOtp" hidden>
+        <p class="auth-otp-sent" id="signupOtpSentMsg"></p>
+        <div class="otp-row show" id="signupOtpRow">
+          <input type="text" class="otp-single" inputmode="numeric" placeholder="Email mein aaya OTP daalein">
+        </div>
+        <button class="btn btn-primary btn-block" id="signupVerifyBtn">Verify &amp; Sign Up</button>
+        <button class="auth-link-btn" id="signupBackBtn" type="button">← Wapas jaayein</button>
+      </div>
+    </div>
+
+    <button class="auth-guest" id="authGuest">Guest ki tarah aage badhein →</button>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- Video / Reel modal placeholder -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="video-close" id="videoClose">✕</button>
+    <div class="video-player-wrap" id="videoPlayerWrap"></div>
+    <div class="video-info" id="videoInfo"></div>
+  </div>
+</div>
+
+<main id="top">
+<div class="seller-portal-banner">
+  <div class="container seller-portal-banner-inner">
+    <span class="seller-portal-badge">🏪 SELLER CENTRAL</span>
+    <h1>Apna Product List Karein</h1>
+  </div>
+</div>
+<div class="seller-page-wrap">
+
+  <div class="checkout-guard" id="loginGuard" hidden>
+    <span class="guard-icon">🔒</span>
+    <p>Product list karne ke liye login karein.</p>
+    <button class="btn btn-primary" id="guardLoginBtn">Login Karein</button>
+  </div>
+
+  <div id="addProdForm">
+    <div class="seller-page-card">
+      <div class="seller-page-steps" id="addProdSteps">
+        <span class="step active" data-step="1">① Product Details</span>
+        <span class="sep">───────</span>
+        <span class="step" data-step="2">② Photos &amp; Post</span>
+      </div>
+
+      <div id="addProdStep1">
+        <div class="auth-logo">📦 Product Ke Baare Mein Bataayein</div>
+        <p class="auth-note">Yeh ZatraMart Shop par sabko dikhega — sahi jaankari bharein.</p>
+
+        <label>Product Ka Naam</label>
+        <input type="text" class="auth-field" id="prodName" placeholder="e.g. Organic Neem Khaad 5kg">
+        <p class="auth-error" id="prodNameError">Product ka naam daalein.</p>
+
+        <label>Category</label>
+        <select class="auth-field" id="prodCat"></select>
+
+        <label>Description</label>
+        <textarea class="auth-field" id="prodDesc" rows="3" placeholder="Product ke baare mein bataayein..."></textarea>
+
+        <label>Price (₹)</label>
+        <input type="number" class="auth-field" id="prodPrice" placeholder="e.g. 450">
+        <p class="auth-error" id="prodPriceError">Sahi price daalein.</p>
+
+        <div class="form-row">
+          <div>
+            <label>Condition</label>
+            <select class="auth-field" id="prodCondition">
+              <option value="New">New</option>
+              <option value="Like New">Like New</option>
+              <option value="Good">Good</option>
+              <option value="Fair">Fair</option>
+              <option value="Used">Used</option>
+            </select>
+          </div>
+          <div>
+            <label>&nbsp;</label>
+            <label style="display:flex; align-items:center; gap:8px; font-weight:500; margin-top:11px;">
+              <input type="checkbox" id="prodNegotiable" checked style="width:auto; margin:0;"> Price Negotiable
+            </label>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-block" id="addProdStep1Next" type="button">Aage Badhein →</button>
+      </div>
+
+      <div id="addProdStep2" hidden>
+        <div class="auth-logo">📸 Photos Daalein</div>
+        <p class="auth-note">Asli product ki photo daalein (1-5) — stock/internet photo nahi, buyers ka bharosa isi se banega.</p>
+
+        <input type="file" id="prodPhotos" accept="image/*" multiple>
+        <p class="auth-error" id="prodPhotosError">Kam se kam 1 photo daalein.</p>
+        <div class="listing-photo-preview" id="prodPhotosPreview"></div>
+
+        <div class="form-row">
+          <button class="btn btn-outline-light" id="addProdStep2Back" type="button" style="color:var(--text-dark); border-color:var(--border);">← Wapas</button>
+          <button class="btn btn-primary" id="addProdSubmit" type="button">Product Post Karein</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="addProdSuccess" class="seller-page-card auth-success" style="display:none;">
+    <div class="auth-success-icon">✓</div>
+    <p id="addProdSuccessMsg" style="margin-bottom:20px;"></p>
+    <button class="btn btn-primary btn-block" id="addAnotherBtn" style="max-width:320px; margin:0 auto 12px; display:block;">➕ Ek Aur Product Add Karein</button>
+    <a href="my-listings.html" class="btn btn-outline-light btn-block" style="max-width:320px; margin:0 auto; display:block; color:var(--text-dark); border-color:var(--border);">My Listings Dekhein</a>
+  </div>
+
+</div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col footer-brand">
+      <a href="index.html" class="logo"><span class="logo-icon">🌾</span><span class="logo-text">Zatra<span class="accent">Mart</span></span></a>
+      <p>Kisan ka apna bazaar — dalaal-mukt, bharosemand, seedha.</p>
+      <div class="social-row">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="YouTube">▶</a>
+        <a href="#" aria-label="WhatsApp">✆</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="shop.html">Shop</a>
+      <a href="bazaar.html">Bazaar</a>
+      <a href="gyan.html">Reels &amp; Gyan</a>
+      <a href="majdoor.html">Majdoor</a>
+      <a href="yojana.html">Sarkari Yojana</a>
+      <a href="store.html">Our Store</a>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <a href="shop.html?cat=seeds">Seeds</a>
+      <a href="shop.html?cat=fertilizer">Fertilizers</a>
+      <a href="shop.html?cat=irrigation">Irrigation</a>
+      <a href="shop.html?cat=machinery">Machinery</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="orders.html">Track Order</a>
+      <a href="#">Returns</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="footer-col footer-news">
+      <h4>Jaankari Paayein</h4>
+      <p>Naye offers aur mandi bhaav seedha aapke phone par.</p>
+      <form class="news-form" onsubmit="return false;">
+        <input type="tel" placeholder="Mobile number" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 ZatraMart. Sabhi adhikar surakshit. Made with 💚 for the Kisan of Bharat.</p>
+  </div>
+</footer>
+
+<!-- ===== FLOATING ELEMENTS ===== -->
+<a href="#" class="whatsapp-float" aria-label="WhatsApp Support">✆</a>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js?v=22"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/common.js?v=34"></script>
+<script src="js/add-product.js"></script>
+</body>
+</html>

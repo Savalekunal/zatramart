@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="hi-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Product | ZatraMart</title>
+<meta name="description" content="ZatraMart product details — genuine agri products, seedha kisan tak.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=9">
+<link rel="stylesheet" href="css/product.css">
+</head>
+<body>
+
+<!-- ===== PRELOADER ===== -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <span class="preloader-leaf">🌾</span>
+    <p>ZatraMart लोड हो रहा है...</p>
+  </div>
+</div>
+
+<!-- ===== TOP UTILITY BAR ===== -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="topbar-left">
+      <span>📞 Kisan Helpline: <a href="tel:18001801551">1800-180-1551</a></span>
+      <span class="hide-sm">🚚 Free Delivery on ₹499+</span>
+    </div>
+    <div class="topbar-right">
+      <button class="lang-toggle" id="langToggle" aria-label="Change language">
+        <span class="lang-en active">EN</span> / <span class="lang-hi">हिं</span>
+      </button>
+      <a href="orders.html" class="hide-sm">Track Order</a>
+      <a href="#" class="hide-sm seller-bane-link">Seller Bane</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER / NAVBAR ===== -->
+<header class="navbar" id="navbar">
+  <div class="container navbar-row1">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">🌾</span>
+      <span class="logo-text">Zatra<span class="accent">Mart</span></span>
+    </a>
+
+    <nav class="row1-nav">
+      <a href="bazaar.html" data-en="Bazaar" data-hi="बाज़ार">Bazaar</a>
+      <a href="gyan.html" data-en="Reels &amp; Gyan" data-hi="रील्स और ज्ञान">Reels &amp; Gyan</a>
+      <a href="majdoor.html" data-en="Majdoor" data-hi="मज़दूर">Majdoor</a>
+      <a href="yojana.html" data-en="Yojana" data-hi="योजना">Yojana</a>
+    </nav>
+
+    <div class="search-bar">
+      <select class="search-cat">
+        <option>All</option>
+        <option>Seeds</option>
+        <option>Fertilizers</option>
+        <option>Irrigation</option>
+        <option>Machinery</option>
+      </select>
+      <input type="text" id="searchInput" placeholder="Search seeds, urea, pipe, motor...  बीज, खाद खोजें">
+      <button class="search-btn" id="searchBtn" aria-label="Search">🔍</button>
+    </div>
+
+    <div class="navbar-icons">
+      <div class="account-wrap">
+        <button class="icon-btn login-btn" id="loginBtn" aria-label="Login">
+          👤 <span class="login-text" id="loginBtnText">Login</span>
+        </button>
+        <div class="account-menu" id="accountMenu">
+          <div class="account-menu-head" id="accountMenuName"></div>
+          <a href="orders.html">📦 My Orders</a>
+          <a href="my-listings.html">🏷️ My Listings</a>
+          <a href="#" id="logoutBtn">🚪 Logout</a>
+        </div>
+      </div>
+      <button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">
+        ♡ <span class="badge" id="wishCount">0</span>
+      </button>
+      <button class="icon-btn" id="cartBtn" aria-label="Cart">
+        🛒 <span class="badge" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav-bar-row">
+    <nav class="container nav-links" id="navLinks">
+      <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+      <div class="has-drop agri-drop-wrap">
+        <a href="shop.html" data-en="Agriculture" data-hi="कृषि">Agriculture <span class="caret">▾</span></a>
+        <div class="agri-menu-panel" id="agriMenuPanel"></div>
+      </div>
+      <div class="has-drop">
+        <a href="shop.html?cat=seeds" data-en="Seeds" data-hi="बीज">Seeds <span class="caret">▾</span></a>
+        <div class="simple-drop" data-dropfor="seeds"></div>
+      </div>
+      <div class="has-drop">
+        <a href="shop.html?cat=pesticide" data-en="Crop Protection" data-hi="फसल सुरक्षा">Crop Protection <span class="caret">▾</span></a>
+        <div class="simple-drop" data-dropfor="protection"></div>
+      </div>
+      <div class="has-drop">
+        <a href="shop.html?cat=fertilizer" data-en="Fertilizer" data-hi="खाद">Fertilizer <span class="caret">▾</span></a>
+        <div class="simple-drop" data-dropfor="nutrition"></div>
+      </div>
+      <div class="has-drop">
+        <a href="shop.html?cat=tools" data-en="Equipments" data-hi="उपकरण">Equipments <span class="caret">▾</span></a>
+        <div class="simple-drop" data-dropfor="equipments"></div>
+      </div>
+      <div class="has-drop">
+        <a href="shop.html?cat=animal" data-en="Animal Husbandry" data-hi="पशुपालन">Animal Husbandry <span class="caret">▾</span></a>
+        <div class="simple-drop" data-dropfor="animal"></div>
+      </div>
+      <a href="bazaar.html" class="row1-duplicate" data-en="Bazaar" data-hi="बाज़ार">Bazaar</a>
+      <a href="gyan.html" class="row1-duplicate" data-en="Reels &amp; Gyan" data-hi="रील्स और ज्ञान">Reels &amp; Gyan</a>
+      <a href="majdoor.html" class="row1-duplicate" data-en="Majdoor" data-hi="मज़दूर">Majdoor</a>
+      <a href="yojana.html" class="row1-duplicate" data-en="Yojana" data-hi="योजना">Yojana</a>
+      <a href="store.html" data-en="Our Store" data-hi="हमारी दुकान">Our Store</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== MINI CART DRAWER ===== -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-head">
+    <h3>🛒 Aapki Cart</h3>
+    <button id="closeCart" aria-label="Close">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty">Cart khaali hai. Kuch achha khareedein! 🌱</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">Total: <strong id="cartTotal">₹0</strong></div>
+    <button class="btn btn-primary btn-block" id="checkoutBtn">Checkout Karein</button>
+  </div>
+</div>
+
+<!-- ===== LOGIN / SIGNUP MODAL ===== -->
+<div class="auth-modal" id="authModal">
+  <div class="auth-card">
+    <button class="auth-close" id="authClose" aria-label="Close">✕</button>
+    <div class="auth-logo"><span class="logo-icon">🌾</span> Zatra<span class="accent">Mart</span></div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Login</button>
+      <button class="auth-tab" data-tab="signup">Sign Up</button>
+    </div>
+
+    <div class="auth-panel active" id="panelLogin">
+      <div class="auth-step" id="loginStepForm">
+        <label>Mobile Number</label>
+        <div class="auth-input-row">
+          <span class="auth-prefix">🇮🇳 +91</span>
+          <input type="tel" maxlength="10" placeholder="98765 43210" id="loginPhone">
+        </div>
+        <button class="btn btn-primary btn-block" id="loginSendOtpBtn">OTP Bhejein</button>
+        <p class="auth-note">Registered mobile number daalein — OTP aapke email par bheja jaayega.</p>
+      </div>
+      <div class="auth-step" id="loginStepOtp" hidden>
+        <p class="auth-otp-sent" id="loginOtpSentMsg"></p>
+        <div class="otp-row show" id="loginOtpRow">
+          <input type="text" class="otp-single" inputmode="numeric" placeholder="Email mein aaya OTP daalein">
+        </div>
+        <button class="btn btn-primary btn-block" id="loginVerifyBtn">Verify &amp; Login</button>
+        <button class="auth-link-btn" id="loginBackBtn" type="button">← Number badlein</button>
+      </div>
+    </div>
+
+    <div class="auth-panel" id="panelSignup">
+      <div class="auth-step" id="signupStepForm">
+        <label>Poora Naam</label>
+        <input type="text" placeholder="Aapka naam" class="auth-field" id="signupName">
+        <label>Mobile Number</label>
+        <div class="auth-input-row">
+          <span class="auth-prefix">🇮🇳 +91</span>
+          <input type="tel" maxlength="10" placeholder="98765 43210" id="signupPhone">
+        </div>
+        <label>Email ID</label>
+        <input type="email" placeholder="aapka@email.com" class="auth-field" id="signupEmail">
+        <label>Main Hoon</label>
+        <div class="role-pick">
+          <button class="role-chip active" type="button">🌾 Kisan</button>
+          <button class="role-chip" type="button">🏪 Seller</button>
+          <button class="role-chip" type="button">👷 Majdoor</button>
+        </div>
+        <button class="btn btn-primary btn-block" id="signupSendOtpBtn">Account Banayein</button>
+      </div>
+      <div class="auth-step" id="signupStepOtp" hidden>
+        <p class="auth-otp-sent" id="signupOtpSentMsg"></p>
+        <div class="otp-row show" id="signupOtpRow">
+          <input type="text" class="otp-single" inputmode="numeric" placeholder="Email mein aaya OTP daalein">
+        </div>
+        <button class="btn btn-primary btn-block" id="signupVerifyBtn">Verify &amp; Sign Up</button>
+        <button class="auth-link-btn" id="signupBackBtn" type="button">← Wapas jaayein</button>
+      </div>
+    </div>
+
+    <button class="auth-guest" id="authGuest">Guest ki tarah aage badhein →</button>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- Video / Reel modal placeholder -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="video-close" id="videoClose">✕</button>
+    <div class="video-player-wrap" id="videoPlayerWrap"></div>
+    <div class="video-info" id="videoInfo"></div>
+  </div>
+</div>
+
+<main id="top">
+
+<div class="container pdp-breadcrumb" id="breadcrumb"></div>
+
+<section class="pdp-main">
+  <div class="container pdp-grid">
+    <div class="pdp-gallery" id="pdpGallery"></div>
+    <div class="pdp-info" id="pdpInfo"></div>
+  </div>
+</section>
+
+<section class="pdp-details reveal">
+  <div class="container" id="pdpDetails"></div>
+</section>
+
+<section class="pdp-reviews reveal">
+  <div class="container" id="pdpReviews"></div>
+</section>
+
+<section class="pdp-similar reveal">
+  <div class="container">
+    <div class="section-head pdp-section-head">
+      <h2>Similar Products</h2>
+    </div>
+    <div class="product-grid" id="similarGrid"></div>
+  </div>
+</section>
+
+<section class="pdp-recent reveal" id="recentSection">
+  <div class="container">
+    <div class="section-head pdp-section-head">
+      <h2>Recently Viewed</h2>
+    </div>
+    <div class="product-grid" id="recentGrid"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col footer-brand">
+      <a href="index.html" class="logo"><span class="logo-icon">🌾</span><span class="logo-text">Zatra<span class="accent">Mart</span></span></a>
+      <p>Kisan ka apna bazaar — dalaal-mukt, bharosemand, seedha.</p>
+      <div class="social-row">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="YouTube">▶</a>
+        <a href="#" aria-label="WhatsApp">✆</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="shop.html">Shop</a>
+      <a href="bazaar.html">Bazaar</a>
+      <a href="gyan.html">Reels &amp; Gyan</a>
+      <a href="majdoor.html">Majdoor</a>
+      <a href="yojana.html">Sarkari Yojana</a>
+      <a href="store.html">Our Store</a>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <a href="shop.html?cat=seeds">Seeds</a>
+      <a href="shop.html?cat=fertilizer">Fertilizers</a>
+      <a href="shop.html?cat=irrigation">Irrigation</a>
+      <a href="shop.html?cat=machinery">Machinery</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="orders.html">Track Order</a>
+      <a href="#">Returns</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="footer-col footer-news">
+      <h4>Jaankari Paayein</h4>
+      <p>Naye offers aur mandi bhaav seedha aapke phone par.</p>
+      <form class="news-form" onsubmit="return false;">
+        <input type="tel" placeholder="Mobile number" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 ZatraMart. Sabhi adhikar surakshit. Made with 💚 for the Kisan of Bharat.</p>
+  </div>
+</footer>
+
+<!-- ===== FLOATING ELEMENTS ===== -->
+<a href="#" class="whatsapp-float" aria-label="WhatsApp Support">✆</a>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js?v=22"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/common.js?v=34"></script>
+<script src="js/product.js?v=4"></script>
+</body>
+</html>

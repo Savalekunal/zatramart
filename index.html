@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="hi-en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZatraMart | किसान का अपना बाज़ार — Farmer's Direct Marketplace</title>
+<meta name="description" content="ZatraMart — Bharat ke kisan ka apna online bazaar. 1200+ products, Majdoor sewa, Sarkari Yojana, aur Kisan Gyan sab ek jagah.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=9">
+</head>
+<body>
+
+<!-- ===== PRELOADER ===== -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <span class="preloader-leaf">🌾</span>
+    <p>ZatraMart लोड हो रहा है...</p>
+  </div>
+</div>
+
+<!-- ===== TOP UTILITY BAR ===== -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="topbar-left">
+      <span>📞 Kisan Helpline: <a href="tel:18001801551">1800-180-1551</a></span>
+      <span class="hide-sm">🚚 Free Delivery on ₹499+</span>
+    </div>
+    <div class="topbar-right">
+      <button class="lang-toggle" id="langToggle" aria-label="Change language">
+        <span class="lang-en active">EN</span> / <span class="lang-hi">हिं</span>
+      </button>
+      <a href="orders.html" class="hide-sm">Track Order</a>
+      <a href="#" class="hide-sm seller-bane-link">Seller Bane</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER / NAVBAR ===== -->
+<header class="navbar" id="navbar">
+  <div class="container navbar-row1">
+    <a href="#top" class="logo">
+      <span class="logo-icon">🌾</span>
+      <span class="logo-text">Zatra<span class="accent">Mart</span></span>
+    </a>
+
+    <nav class="row1-nav">
+      <a href="bazaar.html" data-en="Bazaar" data-hi="बाज़ार">Bazaar</a>
+      <a href="gyan.html" data-en="Reels &amp; Gyan" data-hi="रील्स और ज्ञान">Reels &amp; Gyan</a>
+      <a href="majdoor.html" data-en="Majdoor" data-hi="मज़दूर">Majdoor</a>
+      <a href="yojana.html" data-en="Yojana" data-hi="योजना">Yojana</a>
+    </nav>
+
+    <div class="search-bar">
+      <select class="search-cat">
+        <option>All</option>
+        <option>Seeds</option>
+        <option>Fertilizers</option>
+        <option>Irrigation</option>
+        <option>Machinery</option>
+      </select>
+      <input type="text" id="searchInput" placeholder="Search seeds, urea, pipe, motor...  बीज, खाद खोजें">
+      <button class="search-btn" id="searchBtn" aria-label="Search">🔍</button>
+    </div>
+
+    <div class="navbar-icons">
+      <div class="account-wrap">
+        <button class="icon-btn login-btn" id="loginBtn" aria-label="Login">
+          👤 <span class="login-text" id="loginBtnText">Login</span>
+        </button>
+        <div class="account-menu" id="accountMenu">
+          <div class="account-menu-head" id="accountMenuName"></div>
+          <a href="orders.html">📦 My Orders</a>
+          <a href="my-listings.html">🏷️ My Listings</a>
+          <a href="#" id="logoutBtn">🚪 Logout</a>
+        </div>
+      </div>
+      <button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">
+        ♡ <span class="badge" id="wishCount">0</span>
+      </button>
+      <button class="icon-btn" id="cartBtn" aria-label="Cart">
+        🛒 <span class="badge" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav-bar-row">
+    <nav class="container nav-links" id="navLinks">
+      <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+      <div class="has-drop agri-drop-wrap">
+        <a href="shop.html" data-en="Agriculture" data-hi="कृषि">Agriculture <span class="caret">▾</span></a>
+        <div class="agri-menu-panel" id="agriMenuPanel"></div>
+      </div>
+      <div class="has-drop">
+        <a href="shop.html?cat=seeds" data-en="Seeds" data-hi="बीज">Seeds <span class="caret">▾</span></a>
+        <div class="simple-drop" data-dropfor="seeds"></div>
+      </div>
+      <div class="has-drop">
+        <a href="shop.html?cat=pesticide" data-en="Crop Protection" data-hi="फसल सुरक्षा">Crop Protection <span class="caret">▾</span></a>
+        <div class="simple-drop" data-dropfor="protection"></div>
+      </div>
+      <div class="has-drop">
+        <a href="shop.html?cat=fertilizer" data-en="Fertilizer" data-hi="खाद">Fertilizer <span class="caret">▾</span></a>
+        <div class="simple-drop" data-dropfor="nutrition"></div>
+      </div>
+      <div class="has-drop">
+        <a href="shop.html?cat=tools" data-en="Equipments" data-hi="उपकरण">Equipments <span class="caret">▾</span></a>
+        <div class="simple-drop" data-dropfor="equipments"></div>
+      </div>
+      <div class="has-drop">
+        <a href="shop.html?cat=animal" data-en="Animal Husbandry" data-hi="पशुपालन">Animal Husbandry <span class="caret">▾</span></a>
+        <div class="simple-drop" data-dropfor="animal"></div>
+      </div>
+      <a href="bazaar.html" class="row1-duplicate" data-en="Bazaar" data-hi="बाज़ार">Bazaar</a>
+      <a href="gyan.html" class="row1-duplicate" data-en="Reels &amp; Gyan" data-hi="रील्स और ज्ञान">Reels &amp; Gyan</a>
+      <a href="majdoor.html" class="row1-duplicate" data-en="Majdoor" data-hi="मज़दूर">Majdoor</a>
+      <a href="yojana.html" class="row1-duplicate" data-en="Yojana" data-hi="योजना">Yojana</a>
+      <a href="store.html" data-en="Our Store" data-hi="हमारी दुकान">Our Store</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== MINI CART DRAWER ===== -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-head">
+    <h3>🛒 Aapki Cart</h3>
+    <button id="closeCart" aria-label="Close">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty">Cart khaali hai. Kuch achha khareedein! 🌱</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">Total: <strong id="cartTotal">₹0</strong></div>
+    <button class="btn btn-primary btn-block" id="checkoutBtn">Checkout Karein</button>
+  </div>
+</div>
+
+<!-- ===== LOGIN / SIGNUP MODAL ===== -->
+<div class="auth-modal" id="authModal">
+  <div class="auth-card">
+    <button class="auth-close" id="authClose" aria-label="Close">✕</button>
+    <div class="auth-logo"><span class="logo-icon">🌾</span> Zatra<span class="accent">Mart</span></div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Login</button>
+      <button class="auth-tab" data-tab="signup">Sign Up</button>
+    </div>
+
+    <div class="auth-panel active" id="panelLogin">
+      <div class="auth-step" id="loginStepForm">
+        <label>Mobile Number</label>
+        <div class="auth-input-row">
+          <span class="auth-prefix">🇮🇳 +91</span>
+          <input type="tel" maxlength="10" placeholder="98765 43210" id="loginPhone">
+        </div>
+        <button class="btn btn-primary btn-block" id="loginSendOtpBtn">OTP Bhejein</button>
+        <p class="auth-note">Registered mobile number daalein — OTP aapke email par bheja jaayega.</p>
+      </div>
+      <div class="auth-step" id="loginStepOtp" hidden>
+        <p class="auth-otp-sent" id="loginOtpSentMsg"></p>
+        <div class="otp-row show" id="loginOtpRow">
+          <input type="text" class="otp-single" inputmode="numeric" placeholder="Email mein aaya OTP daalein">
+        </div>
+        <button class="btn btn-primary btn-block" id="loginVerifyBtn">Verify &amp; Login</button>
+        <button class="auth-link-btn" id="loginBackBtn" type="button">← Number badlein</button>
+      </div>
+    </div>
+
+    <div class="auth-panel" id="panelSignup">
+      <div class="auth-step" id="signupStepForm">
+        <label>Poora Naam</label>
+        <input type="text" placeholder="Aapka naam" class="auth-field" id="signupName">
+        <label>Mobile Number</label>
+        <div class="auth-input-row">
+          <span class="auth-prefix">🇮🇳 +91</span>
+          <input type="tel" maxlength="10" placeholder="98765 43210" id="signupPhone">
+        </div>
+        <label>Email ID</label>
+        <input type="email" placeholder="aapka@email.com" class="auth-field" id="signupEmail">
+        <label>Main Hoon</label>
+        <div class="role-pick">
+          <button class="role-chip active" type="button">🌾 Kisan</button>
+          <button class="role-chip" type="button">🏪 Seller</button>
+          <button class="role-chip" type="button">👷 Majdoor</button>
+        </div>
+        <button class="btn btn-primary btn-block" id="signupSendOtpBtn">Account Banayein</button>
+      </div>
+      <div class="auth-step" id="signupStepOtp" hidden>
+        <p class="auth-otp-sent" id="signupOtpSentMsg"></p>
+        <div class="otp-row show" id="signupOtpRow">
+          <input type="text" class="otp-single" inputmode="numeric" placeholder="Email mein aaya OTP daalein">
+        </div>
+        <button class="btn btn-primary btn-block" id="signupVerifyBtn">Verify &amp; Sign Up</button>
+        <button class="auth-link-btn" id="signupBackBtn" type="button">← Wapas jaayein</button>
+      </div>
+    </div>
+
+    <button class="auth-guest" id="authGuest">Guest ki tarah aage badhein →</button>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- Video / Reel modal placeholder -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="video-close" id="videoClose">✕</button>
+    <div class="video-player-wrap" id="videoPlayerWrap"></div>
+    <div class="video-info" id="videoInfo"></div>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1606633473849-bd477e343d97?auto=format&fit=crop&w=1600&q=70')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-mesh"></div>
+  <div class="container hero-inner">
+    <div class="hero-text reveal">
+      <span class="chip">🇮🇳 Bharat ke Kisan ke liye, Bharat ki Technology se</span>
+      <h1>Khet se seedha,<br> aapki <span class="accent">jeb tak.</span></h1>
+      <p class="hero-sub">
+        Farmer se Buyer, koi dalaal nahi — 1200+ products, majdoor sewa aur sarkari yojana sab ek app mein.
+      </p>
+      <div class="hero-cta">
+        <a href="shop.html" class="btn btn-primary">Shop Karein <span>→</span></a>
+        <a href="#majdoor" class="btn btn-outline">Majdoor Dhundein</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge float-1">✅ <strong>50,000+</strong> Kisan Judhe</div>
+        <div class="hero-badge float-2">🚜 <strong>1200+</strong> Products</div>
+        <div class="hero-badge float-3">💰 <strong>0%</strong> Bichauliya</div>
+      </div>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,40 C360,100 1080,0 1440,60 L1440,100 L0,100 Z"></path></svg>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="stats-bar reveal">
+  <div class="container stats-grid">
+    <div class="stat">
+      <span class="stat-num" data-count="50000">0</span>
+      <span class="stat-label">Kisan Judhe<br>Farmers Joined</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-count="1200" data-suffix="+">0</span>
+      <span class="stat-label">Branded Products</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-count="8000" data-suffix="+">0</span>
+      <span class="stat-label">Majdoor Registered</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-count="25" data-suffix="Cr+">0</span>
+      <span class="stat-label">₹ Kisano Tak Pahucha</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VALUE CHAIN COMPARISON ===== -->
+<section class="chain-section reveal" id="about">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Hamara Mission</span>
+      <h2>Aaj ₹5 milta hai, kal ₹25-30 milega</h2>
+      <p>Beech ke 3 log apna margin le lete hain — hum unhe hata kar seedha rasta banate hain.</p>
+    </div>
+
+    <div class="chain-compare">
+      <div class="chain-card chain-old">
+        <h4>❌ Aaj (Old Way)</h4>
+        <div class="chain-flow">
+          <span class="chain-node">Farmer</span>
+          <span class="chain-arrow">→</span>
+          <span class="chain-node">Vyapari</span>
+          <span class="chain-arrow">→</span>
+          <span class="chain-node">Vendor</span>
+          <span class="chain-arrow">→</span>
+          <span class="chain-node">Company</span>
+        </div>
+        <div class="chain-result bad">₹5 <small>ka fayda kisan tak</small></div>
+      </div>
+
+      <div class="chain-vs">VS</div>
+
+      <div class="chain-card chain-new">
+        <h4>✅ ZatraMart ke Saath</h4>
+        <div class="chain-flow">
+          <span class="chain-node">Farmer</span>
+          <span class="chain-arrow">→</span>
+          <span class="chain-node highlight">ZatraMart</span>
+          <span class="chain-arrow">→</span>
+          <span class="chain-node">Buyer</span>
+        </div>
+        <div class="chain-result good">₹25-30 <small>ka fayda kisan tak</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOP 10 TRENDING ===== -->
+<section class="trending reveal" id="trending">
+  <div class="container">
+    <div class="section-head" style="text-align:left; max-width:none; display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+      <span style="font-size:2.2rem;">🏆</span>
+      <div>
+        <h2 style="margin-bottom:2px;">Top 10 Picks by Farmers</h2>
+        <p style="margin:0;">Sabse zyada khareede gaye products, is hafte ke</p>
+      </div>
+    </div>
+    <div class="trending-wrap">
+      <button class="trending-nav prev" id="trendingPrev" aria-label="Previous">‹</button>
+      <div class="trending-scroll" id="trendingScroll"></div>
+      <button class="trending-nav next" id="trendingNext" aria-label="Next">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FARM TYPES ===== -->
+<section class="farmtypes reveal" id="farmtypes">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Aap Kis Tarah Ki Kheti Karte Hain?</span>
+      <h2>Apni Kheti Ka Prakar Chunein</h2>
+      <p>Fasal ho ya Matsya Palan, Poultry ho ya Pashu Palan — sabke liye sahi product yahan milega.</p>
+    </div>
+    <div class="cat-grid farmtype-grid" id="farmTypeGrid"></div>
+  </div>
+</section>
+
+<!-- ===== CATEGORIES (12) ===== -->
+<section class="categories reveal" id="shop">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">ZatraMart Store</span>
+      <h2>1200+ Products, Har Category Mein</h2>
+      <p>Beej se lekar solar pump tak — kheti ka har saman ek hi jagah.</p>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</section>
+
+<!-- ===== SHOP BY CROP ===== -->
+<section class="shop-by-crop reveal" id="shopByCrop">
+  <div class="container">
+    <div class="section-head" style="text-align:left; max-width:none; display:flex; align-items:baseline; justify-content:space-between; margin-bottom:20px;">
+      <div>
+        <h2 style="margin-bottom:2px;">Shop By Crop 🌱</h2>
+        <p style="margin:0;">Apni fasal ke hisaab se solutions paayein.</p>
+      </div>
+      <a href="shop.html" class="btn-chip">View All</a>
+    </div>
+    <div class="olx-cat-grid" id="cropGrid" style="grid-template-columns: repeat(8, 1fr);"></div>
+  </div>
+</section>
+
+<!-- ===== TODAY'S OFFER (teaser — full catalog lives on shop.html) ===== -->
+<section class="products reveal" id="featured">
+  <div class="container">
+    <div class="section-head" style="text-align:left; max-width:none; display:flex; align-items:baseline; justify-content:space-between;">
+      <div>
+        <span class="eyebrow">⚡ Aaj Ke Liye</span>
+        <h2 style="margin-bottom:2px;">Today's Offer</h2>
+        <p style="margin:0;">Best prices available today.</p>
+      </div>
+      <a href="shop.html" class="btn-chip">View All</a>
+    </div>
+
+    <div class="product-grid" id="featuredGrid"></div>
+
+    <div class="center-cta">
+      <a href="shop.html" class="btn btn-outline">Sabhi Products Dekhein →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BAZAAR / CLASSIFIEDS (OLX style) ===== -->
+<section class="bazaar reveal" id="bazaar">
+  <div class="container">
+    <div class="section-head split">
+      <div>
+        <span class="eyebrow">ZatraMart Bazaar</span>
+        <h2>Purana Saman? Bechiye, Kamaiye 💰</h2>
+        <p>Purani tractor, sprayer ya pump — koi bhi saman jo kaam na aa raha ho, seedha kisano ko bechein.</p>
+      </div>
+      <a href="bazaar.html" class="btn btn-primary">Sabhi Listings Dekhein →</a>
+    </div>
+
+    <div class="bazaar-scroll" id="bazaarScroll">
+      <div class="bazaar-card">
+        <span class="tag">Used</span>
+        <img src="https://images.unsplash.com/photo-1571509107684-7e3034a90012?auto=format&fit=crop&w=400&q=70" alt="Tractor">
+        <div class="bazaar-info">
+          <h4>Mahindra Tractor 265 DI</h4>
+          <p class="loc">📍 Nashik, Maharashtra · 2018 Model</p>
+          <div class="price-row"><span class="price">₹3,85,000</span><button class="btn-chip">Contact</button></div>
+        </div>
+      </div>
+      <div class="bazaar-card">
+        <span class="tag">Used</span>
+        <img src="https://images.unsplash.com/photo-1573353597405-d3a8e88b793d?auto=format&fit=crop&w=400&q=70" alt="Farm equipment">
+        <div class="bazaar-info">
+          <h4>Power Sprayer Machine</h4>
+          <p class="loc">📍 Indore, MP · Barely Used</p>
+          <div class="price-row"><span class="price">₹6,500</span><button class="btn-chip">Contact</button></div>
+        </div>
+      </div>
+      <div class="bazaar-card">
+        <span class="tag">Used</span>
+        <img src="https://images.unsplash.com/photo-1738598665698-7fd7af4b5e0c?auto=format&fit=crop&w=400&q=70" alt="Water pump">
+        <div class="bazaar-info">
+          <h4>Diesel Water Pump 5HP</h4>
+          <p class="loc">📍 Ludhiana, Punjab</p>
+          <div class="price-row"><span class="price">₹12,000</span><button class="btn-chip">Contact</button></div>
+        </div>
+      </div>
+      <div class="bazaar-card">
+        <span class="tag">Used</span>
+        <img src="https://images.unsplash.com/photo-1659345709013-d949ed7ffc19?auto=format&fit=crop&w=400&q=70" alt="Hand tools set">
+        <div class="bazaar-info">
+          <h4>Hand Tools Set (12 pcs)</h4>
+          <p class="loc">📍 Jaipur, Rajasthan</p>
+          <div class="price-row"><span class="price">₹1,800</span><button class="btn-chip">Contact</button></div>
+        </div>
+      </div>
+      <div class="bazaar-card">
+        <span class="tag">Used</span>
+        <img src="https://images.unsplash.com/photo-1680033786474-58d0a84e2d5f?auto=format&fit=crop&w=400&q=70" alt="Rotavator">
+        <div class="bazaar-info">
+          <h4>Rotavator 6 Feet</h4>
+          <p class="loc">📍 Guntur, Andhra Pradesh</p>
+          <div class="price-row"><span class="price">₹45,000</span><button class="btn-chip">Contact</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REELS + KISAN GYAN ===== -->
+<section class="gyan reveal" id="gyan">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Kisan Gyan</span>
+      <h2>Reels Dekho, Seekho, Aage Badho 🎬</h2>
+      <p>Kisano dwara, kisano ke liye — koi biased salesman advice nahi, sirf sachi jaankari.</p>
+    </div>
+
+    <div class="reels-row" id="reelsRow"></div>
+    <div class="center-cta" style="margin-top:-10px; margin-bottom:30px;">
+      <a href="gyan.html" class="btn btn-outline">Sabhi Reels &amp; Videos Dekhein →</a>
+    </div>
+
+    <h3 class="sub-heading">Popular Videos &amp; Courses</h3>
+    <div class="gyan-grid">
+      <div class="gyan-card">
+        <div class="gyan-thumb" data-yt="o4jgoFS9cLM" data-title="Organic Kheti Kaise Shuru Karein" data-by="Ramesh Patil">
+          <img src="https://images.unsplash.com/photo-1623211269755-569fec0536d2?auto=format&fit=crop&w=500&q=70" alt="Organic farming">
+          <span class="play-btn">▶</span>
+          <span class="duration">6:24</span>
+        </div>
+        <h4>Organic Kheti Kaise Shuru Karein</h4>
+        <p class="gyan-meta">👤 Ramesh Patil · 👁️ 45K views</p>
+      </div>
+      <div class="gyan-card">
+        <div class="gyan-thumb" data-yt="bpXPTKlrnPU" data-title="PM Kisan Yojana Ka Poora Fayda Kaise Lein" data-by="ZatraMart Team">
+          <img src="https://images.unsplash.com/photo-1609252509027-3928a66302fd?auto=format&fit=crop&w=500&q=70" alt="Government scheme">
+          <span class="play-btn">▶</span>
+          <span class="duration">4:10</span>
+        </div>
+        <h4>PM Kisan Yojana Ka Poora Fayda Kaise Lein</h4>
+        <p class="gyan-meta">👤 ZatraMart Team · 👁️ 1.2L views</p>
+      </div>
+      <div class="gyan-card">
+        <div class="gyan-thumb" data-yt="sJJ1cYgmQHg" data-title="Drip Irrigation Se Paani Kaise Bachayein" data-by="Suresh Yadav">
+          <img src="https://images.unsplash.com/photo-1630992866107-e3265545dc39?auto=format&fit=crop&w=500&q=70" alt="Drip irrigation">
+          <span class="play-btn">▶</span>
+          <span class="duration">8:02</span>
+        </div>
+        <h4>Drip Irrigation Se Paani Kaise Bachayein</h4>
+        <p class="gyan-meta">👤 Suresh Yadav · 👁️ 32K views</p>
+      </div>
+      <div class="gyan-card">
+        <div class="gyan-thumb" data-yt="rk2FDwBD9u0" data-title="Drone Se Kheti — Naye Jamaane Ki Shuruaat" data-by="Dr. Anita Sharma">
+          <img src="https://images.unsplash.com/photo-1656407410275-e63e689bcd90?auto=format&fit=crop&w=500&q=70" alt="Drone farming">
+          <span class="play-btn">▶</span>
+          <span class="duration">5:45</span>
+        </div>
+        <h4>Drone Se Kheti — Naye Jamaane Ki Shuruaat</h4>
+        <p class="gyan-meta">👤 Dr. Anita Sharma · 👁️ 28K views</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAJDOOR (LABOUR) SECTION ===== -->
+<section class="majdoor reveal" id="majdoor">
+  <div class="majdoor-mesh"></div>
+  <div class="container">
+    <div class="section-head split">
+      <div>
+        <span class="eyebrow light">Khet Majdoor Sewa</span>
+        <h2>Majdoor Chahiye? Yahin Milega 👷</h2>
+        <p>Verified majdoor — harvesting se lekar tractor driving tak, sab skilled aur nazdeek.</p>
+      </div>
+      <div class="majdoor-cta-group">
+        <a href="majdoor.html" class="btn btn-primary">Sabhi Majdoor Dekhein →</a>
+      </div>
+    </div>
+
+    <div class="filter-chips filter-chips-light" id="majdoorFilters"></div>
+
+    <div class="worker-grid" id="workerGrid"></div>
+  </div>
+</section>
+
+<!-- ===== SARKARI YOJANA (GOVT SCHEMES) ===== -->
+<section class="yojana reveal" id="yojana">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Sarkari Yojana &amp; Funding</span>
+      <h2>Sarkar Ka Paisa, Aapka Haq 📜</h2>
+      <p>Documents ready rakhein aur in yojanao ka poora fayda uthayein.</p>
+    </div>
+
+    <div class="yojana-grid" id="yojanaGrid"></div>
+    <div class="center-cta">
+      <a href="yojana.html" class="btn btn-outline">Sabhi Yojana Dekhein →</a>
+    </div>
+
+    <div class="doc-helper">
+      <h4>📋 Zyadatar Yojanao Ke Liye Common Documents</h4>
+      <div class="doc-chip-row">
+        <span class="doc-chip">🪪 Aadhar Card</span>
+        <span class="doc-chip">📄 Land Records (7/12, Khasra)</span>
+        <span class="doc-chip">🏦 Bank Passbook</span>
+        <span class="doc-chip">📸 Passport Photo</span>
+        <span class="doc-chip">📱 Mobile Number (Aadhar Linked)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHYSICAL STORE ===== -->
+<section class="store reveal" id="store">
+  <div class="container store-grid">
+    <div class="store-img">
+      <img src="https://images.unsplash.com/photo-1697425206245-250e9c651119?auto=format&fit=crop&w=700&q=70" alt="ZatraMart local store">
+      <div class="store-badge">📍 500+ Stores Across Bharat</div>
+    </div>
+    <div class="store-text">
+      <span class="eyebrow">Hamari Dukan</span>
+      <h2>Online Bharose Nahi? Aayiye Hamari Dukan Par 🏪</h2>
+      <p>App se pehle bhi, app ke baad bhi — hum aapke gaon ke paas maujood hain.</p>
+      <ul class="store-list">
+        <li>💵 <strong>Cash Payment</strong> — online payment ki tension nahi</li>
+        <li>🪪 <strong>KYC Help</strong> — staff aapki poori madad karega</li>
+        <li>📦 <strong>Pickup &amp; Return</strong> — order yahin se le jaayein ya wapas karein</li>
+        <li>🤝 <strong>Local Trust</strong> — aapke hi gaon/tehsil ke log chalate hain</li>
+      </ul>
+      <a href="store.html" class="btn btn-primary">Sabse Nazdeeki Store Dhundein</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials reveal">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Kisano Ka Bharosa</span>
+      <h2>Unki Zubaani, Unki Kahaani</h2>
+    </div>
+    <div class="testi-track" id="testiTrack">
+      <div class="testi-card active">
+        <img src="https://images.unsplash.com/photo-1642439994493-3816a23c997a?auto=format&fit=crop&w=150&q=70" alt="Farmer">
+        <div class="stars">★★★★★</div>
+        <p>"Pehle vyapari jo daam de deta tha wahi lena padta tha. Ab ZatraMart se seedha bech kar 3 guna zyada mil raha hai."</p>
+        <h5>Ramesh Chaudhary <span>Sonipat, Haryana</span></h5>
+      </div>
+      <div class="testi-card">
+        <img src="https://images.unsplash.com/photo-1606203452426-f5af98e6f96e?auto=format&fit=crop&w=150&q=70" alt="Farmer">
+        <div class="stars">★★★★★</div>
+        <p>"App bahut simple hai, mujhe zyada padhai-likhai nahi aati par phir bhi aasaani se order kar leta hoon."</p>
+        <h5>Suresh Naik <span>Belgaum, Karnataka</span></h5>
+      </div>
+      <div class="testi-card">
+        <img src="https://images.unsplash.com/photo-1633948062054-039a4b3052a3?auto=format&fit=crop&w=150&q=70" alt="Farmer">
+        <div class="stars">★★★★★</div>
+        <p>"Majdoor section se harvesting ke time 4 log turant mil gaye. Kisan Gyan ke reels se bhi bahut kuch seekha."</p>
+        <h5>Lakshmi Devi <span>Guntur, Andhra Pradesh</span></h5>
+      </div>
+    </div>
+    <div class="testi-dots" id="testiDots"></div>
+  </div>
+</section>
+
+<!-- ===== APP CTA ===== -->
+<section class="app-cta reveal">
+  <div class="container app-cta-inner">
+    <div>
+      <span class="eyebrow light">Mobile App</span>
+      <h2>ZatraMart App Download Karein</h2>
+      <p>Poora bazaar aapki jeb mein — kabhi bhi, kahin bhi.</p>
+      <div class="store-badges">
+        <a href="#" class="store-badge-btn">▶ Google Play</a>
+        <a href="#" class="store-badge-btn">🍎 App Store</a>
+      </div>
+    </div>
+    <div class="qr-box">
+      <div class="qr-fake" aria-label="QR code">
+        <span>▦</span>
+      </div>
+      <p>Scan karke download karein</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col footer-brand">
+      <a href="#top" class="logo"><span class="logo-icon">🌾</span><span class="logo-text">Zatra<span class="accent">Mart</span></span></a>
+      <p>Kisan ka apna bazaar — dalaal-mukt, bharosemand, seedha.</p>
+      <div class="social-row">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="YouTube">▶</a>
+        <a href="#" aria-label="WhatsApp">✆</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="shop.html">Shop</a>
+      <a href="bazaar.html">Bazaar</a>
+      <a href="gyan.html">Reels &amp; Gyan</a>
+      <a href="majdoor.html">Majdoor</a>
+      <a href="yojana.html">Sarkari Yojana</a>
+      <a href="store.html">Our Store</a>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <a href="shop.html?cat=seeds">Seeds</a>
+      <a href="shop.html?cat=fertilizer">Fertilizers</a>
+      <a href="shop.html?cat=irrigation">Irrigation</a>
+      <a href="shop.html?cat=machinery">Machinery</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="orders.html">Track Order</a>
+      <a href="#">Returns</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="footer-col footer-news">
+      <h4>Jaankari Paayein</h4>
+      <p>Naye offers aur mandi bhaav seedha aapke phone par.</p>
+      <form class="news-form" onsubmit="return false;">
+        <input type="tel" placeholder="Mobile number" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 ZatraMart. Sabhi adhikar surakshit. Made with 💚 for the Kisan of Bharat.</p>
+  </div>
+</footer>
+
+<!-- ===== FLOATING ELEMENTS ===== -->
+<a href="#" class="whatsapp-float" aria-label="WhatsApp Support">✆</a>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js?v=22"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/common.js?v=34"></script>
+<script src="js/script.js?v=6"></script>
+</body>
+</html>
