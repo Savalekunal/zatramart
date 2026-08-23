@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=13">
+<link rel="stylesheet" href="css/style.css?v=14">
 <link rel="stylesheet" href="css/product.css">
 <link rel="stylesheet" href="css/flow.css">
 </head>
@@ -219,13 +219,25 @@
   </div>
 </div>
 
+<!-- Yojana detail modal -->
+<div class="yojana-modal" id="yojanaModal">
+  <div class="yojana-modal-inner">
+    <button class="yojana-modal-close" id="yojanaModalClose" aria-label="Close">✕</button>
+    <div class="yojana-modal-body" id="yojanaModalBody"></div>
+    <div class="yojana-modal-nav">
+      <button class="btn-chip" id="yojanaPrevBtn" data-i18n="yojana.prev">← Peechhe</button>
+      <button class="btn-chip" id="yojanaNextBtn" data-i18n="yojana.next">Next →</button>
+    </div>
+  </div>
+</div>
+
 <main id="top">
 
 <section class="page-hero">
   <div class="container">
-    <span class="eyebrow">Sarkari Yojana &amp; Funding</span>
-    <h1>Sarkar Ka Paisa, Aapka Haq 📜</h1>
-    <p>Documents ready rakhein aur in yojanao ka poora fayda uthayein.</p>
+    <span class="eyebrow" data-i18n="home.yojanaEyebrow">Sarkari Yojana &amp; Funding</span>
+    <h1 data-i18n="home.yojanaTitle">Sarkar Ka Paisa, Aapka Haq 📜</h1>
+    <p data-i18n="home.yojanaSub">Documents ready rakhein aur in yojanao ka poora fayda uthayein.</p>
   </div>
 </section>
 
@@ -234,13 +246,13 @@
     <div class="yojana-grid" id="yojanaGrid"></div>
 
     <div class="doc-helper">
-      <h4>📋 Zyadatar Yojanao Ke Liye Common Documents</h4>
+      <h4 data-i18n="home.commonDocsTitle">📋 Zyadatar Yojanao Ke Liye Common Documents</h4>
       <div class="doc-chip-row">
-        <span class="doc-chip">🪪 Aadhar Card</span>
-        <span class="doc-chip">📄 Land Records (7/12, Khasra)</span>
-        <span class="doc-chip">🏦 Bank Passbook</span>
-        <span class="doc-chip">📸 Passport Photo</span>
-        <span class="doc-chip">📱 Mobile Number (Aadhar Linked)</span>
+        <span class="doc-chip" data-i18n="docs.aadhar">🪪 Aadhar Card</span>
+        <span class="doc-chip" data-i18n="docs.landRecords">📄 Land Records (7/12, Khasra)</span>
+        <span class="doc-chip" data-i18n="docs.bankPassbook">🏦 Bank Passbook</span>
+        <span class="doc-chip" data-i18n="docs.passportPhoto">📸 Passport Photo</span>
+        <span class="doc-chip" data-i18n="docs.mobileNumber">📱 Mobile Number (Aadhar Linked)</span>
       </div>
     </div>
   </div>
@@ -307,7 +319,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="js/supabase-client.js"></script>
 <script src="js/i18n.js?v=1"></script>
-<script src="js/common.js?v=36"></script>
-<script src="js/yojana.js?v=2"></script>
+<script src="js/common.js?v=37"></script>
+<script src="js/yojana.js?v=3"></script>
 </body>
 </html>

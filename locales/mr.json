@@ -45,7 +45,8 @@
     "title": "तुमची कार्ट",
     "empty": "कार्ट रिकामी आहे. काहीतरी चांगलं खरेदी करा!",
     "total": "एकूण:",
-    "checkout": "चेकआउट करा"
+    "checkout": "चेकआउट करा",
+    "itemCount": "तुमच्या कार्टमध्ये {n} वस्तू आहेत"
   },
   "auth": {
     "loginTab": "लॉगिन",
@@ -187,7 +188,8 @@
     "wishlistRemovedToast": "विशलिस्टमधून काढले",
     "workerContactToast": "मजुराची माहिती WhatsApp वर पाठवली जात आहे... 📲",
     "sellerContactToast": "विक्रेत्याची माहिती WhatsApp वर पाठवली जात आहे... 📲",
-    "yojanaMoreInfoToast": "योजनेची संपूर्ण माहिती लवकरच इथे मिळेल 📜"
+    "yojanaMoreInfoToast": "योजनेची संपूर्ण माहिती लवकरच इथे मिळेल 📜",
+    "views": "व्ह्यूज"
   },
   "footer": {
     "tagline": "शेतकऱ्यांचा स्वतःचा बाजार — दलालमुक्त, विश्वासार्ह, थेट.",
@@ -267,6 +269,18 @@
       "organic": "मातीचे आरोग्य",
       "packaging": "सुरक्षित साठवण",
       "default": "शेती आवश्यक"
+    },
+    "bazaarCategory": {
+      "machinery": "ट्रॅक्टर आणि यंत्रसामग्री",
+      "tools": "अवजारे",
+      "motor": "मोटर आणि पंप",
+      "irrigation": "पाईप आणि सिंचन",
+      "metal": "धातू आणि भंगार",
+      "solar": "सोलर",
+      "gobar": "शेण / खत",
+      "grain": "धान्य / डाळी",
+      "cattle": "गुरे",
+      "land": "जमीन"
     }
   },
   "shop": {
@@ -346,5 +360,56 @@
     "reviewSavedToast": "✅ रिव्ह्यू सेव्ह झाला!",
     "similarProducts": "समान उत्पादने",
     "recentlyViewed": "अलीकडे पाहिलेले"
+  },
+  "store": {
+    "locatorEyebrow": "स्टोअर लोकेटर",
+    "locatorTitle": "संपूर्ण भारतात 500+ स्टोअर्स",
+    "locatorSub": "तुमचं जवळचं ZatraMart स्टोअर शोधा."
+  },
+  "gyan": {
+    "trendingReels": "🎬 ट्रेंडिंग रील्स",
+    "allVideosCourses": "📚 सर्व व्हिडिओ आणि कोर्सेस"
+  },
+  "yojana": {
+    "whatIsIt": "📝 ही योजना काय आहे",
+    "eligibility": "✅ पात्रता",
+    "procedure": "📋 अर्ज करण्याची संपूर्ण प्रक्रिया",
+    "requiredDocs": "🪪 आवश्यक कागदपत्रे",
+    "officialWebsite": "अधिकृत वेबसाइटवर जा ↗",
+    "prev": "← मागे",
+    "next": "पुढे →"
+  },
+  "bazaar": {
+    "postAdTitle": "🏷️ तुमचं साहित्य विका",
+    "postAdTitleRent": "🔄 तुमचं साहित्य भाड्याने द्या",
+    "sale": "विक्री",
+    "rent": "भाड्याने",
+    "itemName": "साहित्याचं नाव",
+    "price": "किंमत (₹)",
+    "priceRent": "किंमत (₹ / दिवस)",
+    "location": "ठिकाण",
+    "details": "तपशील (मॉडेल, वर्ष, इ.)",
+    "condition": "स्थिती",
+    "priceNegotiable": "किंमत वाटाघाटीयोग्य",
+    "photos": "फोटो (1-5, साहित्याचे खरे फोटो)",
+    "postListing": "लिस्टिंग पोस्ट करा",
+    "allCategories": "🌐 सर्व श्रेणी",
+    "today": "आज",
+    "yesterday": "काल",
+    "listingsCount": "{count} लिस्टिंग सापडल्या",
+    "featuredTag": "⭐ वैशिष्ट्यीकृत",
+    "rentTag": "भाड्याने",
+    "noListings": "कोणतीही लिस्टिंग सापडली नाही. दुसरा फिल्टर वापरून पहा.",
+    "sellBtnSell": "+ तुमचं साहित्य विका",
+    "sellBtnRent": "+ भाड्याने द्या",
+    "loginToSellToast": "साहित्य विकण्यासाठी आधी लॉगिन करा 👤",
+    "errNameRequired": "⚠️ साहित्याचं नाव टाका",
+    "errPriceRequired": "⚠️ योग्य किंमत टाका",
+    "errLocRequired": "⚠️ ठिकाण टाका",
+    "errPhotoRequired": "⚠️ किमान 1 फोटो टाका",
+    "uploading": "अपलोड होत आहे...",
+    "errPhotoUploadFailed": "⚠️ फोटो अपलोड होऊ शकला नाही",
+    "listingLiveToast": "✅ तुमची लिस्टिंग लाइव्ह झाली!",
+    "searchPlaceholder": "बाजारात शोधा... उदा. ट्रॅक्टर, खत, धान्य"
   }
 }

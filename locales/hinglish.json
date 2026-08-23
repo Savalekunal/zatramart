@@ -45,7 +45,8 @@
     "title": "Aapki Cart",
     "empty": "Cart khaali hai. Kuch achha khareedein!",
     "total": "Total:",
-    "checkout": "Checkout Karein"
+    "checkout": "Checkout Karein",
+    "itemCount": "Aapke cart mein {n} items hain"
   },
   "auth": {
     "loginTab": "Login",
@@ -187,7 +188,8 @@
     "wishlistRemovedToast": "Wishlist se hata diya",
     "workerContactToast": "Majdoor ki jaankari WhatsApp par bheji ja rahi hai... 📲",
     "sellerContactToast": "Seller ki jaankari WhatsApp par bheji ja rahi hai... 📲",
-    "yojanaMoreInfoToast": "Yojana ki poori jaankari jald hi yahan milegi 📜"
+    "yojanaMoreInfoToast": "Yojana ki poori jaankari jald hi yahan milegi 📜",
+    "views": "views"
   },
   "footer": {
     "tagline": "Kisan ka apna bazaar — dalaal-mukt, bharosemand, seedha.",
@@ -267,6 +269,18 @@
       "organic": "Soil Health",
       "packaging": "Safe Storage",
       "default": "Farm Essential"
+    },
+    "bazaarCategory": {
+      "machinery": "Tractor & Machinery",
+      "tools": "Tools",
+      "motor": "Motor & Pump",
+      "irrigation": "Pipes & Irrigation",
+      "metal": "Metal & Scrap",
+      "solar": "Solar",
+      "gobar": "Gobar / Khaad",
+      "grain": "Anaj / Daan",
+      "cattle": "Pashu",
+      "land": "Zameen"
     }
   },
   "shop": {
@@ -346,5 +360,56 @@
     "reviewSavedToast": "✅ Review save ho gaya!",
     "similarProducts": "Similar Products",
     "recentlyViewed": "Recently Viewed"
+  },
+  "store": {
+    "locatorEyebrow": "Store Locator",
+    "locatorTitle": "500+ Stores Across Bharat",
+    "locatorSub": "Apne nazdeek ka ZatraMart store dhundein."
+  },
+  "gyan": {
+    "trendingReels": "🎬 Trending Reels",
+    "allVideosCourses": "📚 Sabhi Videos & Courses"
+  },
+  "yojana": {
+    "whatIsIt": "📝 Yojana Kya Hai",
+    "eligibility": "✅ Eligibility",
+    "procedure": "📋 Apply Karne Ki Poori Procedure",
+    "requiredDocs": "🪪 Zaroori Documents",
+    "officialWebsite": "Official Website Par Jaayein ↗",
+    "prev": "← Peechhe",
+    "next": "Next →"
+  },
+  "bazaar": {
+    "postAdTitle": "🏷️ Apna Saman Bechein",
+    "postAdTitleRent": "🔄 Apna Saman Kiraye Par Dein",
+    "sale": "Bikri (Sale)",
+    "rent": "Kiraye Par (Rent)",
+    "itemName": "Saman Ka Naam",
+    "price": "Price (₹)",
+    "priceRent": "Price (₹ / din)",
+    "location": "Location",
+    "details": "Details (model saal, etc.)",
+    "condition": "Condition",
+    "priceNegotiable": "Price Negotiable",
+    "photos": "Photos (1-5, asli saman ki photo)",
+    "postListing": "Listing Post Karein",
+    "allCategories": "🌐 Sabhi Categories",
+    "today": "Aaj",
+    "yesterday": "Kal",
+    "listingsCount": "{count} listings mil rahe hain",
+    "featuredTag": "⭐ Featured",
+    "rentTag": "Kiraye Par",
+    "noListings": "Koi listing nahi mili. Doosra filter try karein.",
+    "sellBtnSell": "+ Apna Saman Bechein",
+    "sellBtnRent": "+ Kiraye Par Dein",
+    "loginToSellToast": "Saman bechne ke liye pehle login karein 👤",
+    "errNameRequired": "⚠️ Saman ka naam daalein",
+    "errPriceRequired": "⚠️ Sahi price daalein",
+    "errLocRequired": "⚠️ Location daalein",
+    "errPhotoRequired": "⚠️ Kam se kam 1 photo daalein",
+    "uploading": "Upload ho raha hai...",
+    "errPhotoUploadFailed": "⚠️ Photo upload nahi ho paayi",
+    "listingLiveToast": "✅ Aapki listing live ho gayi!",
+    "searchPlaceholder": "Bazaar mein search karein... e.g. tractor, gobar, anaj"
   }
 }

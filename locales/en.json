@@ -45,7 +45,8 @@
     "title": "Your Cart",
     "empty": "Your cart is empty. Add something good!",
     "total": "Total:",
-    "checkout": "Checkout"
+    "checkout": "Checkout",
+    "itemCount": "{n} items in your cart"
   },
   "auth": {
     "loginTab": "Login",
@@ -187,7 +188,8 @@
     "wishlistRemovedToast": "Removed from wishlist",
     "workerContactToast": "Worker's details are being sent on WhatsApp... 📲",
     "sellerContactToast": "Seller's details are being sent on WhatsApp... 📲",
-    "yojanaMoreInfoToast": "Full scheme details will be available here soon 📜"
+    "yojanaMoreInfoToast": "Full scheme details will be available here soon 📜",
+    "views": "views"
   },
   "footer": {
     "tagline": "The farmer's own marketplace — no middlemen, trustworthy, direct.",
@@ -267,6 +269,18 @@
       "organic": "Soil Health",
       "packaging": "Safe Storage",
       "default": "Farm Essential"
+    },
+    "bazaarCategory": {
+      "machinery": "Tractor & Machinery",
+      "tools": "Tools",
+      "motor": "Motor & Pump",
+      "irrigation": "Pipes & Irrigation",
+      "metal": "Metal & Scrap",
+      "solar": "Solar",
+      "gobar": "Manure / Fertilizer",
+      "grain": "Grain / Pulses",
+      "cattle": "Livestock",
+      "land": "Land"
     }
   },
   "shop": {
@@ -346,5 +360,56 @@
     "reviewSavedToast": "✅ Review saved!",
     "similarProducts": "Similar Products",
     "recentlyViewed": "Recently Viewed"
+  },
+  "store": {
+    "locatorEyebrow": "Store Locator",
+    "locatorTitle": "500+ Stores Across India",
+    "locatorSub": "Find your nearest ZatraMart store."
+  },
+  "gyan": {
+    "trendingReels": "🎬 Trending Reels",
+    "allVideosCourses": "📚 All Videos & Courses"
+  },
+  "yojana": {
+    "whatIsIt": "📝 What Is This Scheme",
+    "eligibility": "✅ Eligibility",
+    "procedure": "📋 Full Application Procedure",
+    "requiredDocs": "🪪 Required Documents",
+    "officialWebsite": "Go to Official Website ↗",
+    "prev": "← Back",
+    "next": "Next →"
+  },
+  "bazaar": {
+    "postAdTitle": "🏷️ Sell Your Item",
+    "postAdTitleRent": "🔄 Rent Out Your Item",
+    "sale": "Sale",
+    "rent": "Rent",
+    "itemName": "Item Name",
+    "price": "Price (₹)",
+    "priceRent": "Price (₹ / day)",
+    "location": "Location",
+    "details": "Details (model, year, etc.)",
+    "condition": "Condition",
+    "priceNegotiable": "Price Negotiable",
+    "photos": "Photos (1-5, real photos of the item)",
+    "postListing": "Post Listing",
+    "allCategories": "🌐 All Categories",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "listingsCount": "{count} listings found",
+    "featuredTag": "⭐ Featured",
+    "rentTag": "For Rent",
+    "noListings": "No listings found. Try a different filter.",
+    "sellBtnSell": "+ Sell Your Item",
+    "sellBtnRent": "+ List for Rent",
+    "loginToSellToast": "Please login first to sell an item 👤",
+    "errNameRequired": "⚠️ Enter the item name",
+    "errPriceRequired": "⚠️ Enter a valid price",
+    "errLocRequired": "⚠️ Enter a location",
+    "errPhotoRequired": "⚠️ Add at least 1 photo",
+    "uploading": "Uploading...",
+    "errPhotoUploadFailed": "⚠️ Photo upload failed",
+    "listingLiveToast": "✅ Your listing is live!",
+    "searchPlaceholder": "Search Bazaar... e.g. tractor, manure, grain"
   }
 }

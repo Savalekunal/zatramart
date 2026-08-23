@@ -3,6 +3,7 @@
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  const t = window.KM_I18N ? window.KM_I18N.t : (k) => k;
   const { reels, gyanVideos } = window.KM_DATA;
 
   document.getElementById('reelsRow').innerHTML = reels.map(r => `
@@ -25,6 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <span class="duration">${v.duration}</span>
       </div>
       <h4>${v.title}</h4>
-      <p class="gyan-meta">👤 ${v.by} · 👁️ ${v.views} views</p>
+      <p class="gyan-meta">👤 ${v.by} · 👁️ ${v.views} ${t('common.views')}</p>
     </div>`).join('');
 });

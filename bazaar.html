@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=13">
+<link rel="stylesheet" href="css/style.css?v=14">
 <link rel="stylesheet" href="css/product.css">
 <link rel="stylesheet" href="css/flow.css">
 </head>
@@ -219,6 +219,68 @@
   </div>
 </div>
 
+<!-- Bazaar listing image lightbox -->
+<div class="bazaar-lightbox" id="bazaarLightbox">
+  <div class="bazaar-lightbox-inner">
+    <button class="bazaar-lightbox-close" id="bazaarLightboxClose">✕</button>
+    <button class="bazaar-lightbox-nav prev" id="bazaarLightboxPrev" aria-label="Previous image">‹</button>
+    <img id="bazaarLightboxImg" src="" alt="">
+    <button class="bazaar-lightbox-nav next" id="bazaarLightboxNext" aria-label="Next image">›</button>
+    <div class="bazaar-lightbox-dots" id="bazaarLightboxDots"></div>
+    <div class="bazaar-lightbox-info" id="bazaarLightboxInfo"></div>
+  </div>
+</div>
+
+<!-- Post Ad modal (real listing, real photo upload) -->
+<div class="auth-modal" id="postAdModal">
+  <div class="auth-card bazaar-post-form">
+    <button class="auth-close" id="postAdModalClose" aria-label="Close">✕</button>
+    <div class="auth-logo" id="postAdModalTitle" data-i18n="bazaar.postAdTitle">🏷️ Apna Saman Bechein</div>
+    <div class="bazaar-post-type-toggle" id="postAdTypeToggle">
+      <button type="button" class="active" data-type="sell" data-i18n="bazaar.sale">Bikri (Sale)</button>
+      <button type="button" data-type="rent" data-i18n="bazaar.rent">Kiraye Par (Rent)</button>
+    </div>
+    <label data-i18n="bazaar.itemName">Saman Ka Naam</label>
+    <input type="text" class="auth-field" id="postAdName" placeholder="e.g. Mahindra Tractor 265 DI">
+    <label data-i18n="shop.category">Category</label>
+    <select class="auth-field" id="postAdCat"></select>
+    <div class="form-row">
+      <div>
+        <label id="postAdPriceLabel" data-i18n="bazaar.price">Price (₹)</label>
+        <input type="number" class="auth-field" id="postAdPrice" placeholder="e.g. 45000">
+      </div>
+      <div>
+        <label data-i18n="bazaar.location">Location</label>
+        <input type="text" class="auth-field" id="postAdLoc" placeholder="e.g. Nashik, Maharashtra">
+      </div>
+    </div>
+    <label data-i18n="bazaar.details">Details (model saal, etc.)</label>
+    <input type="text" class="auth-field" id="postAdMeta" placeholder="e.g. 2020 Model">
+    <div class="form-row">
+      <div>
+        <label data-i18n="bazaar.condition">Condition</label>
+        <select class="auth-field" id="postAdCondition">
+          <option value="New">New</option>
+          <option value="Like New">Like New</option>
+          <option value="Good" selected>Good</option>
+          <option value="Fair">Fair</option>
+          <option value="Used">Used</option>
+        </select>
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <label style="display:flex; align-items:center; gap:8px; font-weight:500; margin-top:11px;">
+          <input type="checkbox" id="postAdNegotiable" checked style="width:auto; margin:0;"> <span data-i18n="bazaar.priceNegotiable">Price Negotiable</span>
+        </label>
+      </div>
+    </div>
+    <label data-i18n="bazaar.photos">Photos (1-5, asli saman ki photo)</label>
+    <input type="file" id="postAdPhotos" accept="image/*" multiple>
+    <div class="listing-photo-preview" id="postAdPreview"></div>
+    <button class="btn btn-primary btn-block" id="postAdSubmit" type="button" data-i18n="bazaar.postListing">Listing Post Karein</button>
+  </div>
+</div>
+
 <main id="top">
 
 <!-- ===== OLX-style Bazaar search bar ===== -->
@@ -226,15 +288,15 @@
   <div class="container olx-search-wrap">
     <div class="olx-search-box">
       <span class="olx-search-icon">🔍</span>
-      <input type="text" id="bazaarSearchInput" placeholder="Bazaar mein search karein... e.g. tractor, gobar, anaj">
+      <input type="text" id="bazaarSearchInput" data-i18n-placeholder="bazaar.searchPlaceholder" placeholder="Bazaar mein search karein... e.g. tractor, gobar, anaj">
     </div>
-    <a href="#" class="btn btn-primary olx-sell-btn" id="postAdBtn">+ Apna Saman Bechein</a>
+    <a href="#" class="btn btn-primary olx-sell-btn" id="postAdBtn" data-i18n="bazaar.sellBtnSell">+ Apna Saman Bechein</a>
   </div>
 
   <div class="container">
     <div class="olx-mode-tabs" id="bazaarModeTabs">
-      <button class="olx-mode-tab active" data-mode="sell">🏷️ Bikri (Sale)</button>
-      <button class="olx-mode-tab" data-mode="rent">🔄 Kiraye Par (Rent)</button>
+      <button class="olx-mode-tab active" data-mode="sell">🏷️ <span data-i18n="bazaar.sale">Bikri (Sale)</span></button>
+      <button class="olx-mode-tab" data-mode="rent">🔄 <span data-i18n="bazaar.rent">Kiraye Par (Rent)</span></button>
     </div>
   </div>
 
@@ -323,7 +385,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="js/supabase-client.js"></script>
 <script src="js/i18n.js?v=1"></script>
-<script src="js/common.js?v=36"></script>
-<script src="js/bazaar.js?v=8"></script>
+<script src="js/common.js?v=37"></script>
+<script src="js/bazaar.js?v=9"></script>
 </body>
 </html>

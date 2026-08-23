@@ -45,7 +45,8 @@
     "title": "आपकी कार्ट",
     "empty": "कार्ट खाली है। कुछ अच्छा खरीदें!",
     "total": "कुल:",
-    "checkout": "चेकआउट करें"
+    "checkout": "चेकआउट करें",
+    "itemCount": "आपके कार्ट में {n} आइटम हैं"
   },
   "auth": {
     "loginTab": "लॉगिन",
@@ -187,7 +188,8 @@
     "wishlistRemovedToast": "विशलिस्ट से हटाया गया",
     "workerContactToast": "मज़दूर की जानकारी WhatsApp पर भेजी जा रही है... 📲",
     "sellerContactToast": "विक्रेता की जानकारी WhatsApp पर भेजी जा रही है... 📲",
-    "yojanaMoreInfoToast": "योजना की पूरी जानकारी जल्द ही यहां मिलेगी 📜"
+    "yojanaMoreInfoToast": "योजना की पूरी जानकारी जल्द ही यहां मिलेगी 📜",
+    "views": "व्यूज़"
   },
   "footer": {
     "tagline": "किसान का अपना बाज़ार — दलाल-मुक्त, भरोसेमंद, सीधा।",
@@ -267,6 +269,18 @@
       "organic": "मिट्टी का स्वास्थ्य",
       "packaging": "सुरक्षित भंडारण",
       "default": "खेती आवश्यक"
+    },
+    "bazaarCategory": {
+      "machinery": "ट्रैक्टर और मशीनरी",
+      "tools": "औज़ार",
+      "motor": "मोटर और पंप",
+      "irrigation": "पाइप और सिंचाई",
+      "metal": "धातु और कबाड़",
+      "solar": "सोलर",
+      "gobar": "गोबर / खाद",
+      "grain": "अनाज / दाल",
+      "cattle": "पशु",
+      "land": "ज़मीन"
     }
   },
   "shop": {
@@ -346,5 +360,56 @@
     "reviewSavedToast": "✅ रिव्यू सेव हो गया!",
     "similarProducts": "मिलते-जुलते उत्पाद",
     "recentlyViewed": "हाल ही में देखे गए"
+  },
+  "store": {
+    "locatorEyebrow": "स्टोर लोकेटर",
+    "locatorTitle": "पूरे भारत में 500+ स्टोर",
+    "locatorSub": "अपने नज़दीकी ZatraMart स्टोर को ढूंढें।"
+  },
+  "gyan": {
+    "trendingReels": "🎬 ट्रेंडिंग रील्स",
+    "allVideosCourses": "📚 सभी वीडियो और कोर्स"
+  },
+  "yojana": {
+    "whatIsIt": "📝 यह योजना क्या है",
+    "eligibility": "✅ पात्रता",
+    "procedure": "📋 आवेदन करने की पूरी प्रक्रिया",
+    "requiredDocs": "🪪 ज़रूरी दस्तावेज़",
+    "officialWebsite": "आधिकारिक वेबसाइट पर जाएं ↗",
+    "prev": "← पीछे",
+    "next": "आगे →"
+  },
+  "bazaar": {
+    "postAdTitle": "🏷️ अपना सामान बेचें",
+    "postAdTitleRent": "🔄 अपना सामान किराए पर दें",
+    "sale": "बिक्री",
+    "rent": "किराए पर",
+    "itemName": "सामान का नाम",
+    "price": "कीमत (₹)",
+    "priceRent": "कीमत (₹ / दिन)",
+    "location": "स्थान",
+    "details": "विवरण (मॉडल, साल, आदि)",
+    "condition": "स्थिति",
+    "priceNegotiable": "कीमत बातचीत योग्य",
+    "photos": "फ़ोटो (1-5, सामान की असली फ़ोटो)",
+    "postListing": "लिस्टिंग पोस्ट करें",
+    "allCategories": "🌐 सभी श्रेणियां",
+    "today": "आज",
+    "yesterday": "कल",
+    "listingsCount": "{count} लिस्टिंग मिलीं",
+    "featuredTag": "⭐ फीचर्ड",
+    "rentTag": "किराए पर",
+    "noListings": "कोई लिस्टिंग नहीं मिली। दूसरा फ़िल्टर आज़माएं।",
+    "sellBtnSell": "+ अपना सामान बेचें",
+    "sellBtnRent": "+ किराए पर दें",
+    "loginToSellToast": "सामान बेचने के लिए पहले लॉगिन करें 👤",
+    "errNameRequired": "⚠️ सामान का नाम डालें",
+    "errPriceRequired": "⚠️ सही कीमत डालें",
+    "errLocRequired": "⚠️ स्थान डालें",
+    "errPhotoRequired": "⚠️ कम से कम 1 फ़ोटो डालें",
+    "uploading": "अपलोड हो रहा है...",
+    "errPhotoUploadFailed": "⚠️ फ़ोटो अपलोड नहीं हो पाई",
+    "listingLiveToast": "✅ आपकी लिस्टिंग लाइव हो गई!",
+    "searchPlaceholder": "बाज़ार में खोजें... जैसे ट्रैक्टर, खाद, अनाज"
   }
 }

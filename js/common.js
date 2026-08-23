@@ -638,7 +638,9 @@ window.KM = (function () {
         cartItemsEl.innerHTML = `<p class="cart-empty">🌱 ${emptyMsg}</p>`;
         cartTotalEl.textContent = '₹0';
       } else {
-        cartItemsEl.innerHTML = c.map((item, i) => `
+        const n = c.reduce((s, i) => s + i.qty, 0);
+        const countMsg = window.KM_I18N ? window.KM_I18N.t('cart.itemCount', { n }) : `${n} items in your cart`;
+        cartItemsEl.innerHTML = `<p class="cart-item-count">${countMsg}</p>` + c.map((item, i) => `
           <div class="cart-item">
             <img src="${item.img}" alt="${item.name}">
             <div class="cart-item-info">
