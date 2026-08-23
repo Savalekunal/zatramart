@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/style.css?v=13">
 </head>
 <body>
 
@@ -25,15 +25,18 @@
 <div class="topbar">
   <div class="container topbar-inner">
     <div class="topbar-left">
-      <span>📞 Kisan Helpline: <a href="tel:18001801551">1800-180-1551</a></span>
-      <span class="hide-sm">🚚 Free Delivery on ₹499+</span>
+      <span>📞 <span data-i18n="topbar.helpline">Kisan Helpline:</span> <a href="tel:18001801551">1800-180-1551</a></span>
+      <span class="hide-sm" data-i18n="topbar.freeDelivery">🚚 Free Delivery on ₹499+</span>
     </div>
     <div class="topbar-right">
-      <button class="lang-toggle" id="langToggle" aria-label="Change language">
-        <span class="lang-en active">EN</span> / <span class="lang-hi">हिं</span>
-      </button>
-      <a href="orders.html" class="hide-sm">Track Order</a>
-      <a href="#" class="hide-sm seller-bane-link">Seller Bane</a>
+      <select class="lang-switcher" id="langSwitcher" aria-label="Change language">
+        <option value="en">EN</option>
+        <option value="hinglish">Hinglish</option>
+        <option value="mr">मराठी</option>
+        <option value="hi">हिंदी</option>
+      </select>
+      <a href="orders.html" class="hide-sm" data-i18n="topbar.trackOrder">Track Order</a>
+      <a href="#" class="hide-sm seller-bane-link" data-i18n="topbar.sellerBane">Seller Bane</a>
     </div>
   </div>
 </div>
@@ -47,43 +50,43 @@
     </a>
 
     <nav class="row1-nav">
-      <a href="bazaar.html" data-en="Bazaar" data-hi="बाज़ार">Bazaar</a>
-      <a href="gyan.html" data-en="Reels &amp; Gyan" data-hi="रील्स और ज्ञान">Reels &amp; Gyan</a>
-      <a href="majdoor.html" data-en="Majdoor" data-hi="मज़दूर">Majdoor</a>
-      <a href="yojana.html" data-en="Yojana" data-hi="योजना">Yojana</a>
+      <a href="bazaar.html" data-i18n="nav.bazaar">Bazaar</a>
+      <a href="gyan.html" data-i18n="nav.reelsGyan">Reels &amp; Gyan</a>
+      <a href="majdoor.html" data-i18n="nav.majdoor">Majdoor</a>
+      <a href="yojana.html" data-i18n="nav.yojana">Yojana</a>
     </nav>
 
     <div class="search-bar">
       <select class="search-cat">
-        <option>All</option>
-        <option>Seeds</option>
-        <option>Fertilizers</option>
-        <option>Irrigation</option>
-        <option>Machinery</option>
+        <option value="" data-i18n="search.all">All</option>
+        <option value="seeds" data-i18n="search.seeds">Seeds</option>
+        <option value="fertilizer" data-i18n="search.fertilizers">Fertilizers</option>
+        <option value="irrigation" data-i18n="search.irrigation">Irrigation</option>
+        <option value="machinery" data-i18n="search.machinery">Machinery</option>
       </select>
-      <input type="text" id="searchInput" placeholder="Search seeds, urea, pipe, motor...  बीज, खाद खोजें">
-      <button class="search-btn" id="searchBtn" aria-label="Search">🔍</button>
+      <input type="text" id="searchInput" data-i18n-placeholder="search.placeholder" placeholder="Search seeds, urea, pipe, motor...  बीज, खाद खोजें">
+      <button class="search-btn" id="searchBtn" data-i18n-aria-label="search.button" aria-label="Search">🔍</button>
     </div>
 
     <div class="navbar-icons">
       <div class="account-wrap">
-        <button class="icon-btn login-btn" id="loginBtn" aria-label="Login">
-          👤 <span class="login-text" id="loginBtnText">Login</span>
+        <button class="icon-btn login-btn" id="loginBtn" data-i18n-aria-label="header.login" aria-label="Login">
+          👤 <span class="login-text" id="loginBtnText" data-i18n="header.login">Login</span>
         </button>
         <div class="account-menu" id="accountMenu">
           <div class="account-menu-head" id="accountMenuName"></div>
-          <a href="orders.html">📦 My Orders</a>
-          <a href="my-listings.html">🏷️ My Listings</a>
-          <a href="#" id="logoutBtn">🚪 Logout</a>
+          <a href="orders.html">📦 <span data-i18n="header.myOrders">My Orders</span></a>
+          <a href="my-listings.html">🏷️ <span data-i18n="header.myListings">My Listings</span></a>
+          <a href="#" id="logoutBtn">🚪 <span data-i18n="header.logout">Logout</span></a>
         </div>
       </div>
-      <button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">
+      <button class="icon-btn" id="wishlistBtn" data-i18n-aria-label="header.wishlist" aria-label="Wishlist">
         ♡ <span class="badge" id="wishCount">0</span>
       </button>
-      <button class="icon-btn" id="cartBtn" aria-label="Cart">
+      <button class="icon-btn" id="cartBtn" data-i18n-aria-label="header.cart" aria-label="Cart">
         🛒 <span class="badge" id="cartCount">0</span>
       </button>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
+      <button class="hamburger" id="hamburger" data-i18n-aria-label="header.menu" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -91,36 +94,36 @@
 
   <div class="nav-bar-row">
     <nav class="container nav-links" id="navLinks">
-      <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+      <a href="index.html" data-i18n="nav.home">Home</a>
       <div class="has-drop agri-drop-wrap">
-        <a href="shop.html" data-en="Agriculture" data-hi="कृषि">Agriculture <span class="caret">▾</span></a>
+        <a href="shop.html"><span data-i18n="nav.agriculture">Agriculture</span> <span class="caret">▾</span></a>
         <div class="agri-menu-panel" id="agriMenuPanel"></div>
       </div>
       <div class="has-drop">
-        <a href="shop.html?cat=seeds" data-en="Seeds" data-hi="बीज">Seeds <span class="caret">▾</span></a>
+        <a href="shop.html?cat=seeds"><span data-i18n="nav.seeds">Seeds</span> <span class="caret">▾</span></a>
         <div class="simple-drop" data-dropfor="seeds"></div>
       </div>
       <div class="has-drop">
-        <a href="shop.html?cat=pesticide" data-en="Crop Protection" data-hi="फसल सुरक्षा">Crop Protection <span class="caret">▾</span></a>
+        <a href="shop.html?cat=pesticide"><span data-i18n="nav.cropProtection">Crop Protection</span> <span class="caret">▾</span></a>
         <div class="simple-drop" data-dropfor="protection"></div>
       </div>
       <div class="has-drop">
-        <a href="shop.html?cat=fertilizer" data-en="Fertilizer" data-hi="खाद">Fertilizer <span class="caret">▾</span></a>
+        <a href="shop.html?cat=fertilizer"><span data-i18n="nav.fertilizer">Fertilizer</span> <span class="caret">▾</span></a>
         <div class="simple-drop" data-dropfor="nutrition"></div>
       </div>
       <div class="has-drop">
-        <a href="shop.html?cat=tools" data-en="Equipments" data-hi="उपकरण">Equipments <span class="caret">▾</span></a>
+        <a href="shop.html?cat=tools"><span data-i18n="nav.equipments">Equipments</span> <span class="caret">▾</span></a>
         <div class="simple-drop" data-dropfor="equipments"></div>
       </div>
       <div class="has-drop">
-        <a href="shop.html?cat=animal" data-en="Animal Husbandry" data-hi="पशुपालन">Animal Husbandry <span class="caret">▾</span></a>
+        <a href="shop.html?cat=animal"><span data-i18n="nav.animalHusbandry">Animal Husbandry</span> <span class="caret">▾</span></a>
         <div class="simple-drop" data-dropfor="animal"></div>
       </div>
-      <a href="bazaar.html" class="row1-duplicate" data-en="Bazaar" data-hi="बाज़ार">Bazaar</a>
-      <a href="gyan.html" class="row1-duplicate" data-en="Reels &amp; Gyan" data-hi="रील्स और ज्ञान">Reels &amp; Gyan</a>
-      <a href="majdoor.html" class="row1-duplicate" data-en="Majdoor" data-hi="मज़दूर">Majdoor</a>
-      <a href="yojana.html" class="row1-duplicate" data-en="Yojana" data-hi="योजना">Yojana</a>
-      <a href="store.html" data-en="Our Store" data-hi="हमारी दुकान">Our Store</a>
+      <a href="bazaar.html" class="row1-duplicate" data-i18n="nav.bazaar">Bazaar</a>
+      <a href="gyan.html" class="row1-duplicate" data-i18n="nav.reelsGyan">Reels &amp; Gyan</a>
+      <a href="majdoor.html" class="row1-duplicate" data-i18n="nav.majdoor">Majdoor</a>
+      <a href="yojana.html" class="row1-duplicate" data-i18n="nav.yojana">Yojana</a>
+      <a href="store.html" data-i18n="nav.ourStore">Our Store</a>
     </nav>
   </div>
 </header>
@@ -128,15 +131,15 @@
 <!-- ===== MINI CART DRAWER ===== -->
 <div class="cart-drawer" id="cartDrawer">
   <div class="cart-drawer-head">
-    <h3>🛒 Aapki Cart</h3>
+    <h3>🛒 <span data-i18n="cart.title">Aapki Cart</span></h3>
     <button id="closeCart" aria-label="Close">✕</button>
   </div>
   <div class="cart-items" id="cartItems">
-    <p class="cart-empty">Cart khaali hai. Kuch achha khareedein! 🌱</p>
+    <p class="cart-empty">🌱 <span data-i18n="cart.empty">Cart khaali hai. Kuch achha khareedein!</span></p>
   </div>
   <div class="cart-footer">
-    <div class="cart-total">Total: <strong id="cartTotal">₹0</strong></div>
-    <button class="btn btn-primary btn-block" id="checkoutBtn">Checkout Karein</button>
+    <div class="cart-total"><span data-i18n="cart.total">Total:</span> <strong id="cartTotal">₹0</strong></div>
+    <button class="btn btn-primary btn-block" id="checkoutBtn" data-i18n="cart.checkout">Checkout Karein</button>
   </div>
 </div>
 
@@ -146,60 +149,60 @@
     <button class="auth-close" id="authClose" aria-label="Close">✕</button>
     <div class="auth-logo"><span class="logo-icon">🌾</span> Zatra<span class="accent">Mart</span></div>
     <div class="auth-tabs">
-      <button class="auth-tab active" data-tab="login">Login</button>
-      <button class="auth-tab" data-tab="signup">Sign Up</button>
+      <button class="auth-tab active" data-tab="login" data-i18n="auth.loginTab">Login</button>
+      <button class="auth-tab" data-tab="signup" data-i18n="auth.signupTab">Sign Up</button>
     </div>
 
     <div class="auth-panel active" id="panelLogin">
       <div class="auth-step" id="loginStepForm">
-        <label>Mobile Number</label>
+        <label data-i18n="auth.mobileNumber">Mobile Number</label>
         <div class="auth-input-row">
           <span class="auth-prefix">🇮🇳 +91</span>
           <input type="tel" maxlength="10" placeholder="98765 43210" id="loginPhone">
         </div>
-        <button class="btn btn-primary btn-block" id="loginSendOtpBtn">OTP Bhejein</button>
-        <p class="auth-note">Registered mobile number daalein — OTP aapke email par bheja jaayega.</p>
+        <button class="btn btn-primary btn-block" id="loginSendOtpBtn" data-i18n="auth.sendOtp">OTP Bhejein</button>
+        <p class="auth-note" data-i18n="auth.loginNote">Registered mobile number daalein — OTP aapke email par bheja jaayega.</p>
       </div>
       <div class="auth-step" id="loginStepOtp" hidden>
         <p class="auth-otp-sent" id="loginOtpSentMsg"></p>
         <div class="otp-row show" id="loginOtpRow">
-          <input type="text" class="otp-single" inputmode="numeric" placeholder="Email mein aaya OTP daalein">
+          <input type="text" class="otp-single" inputmode="numeric" data-i18n-placeholder="auth.otpPlaceholder" placeholder="Email mein aaya OTP daalein">
         </div>
-        <button class="btn btn-primary btn-block" id="loginVerifyBtn">Verify &amp; Login</button>
-        <button class="auth-link-btn" id="loginBackBtn" type="button">← Number badlein</button>
+        <button class="btn btn-primary btn-block" id="loginVerifyBtn" data-i18n="auth.verifyLogin">Verify &amp; Login</button>
+        <button class="auth-link-btn" id="loginBackBtn" type="button" data-i18n="auth.changeNumber">← Number badlein</button>
       </div>
     </div>
 
     <div class="auth-panel" id="panelSignup">
       <div class="auth-step" id="signupStepForm">
-        <label>Poora Naam</label>
-        <input type="text" placeholder="Aapka naam" class="auth-field" id="signupName">
-        <label>Mobile Number</label>
+        <label data-i18n="auth.fullName">Poora Naam</label>
+        <input type="text" data-i18n-placeholder="auth.namePlaceholder" placeholder="Aapka naam" class="auth-field" id="signupName">
+        <label data-i18n="auth.mobileNumber">Mobile Number</label>
         <div class="auth-input-row">
           <span class="auth-prefix">🇮🇳 +91</span>
           <input type="tel" maxlength="10" placeholder="98765 43210" id="signupPhone">
         </div>
-        <label>Email ID</label>
+        <label data-i18n="auth.email">Email ID</label>
         <input type="email" placeholder="aapka@email.com" class="auth-field" id="signupEmail">
-        <label>Main Hoon</label>
+        <label data-i18n="auth.iAm">Main Hoon</label>
         <div class="role-pick">
-          <button class="role-chip active" type="button">🌾 Kisan</button>
-          <button class="role-chip" type="button">🏪 Seller</button>
-          <button class="role-chip" type="button">👷 Majdoor</button>
+          <button class="role-chip active" type="button" data-role="Kisan" data-i18n="auth.roleFarmer">🌾 Kisan</button>
+          <button class="role-chip" type="button" data-role="Seller" data-i18n="auth.roleSeller">🏪 Seller</button>
+          <button class="role-chip" type="button" data-role="Majdoor" data-i18n="auth.roleMajdoor">👷 Majdoor</button>
         </div>
-        <button class="btn btn-primary btn-block" id="signupSendOtpBtn">Account Banayein</button>
+        <button class="btn btn-primary btn-block" id="signupSendOtpBtn" data-i18n="auth.createAccount">Account Banayein</button>
       </div>
       <div class="auth-step" id="signupStepOtp" hidden>
         <p class="auth-otp-sent" id="signupOtpSentMsg"></p>
         <div class="otp-row show" id="signupOtpRow">
-          <input type="text" class="otp-single" inputmode="numeric" placeholder="Email mein aaya OTP daalein">
+          <input type="text" class="otp-single" inputmode="numeric" data-i18n-placeholder="auth.otpPlaceholder" placeholder="Email mein aaya OTP daalein">
         </div>
-        <button class="btn btn-primary btn-block" id="signupVerifyBtn">Verify &amp; Sign Up</button>
-        <button class="auth-link-btn" id="signupBackBtn" type="button">← Wapas jaayein</button>
+        <button class="btn btn-primary btn-block" id="signupVerifyBtn" data-i18n="auth.verifySignup">Verify &amp; Sign Up</button>
+        <button class="auth-link-btn" id="signupBackBtn" type="button" data-i18n="auth.goBack">← Wapas jaayein</button>
       </div>
     </div>
 
-    <button class="auth-guest" id="authGuest">Guest ki tarah aage badhein →</button>
+    <button class="auth-guest" id="authGuest" data-i18n="auth.guest">Guest ki tarah aage badhein →</button>
   </div>
 </div>
 
@@ -223,19 +226,19 @@
   <div class="hero-mesh"></div>
   <div class="container hero-inner">
     <div class="hero-text reveal">
-      <span class="chip">🇮🇳 Bharat ke Kisan ke liye, Bharat ki Technology se</span>
-      <h1>Khet se seedha,<br> aapki <span class="accent">jeb tak.</span></h1>
-      <p class="hero-sub">
+      <span class="chip" data-i18n="home.heroChip">🇮🇳 Bharat ke Kisan ke liye, Bharat ki Technology se</span>
+      <h1><span data-i18n="home.heroTitle1">Khet se seedha,</span><br> <span class="accent" data-i18n="home.heroTitleAccent">aapki jeb tak.</span></h1>
+      <p class="hero-sub" data-i18n="home.heroSub">
         Farmer se Buyer, koi dalaal nahi — 1200+ products, majdoor sewa aur sarkari yojana sab ek app mein.
       </p>
       <div class="hero-cta">
-        <a href="shop.html" class="btn btn-primary">Shop Karein <span>→</span></a>
-        <a href="#majdoor" class="btn btn-outline">Majdoor Dhundein</a>
+        <a href="shop.html" class="btn btn-primary"><span data-i18n="home.shopKarein">Shop Karein</span> <span>→</span></a>
+        <a href="#majdoor" class="btn btn-outline" data-i18n="home.majdoorDhundein">Majdoor Dhundein</a>
       </div>
       <div class="hero-badges">
-        <div class="hero-badge float-1">✅ <strong>50,000+</strong> Kisan Judhe</div>
-        <div class="hero-badge float-2">🚜 <strong>1200+</strong> Products</div>
-        <div class="hero-badge float-3">💰 <strong>0%</strong> Bichauliya</div>
+        <div class="hero-badge float-1">✅ <strong>50,000+</strong> <span data-i18n="home.badgeFarmers">Kisan Judhe</span></div>
+        <div class="hero-badge float-2">🚜 <strong>1200+</strong> <span data-i18n="home.badgeProducts">Products</span></div>
+        <div class="hero-badge float-3">💰 <strong>0%</strong> <span data-i18n="home.badgeBichauliya">Bichauliya</span></div>
       </div>
     </div>
   </div>
@@ -247,19 +250,19 @@
   <div class="container stats-grid">
     <div class="stat">
       <span class="stat-num" data-count="50000">0</span>
-      <span class="stat-label">Kisan Judhe<br>Farmers Joined</span>
+      <span class="stat-label" data-i18n="home.statFarmersSubLabel">Kisan Judhe</span>
     </div>
     <div class="stat">
       <span class="stat-num" data-count="1200" data-suffix="+">0</span>
-      <span class="stat-label">Branded Products</span>
+      <span class="stat-label" data-i18n="home.statProductsLabel">Branded Products</span>
     </div>
     <div class="stat">
       <span class="stat-num" data-count="8000" data-suffix="+">0</span>
-      <span class="stat-label">Majdoor Registered</span>
+      <span class="stat-label" data-i18n="home.statMajdoorLabel">Majdoor Registered</span>
     </div>
     <div class="stat">
       <span class="stat-num" data-count="25" data-suffix="Cr+">0</span>
-      <span class="stat-label">₹ Kisano Tak Pahucha</span>
+      <span class="stat-label" data-i18n="home.statPaisaLabel">₹ Kisano Tak Pahucha</span>
     </div>
   </div>
 </section>
@@ -268,38 +271,38 @@
 <section class="chain-section reveal" id="about">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Hamara Mission</span>
-      <h2>Aaj ₹5 milta hai, kal ₹25-30 milega</h2>
-      <p>Beech ke 3 log apna margin le lete hain — hum unhe hata kar seedha rasta banate hain.</p>
+      <span class="eyebrow" data-i18n="home.missionEyebrow">Hamara Mission</span>
+      <h2 data-i18n="home.missionTitle">Aaj ₹5 milta hai, kal ₹25-30 milega</h2>
+      <p data-i18n="home.missionSub">Beech ke 3 log apna margin le lete hain — hum unhe hata kar seedha rasta banate hain.</p>
     </div>
 
     <div class="chain-compare">
       <div class="chain-card chain-old">
-        <h4>❌ Aaj (Old Way)</h4>
+        <h4 data-i18n="home.oldWayTitle">❌ Aaj (Old Way)</h4>
         <div class="chain-flow">
-          <span class="chain-node">Farmer</span>
+          <span class="chain-node" data-i18n="home.farmer">Farmer</span>
           <span class="chain-arrow">→</span>
-          <span class="chain-node">Vyapari</span>
+          <span class="chain-node" data-i18n="home.vyapari">Vyapari</span>
           <span class="chain-arrow">→</span>
-          <span class="chain-node">Vendor</span>
+          <span class="chain-node" data-i18n="home.vendor">Vendor</span>
           <span class="chain-arrow">→</span>
-          <span class="chain-node">Company</span>
+          <span class="chain-node" data-i18n="home.company">Company</span>
         </div>
-        <div class="chain-result bad">₹5 <small>ka fayda kisan tak</small></div>
+        <div class="chain-result bad"><span data-i18n="home.oldResultAmount">₹5</span> <small data-i18n="home.oldResultLabel">ka fayda kisan tak</small></div>
       </div>
 
-      <div class="chain-vs">VS</div>
+      <div class="chain-vs" data-i18n="home.vs">VS</div>
 
       <div class="chain-card chain-new">
-        <h4>✅ ZatraMart ke Saath</h4>
+        <h4 data-i18n="home.newWayTitle">✅ ZatraMart ke Saath</h4>
         <div class="chain-flow">
-          <span class="chain-node">Farmer</span>
+          <span class="chain-node" data-i18n="home.farmer">Farmer</span>
           <span class="chain-arrow">→</span>
           <span class="chain-node highlight">ZatraMart</span>
           <span class="chain-arrow">→</span>
-          <span class="chain-node">Buyer</span>
+          <span class="chain-node" data-i18n="home.buyer">Buyer</span>
         </div>
-        <div class="chain-result good">₹25-30 <small>ka fayda kisan tak</small></div>
+        <div class="chain-result good"><span data-i18n="home.newResultAmount">₹25-30</span> <small data-i18n="home.newResultLabel">ka fayda kisan tak</small></div>
       </div>
     </div>
   </div>
@@ -311,8 +314,8 @@
     <div class="section-head" style="text-align:left; max-width:none; display:flex; align-items:center; gap:14px; margin-bottom:20px;">
       <span style="font-size:2.2rem;">🏆</span>
       <div>
-        <h2 style="margin-bottom:2px;">Top 10 Picks by Farmers</h2>
-        <p style="margin:0;">Sabse zyada khareede gaye products, is hafte ke</p>
+        <h2 style="margin-bottom:2px;" data-i18n="home.trendingTitle">Top 10 Picks by Farmers</h2>
+        <p style="margin:0;" data-i18n="home.trendingSub">Sabse zyada khareede gaye products, is hafte ke</p>
       </div>
     </div>
     <div class="trending-wrap">
@@ -327,9 +330,9 @@
 <section class="farmtypes reveal" id="farmtypes">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Aap Kis Tarah Ki Kheti Karte Hain?</span>
-      <h2>Apni Kheti Ka Prakar Chunein</h2>
-      <p>Fasal ho ya Matsya Palan, Poultry ho ya Pashu Palan — sabke liye sahi product yahan milega.</p>
+      <span class="eyebrow" data-i18n="home.farmtypesEyebrow">Aap Kis Tarah Ki Kheti Karte Hain?</span>
+      <h2 data-i18n="home.farmtypesTitle">Apni Kheti Ka Prakar Chunein</h2>
+      <p data-i18n="home.farmtypesSub">Fasal ho ya Matsya Palan, Poultry ho ya Pashu Palan — sabke liye sahi product yahan milega.</p>
     </div>
     <div class="cat-grid farmtype-grid" id="farmTypeGrid"></div>
   </div>
@@ -339,9 +342,9 @@
 <section class="categories reveal" id="shop">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">ZatraMart Store</span>
-      <h2>1200+ Products, Har Category Mein</h2>
-      <p>Beej se lekar solar pump tak — kheti ka har saman ek hi jagah.</p>
+      <span class="eyebrow" data-i18n="home.categoriesEyebrow">ZatraMart Store</span>
+      <h2 data-i18n="home.categoriesTitle">1200+ Products, Har Category Mein</h2>
+      <p data-i18n="home.categoriesSub">Beej se lekar solar pump tak — kheti ka har saman ek hi jagah.</p>
     </div>
     <div class="cat-grid" id="catGrid"></div>
   </div>
@@ -352,10 +355,10 @@
   <div class="container">
     <div class="section-head" style="text-align:left; max-width:none; display:flex; align-items:baseline; justify-content:space-between; margin-bottom:20px;">
       <div>
-        <h2 style="margin-bottom:2px;">Shop By Crop 🌱</h2>
-        <p style="margin:0;">Apni fasal ke hisaab se solutions paayein.</p>
+        <h2 style="margin-bottom:2px;" data-i18n="home.shopByCropTitle">Shop By Crop 🌱</h2>
+        <p style="margin:0;" data-i18n="home.shopByCropSub">Apni fasal ke hisaab se solutions paayein.</p>
       </div>
-      <a href="shop.html" class="btn-chip">View All</a>
+      <a href="shop.html" class="btn-chip" data-i18n="common.viewAll">View All</a>
     </div>
     <div class="olx-cat-grid" id="cropGrid" style="grid-template-columns: repeat(8, 1fr);"></div>
   </div>
@@ -366,17 +369,17 @@
   <div class="container">
     <div class="section-head" style="text-align:left; max-width:none; display:flex; align-items:baseline; justify-content:space-between;">
       <div>
-        <span class="eyebrow">⚡ Aaj Ke Liye</span>
-        <h2 style="margin-bottom:2px;">Today's Offer</h2>
-        <p style="margin:0;">Best prices available today.</p>
+        <span class="eyebrow" data-i18n="home.offerEyebrow">⚡ Aaj Ke Liye</span>
+        <h2 style="margin-bottom:2px;" data-i18n="home.offerTitle">Today's Offer</h2>
+        <p style="margin:0;" data-i18n="home.offerSub">Best prices available today.</p>
       </div>
-      <a href="shop.html" class="btn-chip">View All</a>
+      <a href="shop.html" class="btn-chip" data-i18n="common.viewAll">View All</a>
     </div>
 
     <div class="product-grid" id="featuredGrid"></div>
 
     <div class="center-cta">
-      <a href="shop.html" class="btn btn-outline">Sabhi Products Dekhein →</a>
+      <a href="shop.html" class="btn btn-outline" data-i18n="home.viewAllProducts">Sabhi Products Dekhein →</a>
     </div>
   </div>
 </section>
@@ -386,57 +389,57 @@
   <div class="container">
     <div class="section-head split">
       <div>
-        <span class="eyebrow">ZatraMart Bazaar</span>
-        <h2>Purana Saman? Bechiye, Kamaiye 💰</h2>
-        <p>Purani tractor, sprayer ya pump — koi bhi saman jo kaam na aa raha ho, seedha kisano ko bechein.</p>
+        <span class="eyebrow" data-i18n="home.bazaarEyebrow">ZatraMart Bazaar</span>
+        <h2 data-i18n="home.bazaarTitle">Purana Saman? Bechiye, Kamaiye 💰</h2>
+        <p data-i18n="home.bazaarSub">Purani tractor, sprayer ya pump — koi bhi saman jo kaam na aa raha ho, seedha kisano ko bechein.</p>
       </div>
-      <a href="bazaar.html" class="btn btn-primary">Sabhi Listings Dekhein →</a>
+      <a href="bazaar.html" class="btn btn-primary" data-i18n="home.bazaarViewAll">Sabhi Listings Dekhein →</a>
     </div>
 
     <div class="bazaar-scroll" id="bazaarScroll">
       <div class="bazaar-card">
-        <span class="tag">Used</span>
+        <span class="tag" data-i18n="common.used">Used</span>
         <img src="https://images.unsplash.com/photo-1571509107684-7e3034a90012?auto=format&fit=crop&w=400&q=70" alt="Tractor">
         <div class="bazaar-info">
           <h4>Mahindra Tractor 265 DI</h4>
           <p class="loc">📍 Nashik, Maharashtra · 2018 Model</p>
-          <div class="price-row"><span class="price">₹3,85,000</span><button class="btn-chip">Contact</button></div>
+          <div class="price-row"><span class="price">₹3,85,000</span><button class="btn-chip" data-i18n="common.contact">Contact</button></div>
         </div>
       </div>
       <div class="bazaar-card">
-        <span class="tag">Used</span>
+        <span class="tag" data-i18n="common.used">Used</span>
         <img src="https://images.unsplash.com/photo-1573353597405-d3a8e88b793d?auto=format&fit=crop&w=400&q=70" alt="Farm equipment">
         <div class="bazaar-info">
           <h4>Power Sprayer Machine</h4>
           <p class="loc">📍 Indore, MP · Barely Used</p>
-          <div class="price-row"><span class="price">₹6,500</span><button class="btn-chip">Contact</button></div>
+          <div class="price-row"><span class="price">₹6,500</span><button class="btn-chip" data-i18n="common.contact">Contact</button></div>
         </div>
       </div>
       <div class="bazaar-card">
-        <span class="tag">Used</span>
+        <span class="tag" data-i18n="common.used">Used</span>
         <img src="https://images.unsplash.com/photo-1738598665698-7fd7af4b5e0c?auto=format&fit=crop&w=400&q=70" alt="Water pump">
         <div class="bazaar-info">
           <h4>Diesel Water Pump 5HP</h4>
           <p class="loc">📍 Ludhiana, Punjab</p>
-          <div class="price-row"><span class="price">₹12,000</span><button class="btn-chip">Contact</button></div>
+          <div class="price-row"><span class="price">₹12,000</span><button class="btn-chip" data-i18n="common.contact">Contact</button></div>
         </div>
       </div>
       <div class="bazaar-card">
-        <span class="tag">Used</span>
+        <span class="tag" data-i18n="common.used">Used</span>
         <img src="https://images.unsplash.com/photo-1659345709013-d949ed7ffc19?auto=format&fit=crop&w=400&q=70" alt="Hand tools set">
         <div class="bazaar-info">
           <h4>Hand Tools Set (12 pcs)</h4>
           <p class="loc">📍 Jaipur, Rajasthan</p>
-          <div class="price-row"><span class="price">₹1,800</span><button class="btn-chip">Contact</button></div>
+          <div class="price-row"><span class="price">₹1,800</span><button class="btn-chip" data-i18n="common.contact">Contact</button></div>
         </div>
       </div>
       <div class="bazaar-card">
-        <span class="tag">Used</span>
+        <span class="tag" data-i18n="common.used">Used</span>
         <img src="https://images.unsplash.com/photo-1680033786474-58d0a84e2d5f?auto=format&fit=crop&w=400&q=70" alt="Rotavator">
         <div class="bazaar-info">
           <h4>Rotavator 6 Feet</h4>
           <p class="loc">📍 Guntur, Andhra Pradesh</p>
-          <div class="price-row"><span class="price">₹45,000</span><button class="btn-chip">Contact</button></div>
+          <div class="price-row"><span class="price">₹45,000</span><button class="btn-chip" data-i18n="common.contact">Contact</button></div>
         </div>
       </div>
     </div>
@@ -447,17 +450,17 @@
 <section class="gyan reveal" id="gyan">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Kisan Gyan</span>
-      <h2>Reels Dekho, Seekho, Aage Badho 🎬</h2>
-      <p>Kisano dwara, kisano ke liye — koi biased salesman advice nahi, sirf sachi jaankari.</p>
+      <span class="eyebrow" data-i18n="home.gyanEyebrow">Kisan Gyan</span>
+      <h2 data-i18n="home.gyanTitle">Reels Dekho, Seekho, Aage Badho 🎬</h2>
+      <p data-i18n="home.gyanSub">Kisano dwara, kisano ke liye — koi biased salesman advice nahi, sirf sachi jaankari.</p>
     </div>
 
     <div class="reels-row" id="reelsRow"></div>
     <div class="center-cta" style="margin-top:-10px; margin-bottom:30px;">
-      <a href="gyan.html" class="btn btn-outline">Sabhi Reels &amp; Videos Dekhein →</a>
+      <a href="gyan.html" class="btn btn-outline" data-i18n="home.gyanViewAll">Sabhi Reels &amp; Videos Dekhein →</a>
     </div>
 
-    <h3 class="sub-heading">Popular Videos &amp; Courses</h3>
+    <h3 class="sub-heading" data-i18n="home.popularVideos">Popular Videos &amp; Courses</h3>
     <div class="gyan-grid">
       <div class="gyan-card">
         <div class="gyan-thumb" data-yt="o4jgoFS9cLM" data-title="Organic Kheti Kaise Shuru Karein" data-by="Ramesh Patil">
@@ -505,12 +508,12 @@
   <div class="container">
     <div class="section-head split">
       <div>
-        <span class="eyebrow light">Khet Majdoor Sewa</span>
-        <h2>Majdoor Chahiye? Yahin Milega 👷</h2>
-        <p>Verified majdoor — harvesting se lekar tractor driving tak, sab skilled aur nazdeek.</p>
+        <span class="eyebrow light" data-i18n="home.majdoorEyebrow">Khet Majdoor Sewa</span>
+        <h2 data-i18n="home.majdoorTitle">Majdoor Chahiye? Yahin Milega 👷</h2>
+        <p data-i18n="home.majdoorSub">Verified majdoor — harvesting se lekar tractor driving tak, sab skilled aur nazdeek.</p>
       </div>
       <div class="majdoor-cta-group">
-        <a href="majdoor.html" class="btn btn-primary">Sabhi Majdoor Dekhein →</a>
+        <a href="majdoor.html" class="btn btn-primary" data-i18n="home.majdoorViewAll">Sabhi Majdoor Dekhein →</a>
       </div>
     </div>
 
@@ -524,24 +527,24 @@
 <section class="yojana reveal" id="yojana">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Sarkari Yojana &amp; Funding</span>
-      <h2>Sarkar Ka Paisa, Aapka Haq 📜</h2>
-      <p>Documents ready rakhein aur in yojanao ka poora fayda uthayein.</p>
+      <span class="eyebrow" data-i18n="home.yojanaEyebrow">Sarkari Yojana &amp; Funding</span>
+      <h2 data-i18n="home.yojanaTitle">Sarkar Ka Paisa, Aapka Haq 📜</h2>
+      <p data-i18n="home.yojanaSub">Documents ready rakhein aur in yojanao ka poora fayda uthayein.</p>
     </div>
 
     <div class="yojana-grid" id="yojanaGrid"></div>
     <div class="center-cta">
-      <a href="yojana.html" class="btn btn-outline">Sabhi Yojana Dekhein →</a>
+      <a href="yojana.html" class="btn btn-outline" data-i18n="home.yojanaViewAll">Sabhi Yojana Dekhein →</a>
     </div>
 
     <div class="doc-helper">
-      <h4>📋 Zyadatar Yojanao Ke Liye Common Documents</h4>
+      <h4 data-i18n="home.commonDocsTitle">📋 Zyadatar Yojanao Ke Liye Common Documents</h4>
       <div class="doc-chip-row">
-        <span class="doc-chip">🪪 Aadhar Card</span>
-        <span class="doc-chip">📄 Land Records (7/12, Khasra)</span>
-        <span class="doc-chip">🏦 Bank Passbook</span>
-        <span class="doc-chip">📸 Passport Photo</span>
-        <span class="doc-chip">📱 Mobile Number (Aadhar Linked)</span>
+        <span class="doc-chip" data-i18n="docs.aadhar">🪪 Aadhar Card</span>
+        <span class="doc-chip" data-i18n="docs.landRecords">📄 Land Records (7/12, Khasra)</span>
+        <span class="doc-chip" data-i18n="docs.bankPassbook">🏦 Bank Passbook</span>
+        <span class="doc-chip" data-i18n="docs.passportPhoto">📸 Passport Photo</span>
+        <span class="doc-chip" data-i18n="docs.mobileNumber">📱 Mobile Number (Aadhar Linked)</span>
       </div>
     </div>
   </div>
@@ -555,16 +558,16 @@
       <div class="store-badge">📍 500+ Stores Across Bharat</div>
     </div>
     <div class="store-text">
-      <span class="eyebrow">Hamari Dukan</span>
-      <h2>Online Bharose Nahi? Aayiye Hamari Dukan Par 🏪</h2>
-      <p>App se pehle bhi, app ke baad bhi — hum aapke gaon ke paas maujood hain.</p>
+      <span class="eyebrow" data-i18n="home.storeEyebrow">Hamari Dukan</span>
+      <h2 data-i18n="home.storeTitle">Online Bharose Nahi? Aayiye Hamari Dukan Par 🏪</h2>
+      <p data-i18n="home.storeSub">App se pehle bhi, app ke baad bhi — hum aapke gaon ke paas maujood hain.</p>
       <ul class="store-list">
-        <li>💵 <strong>Cash Payment</strong> — online payment ki tension nahi</li>
-        <li>🪪 <strong>KYC Help</strong> — staff aapki poori madad karega</li>
-        <li>📦 <strong>Pickup &amp; Return</strong> — order yahin se le jaayein ya wapas karein</li>
-        <li>🤝 <strong>Local Trust</strong> — aapke hi gaon/tehsil ke log chalate hain</li>
+        <li>💵 <strong data-i18n="home.storeCashTitle">Cash Payment</strong> — <span data-i18n="home.storeCashSub">online payment ki tension nahi</span></li>
+        <li>🪪 <strong data-i18n="home.storeKycTitle">KYC Help</strong> — <span data-i18n="home.storeKycSub">staff aapki poori madad karega</span></li>
+        <li>📦 <strong data-i18n="home.storePickupTitle">Pickup &amp; Return</strong> — <span data-i18n="home.storePickupSub">order yahin se le jaayein ya wapas karein</span></li>
+        <li>🤝 <strong data-i18n="home.storeTrustTitle">Local Trust</strong> — <span data-i18n="home.storeTrustSub">aapke hi gaon/tehsil ke log chalate hain</span></li>
       </ul>
-      <a href="store.html" class="btn btn-primary">Sabse Nazdeeki Store Dhundein</a>
+      <a href="store.html" class="btn btn-primary" data-i18n="home.storeFindNearest">Sabse Nazdeeki Store Dhundein</a>
     </div>
   </div>
 </section>
@@ -573,8 +576,8 @@
 <section class="testimonials reveal">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Kisano Ka Bharosa</span>
-      <h2>Unki Zubaani, Unki Kahaani</h2>
+      <span class="eyebrow" data-i18n="home.testimonialsEyebrow">Kisano Ka Bharosa</span>
+      <h2 data-i18n="home.testimonialsTitle">Unki Zubaani, Unki Kahaani</h2>
     </div>
     <div class="testi-track" id="testiTrack">
       <div class="testi-card active">
@@ -604,19 +607,19 @@
 <section class="app-cta reveal">
   <div class="container app-cta-inner">
     <div>
-      <span class="eyebrow light">Mobile App</span>
-      <h2>ZatraMart App Download Karein</h2>
-      <p>Poora bazaar aapki jeb mein — kabhi bhi, kahin bhi.</p>
+      <span class="eyebrow light" data-i18n="home.appEyebrow">Mobile App</span>
+      <h2 data-i18n="home.appTitle">ZatraMart App Download Karein</h2>
+      <p data-i18n="home.appSub">Poora bazaar aapki jeb mein — kabhi bhi, kahin bhi.</p>
       <div class="store-badges">
-        <a href="#" class="store-badge-btn">▶ Google Play</a>
-        <a href="#" class="store-badge-btn">🍎 App Store</a>
+        <a href="#" class="store-badge-btn" data-i18n="home.googlePlay">▶ Google Play</a>
+        <a href="#" class="store-badge-btn" data-i18n="home.appStore">🍎 App Store</a>
       </div>
     </div>
     <div class="qr-box">
       <div class="qr-fake" aria-label="QR code">
         <span>▦</span>
       </div>
-      <p>Scan karke download karein</p>
+      <p data-i18n="home.scanQr">Scan karke download karein</p>
     </div>
   </div>
 </section>
@@ -628,7 +631,7 @@
   <div class="container footer-grid">
     <div class="footer-col footer-brand">
       <a href="#top" class="logo"><span class="logo-icon">🌾</span><span class="logo-text">Zatra<span class="accent">Mart</span></span></a>
-      <p>Kisan ka apna bazaar — dalaal-mukt, bharosemand, seedha.</p>
+      <p data-i18n="footer.tagline">Kisan ka apna bazaar — dalaal-mukt, bharosemand, seedha.</p>
       <div class="social-row">
         <a href="#" aria-label="Facebook">f</a>
         <a href="#" aria-label="Instagram">◎</a>
@@ -637,39 +640,39 @@
       </div>
     </div>
     <div class="footer-col">
-      <h4>Quick Links</h4>
-      <a href="shop.html">Shop</a>
-      <a href="bazaar.html">Bazaar</a>
-      <a href="gyan.html">Reels &amp; Gyan</a>
-      <a href="majdoor.html">Majdoor</a>
-      <a href="yojana.html">Sarkari Yojana</a>
-      <a href="store.html">Our Store</a>
+      <h4 data-i18n="footer.quickLinksTitle">Quick Links</h4>
+      <a href="shop.html" data-i18n="footer.shop">Shop</a>
+      <a href="bazaar.html" data-i18n="footer.bazaar">Bazaar</a>
+      <a href="gyan.html" data-i18n="footer.reelsGyan">Reels &amp; Gyan</a>
+      <a href="majdoor.html" data-i18n="footer.majdoor">Majdoor</a>
+      <a href="yojana.html" data-i18n="footer.sarkariYojana">Sarkari Yojana</a>
+      <a href="store.html" data-i18n="footer.ourStore">Our Store</a>
     </div>
     <div class="footer-col">
-      <h4>Categories</h4>
-      <a href="shop.html?cat=seeds">Seeds</a>
-      <a href="shop.html?cat=fertilizer">Fertilizers</a>
-      <a href="shop.html?cat=irrigation">Irrigation</a>
-      <a href="shop.html?cat=machinery">Machinery</a>
+      <h4 data-i18n="footer.categoriesTitle">Categories</h4>
+      <a href="shop.html?cat=seeds" data-i18n="footer.seeds">Seeds</a>
+      <a href="shop.html?cat=fertilizer" data-i18n="footer.fertilizers">Fertilizers</a>
+      <a href="shop.html?cat=irrigation" data-i18n="footer.irrigation">Irrigation</a>
+      <a href="shop.html?cat=machinery" data-i18n="footer.machinery">Machinery</a>
     </div>
     <div class="footer-col">
-      <h4>Support</h4>
-      <a href="#">Help Center</a>
-      <a href="orders.html">Track Order</a>
-      <a href="#">Returns</a>
-      <a href="#">Contact Us</a>
+      <h4 data-i18n="footer.supportTitle">Support</h4>
+      <a href="#" data-i18n="footer.helpCenter">Help Center</a>
+      <a href="orders.html" data-i18n="footer.trackOrder">Track Order</a>
+      <a href="#" data-i18n="footer.returns">Returns</a>
+      <a href="#" data-i18n="footer.contactUs">Contact Us</a>
     </div>
     <div class="footer-col footer-news">
-      <h4>Jaankari Paayein</h4>
-      <p>Naye offers aur mandi bhaav seedha aapke phone par.</p>
+      <h4 data-i18n="footer.newsletterTitle">Jaankari Paayein</h4>
+      <p data-i18n="footer.newsletterSub">Naye offers aur mandi bhaav seedha aapke phone par.</p>
       <form class="news-form" onsubmit="return false;">
-        <input type="tel" placeholder="Mobile number" required>
-        <button type="submit">Join</button>
+        <input type="tel" data-i18n-placeholder="footer.mobilePlaceholder" placeholder="Mobile number" required>
+        <button type="submit" data-i18n="footer.join">Join</button>
       </form>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 ZatraMart. Sabhi adhikar surakshit. Made with 💚 for the Kisan of Bharat.</p>
+    <p data-i18n="footer.copyright">© 2026 ZatraMart. Sabhi adhikar surakshit. Made with 💚 for the Kisan of Bharat.</p>
   </div>
 </footer>
 
@@ -679,9 +682,10 @@
 <div class="toast" id="toast"></div>
 
 <script src="js/data.js?v=22"></script>
+<script src="js/i18n.js?v=1"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="js/supabase-client.js"></script>
-<script src="js/common.js?v=35"></script>
+<script src="js/common.js?v=36"></script>
 <script src="js/script.js?v=6"></script>
 </body>
 </html>

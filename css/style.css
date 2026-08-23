@@ -112,8 +112,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .topbar-left span { margin-right: 18px; }
 .topbar-left a { color: var(--yellow); font-weight: 600; }
 .topbar-right { display: flex; align-items: center; gap: 18px; }
-.lang-toggle { color: #fff; font-weight: 600; display: flex; gap: 4px; }
-.lang-toggle .active { color: var(--yellow); }
+.lang-switcher {
+  background: rgba(255,255,255,.12); color: #fff; font-weight: 600; font-size: .78rem;
+  border: 1px solid rgba(255,255,255,.3); border-radius: 6px; padding: 3px 6px; cursor: pointer;
+}
+.lang-switcher option { color: var(--text-dark); background: #fff; }
 
 /* ---------- Navbar ---------- */
 .navbar {

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/style.css?v=13">
 <link rel="stylesheet" href="css/product.css">
 <link rel="stylesheet" href="css/flow.css">
 </head>
@@ -43,15 +43,15 @@
 <!-- ===== MINI CART DRAWER ===== -->
 <div class="cart-drawer" id="cartDrawer">
   <div class="cart-drawer-head">
-    <h3>🛒 Aapki Cart</h3>
+    <h3>🛒 <span data-i18n="cart.title">Aapki Cart</span></h3>
     <button id="closeCart" aria-label="Close">✕</button>
   </div>
   <div class="cart-items" id="cartItems">
-    <p class="cart-empty">Cart khaali hai. Kuch achha khareedein! 🌱</p>
+    <p class="cart-empty">🌱 <span data-i18n="cart.empty">Cart khaali hai. Kuch achha khareedein!</span></p>
   </div>
   <div class="cart-footer">
-    <div class="cart-total">Total: <strong id="cartTotal">₹0</strong></div>
-    <button class="btn btn-primary btn-block" id="checkoutBtn">Checkout Karein</button>
+    <div class="cart-total"><span data-i18n="cart.total">Total:</span> <strong id="cartTotal">₹0</strong></div>
+    <button class="btn btn-primary btn-block" id="checkoutBtn" data-i18n="cart.checkout">Checkout Karein</button>
   </div>
 </div>
 
@@ -61,60 +61,60 @@
     <button class="auth-close" id="authClose" aria-label="Close">✕</button>
     <div class="auth-logo"><span class="logo-icon">🌾</span> Zatra<span class="accent">Mart</span></div>
     <div class="auth-tabs">
-      <button class="auth-tab active" data-tab="login">Login</button>
-      <button class="auth-tab" data-tab="signup">Sign Up</button>
+      <button class="auth-tab active" data-tab="login" data-i18n="auth.loginTab">Login</button>
+      <button class="auth-tab" data-tab="signup" data-i18n="auth.signupTab">Sign Up</button>
     </div>
 
     <div class="auth-panel active" id="panelLogin">
       <div class="auth-step" id="loginStepForm">
-        <label>Mobile Number</label>
+        <label data-i18n="auth.mobileNumber">Mobile Number</label>
         <div class="auth-input-row">
           <span class="auth-prefix">🇮🇳 +91</span>
           <input type="tel" maxlength="10" placeholder="98765 43210" id="loginPhone">
         </div>
-        <button class="btn btn-primary btn-block" id="loginSendOtpBtn">OTP Bhejein</button>
-        <p class="auth-note">Registered mobile number daalein — OTP aapke email par bheja jaayega.</p>
+        <button class="btn btn-primary btn-block" id="loginSendOtpBtn" data-i18n="auth.sendOtp">OTP Bhejein</button>
+        <p class="auth-note" data-i18n="auth.loginNote">Registered mobile number daalein — OTP aapke email par bheja jaayega.</p>
       </div>
       <div class="auth-step" id="loginStepOtp" hidden>
         <p class="auth-otp-sent" id="loginOtpSentMsg"></p>
         <div class="otp-row show" id="loginOtpRow">
-          <input type="text" class="otp-single" inputmode="numeric" placeholder="Email mein aaya OTP daalein">
+          <input type="text" class="otp-single" inputmode="numeric" data-i18n-placeholder="auth.otpPlaceholder" placeholder="Email mein aaya OTP daalein">
         </div>
-        <button class="btn btn-primary btn-block" id="loginVerifyBtn">Verify &amp; Login</button>
-        <button class="auth-link-btn" id="loginBackBtn" type="button">← Number badlein</button>
+        <button class="btn btn-primary btn-block" id="loginVerifyBtn" data-i18n="auth.verifyLogin">Verify &amp; Login</button>
+        <button class="auth-link-btn" id="loginBackBtn" type="button" data-i18n="auth.changeNumber">← Number badlein</button>
       </div>
     </div>
 
     <div class="auth-panel" id="panelSignup">
       <div class="auth-step" id="signupStepForm">
-        <label>Poora Naam</label>
-        <input type="text" placeholder="Aapka naam" class="auth-field" id="signupName">
-        <label>Mobile Number</label>
+        <label data-i18n="auth.fullName">Poora Naam</label>
+        <input type="text" data-i18n-placeholder="auth.namePlaceholder" placeholder="Aapka naam" class="auth-field" id="signupName">
+        <label data-i18n="auth.mobileNumber">Mobile Number</label>
         <div class="auth-input-row">
           <span class="auth-prefix">🇮🇳 +91</span>
           <input type="tel" maxlength="10" placeholder="98765 43210" id="signupPhone">
         </div>
-        <label>Email ID</label>
+        <label data-i18n="auth.email">Email ID</label>
         <input type="email" placeholder="aapka@email.com" class="auth-field" id="signupEmail">
-        <label>Main Hoon</label>
+        <label data-i18n="auth.iAm">Main Hoon</label>
         <div class="role-pick">
-          <button class="role-chip active" type="button">🌾 Kisan</button>
-          <button class="role-chip" type="button">🏪 Seller</button>
-          <button class="role-chip" type="button">👷 Majdoor</button>
+          <button class="role-chip active" type="button" data-role="Kisan" data-i18n="auth.roleFarmer">🌾 Kisan</button>
+          <button class="role-chip" type="button" data-role="Seller" data-i18n="auth.roleSeller">🏪 Seller</button>
+          <button class="role-chip" type="button" data-role="Majdoor" data-i18n="auth.roleMajdoor">👷 Majdoor</button>
         </div>
-        <button class="btn btn-primary btn-block" id="signupSendOtpBtn">Account Banayein</button>
+        <button class="btn btn-primary btn-block" id="signupSendOtpBtn" data-i18n="auth.createAccount">Account Banayein</button>
       </div>
       <div class="auth-step" id="signupStepOtp" hidden>
         <p class="auth-otp-sent" id="signupOtpSentMsg"></p>
         <div class="otp-row show" id="signupOtpRow">
-          <input type="text" class="otp-single" inputmode="numeric" placeholder="Email mein aaya OTP daalein">
+          <input type="text" class="otp-single" inputmode="numeric" data-i18n-placeholder="auth.otpPlaceholder" placeholder="Email mein aaya OTP daalein">
         </div>
-        <button class="btn btn-primary btn-block" id="signupVerifyBtn">Verify &amp; Sign Up</button>
-        <button class="auth-link-btn" id="signupBackBtn" type="button">← Wapas jaayein</button>
+        <button class="btn btn-primary btn-block" id="signupVerifyBtn" data-i18n="auth.verifySignup">Verify &amp; Sign Up</button>
+        <button class="auth-link-btn" id="signupBackBtn" type="button" data-i18n="auth.goBack">← Wapas jaayein</button>
       </div>
     </div>
 
-    <button class="auth-guest" id="authGuest">Guest ki tarah aage badhein →</button>
+    <button class="auth-guest" id="authGuest" data-i18n="auth.guest">Guest ki tarah aage badhein →</button>
   </div>
 </div>
 
@@ -218,8 +218,8 @@
 <footer class="footer">
   <div class="container footer-grid">
     <div class="footer-col footer-brand">
-      <a href="index.html" class="logo"><span class="logo-icon">🌾</span><span class="logo-text">Zatra<span class="accent">Mart</span></span></a>
-      <p>Kisan ka apna bazaar — dalaal-mukt, bharosemand, seedha.</p>
+      <a href="#top" class="logo"><span class="logo-icon">🌾</span><span class="logo-text">Zatra<span class="accent">Mart</span></span></a>
+      <p data-i18n="footer.tagline">Kisan ka apna bazaar — dalaal-mukt, bharosemand, seedha.</p>
       <div class="social-row">
         <a href="#" aria-label="Facebook">f</a>
         <a href="#" aria-label="Instagram">◎</a>
@@ -228,39 +228,39 @@
       </div>
     </div>
     <div class="footer-col">
-      <h4>Quick Links</h4>
-      <a href="shop.html">Shop</a>
-      <a href="bazaar.html">Bazaar</a>
-      <a href="gyan.html">Reels &amp; Gyan</a>
-      <a href="majdoor.html">Majdoor</a>
-      <a href="yojana.html">Sarkari Yojana</a>
-      <a href="store.html">Our Store</a>
+      <h4 data-i18n="footer.quickLinksTitle">Quick Links</h4>
+      <a href="shop.html" data-i18n="footer.shop">Shop</a>
+      <a href="bazaar.html" data-i18n="footer.bazaar">Bazaar</a>
+      <a href="gyan.html" data-i18n="footer.reelsGyan">Reels &amp; Gyan</a>
+      <a href="majdoor.html" data-i18n="footer.majdoor">Majdoor</a>
+      <a href="yojana.html" data-i18n="footer.sarkariYojana">Sarkari Yojana</a>
+      <a href="store.html" data-i18n="footer.ourStore">Our Store</a>
     </div>
     <div class="footer-col">
-      <h4>Categories</h4>
-      <a href="shop.html?cat=seeds">Seeds</a>
-      <a href="shop.html?cat=fertilizer">Fertilizers</a>
-      <a href="shop.html?cat=irrigation">Irrigation</a>
-      <a href="shop.html?cat=machinery">Machinery</a>
+      <h4 data-i18n="footer.categoriesTitle">Categories</h4>
+      <a href="shop.html?cat=seeds" data-i18n="footer.seeds">Seeds</a>
+      <a href="shop.html?cat=fertilizer" data-i18n="footer.fertilizers">Fertilizers</a>
+      <a href="shop.html?cat=irrigation" data-i18n="footer.irrigation">Irrigation</a>
+      <a href="shop.html?cat=machinery" data-i18n="footer.machinery">Machinery</a>
     </div>
     <div class="footer-col">
-      <h4>Support</h4>
-      <a href="#">Help Center</a>
-      <a href="orders.html">Track Order</a>
-      <a href="#">Returns</a>
-      <a href="#">Contact Us</a>
+      <h4 data-i18n="footer.supportTitle">Support</h4>
+      <a href="#" data-i18n="footer.helpCenter">Help Center</a>
+      <a href="orders.html" data-i18n="footer.trackOrder">Track Order</a>
+      <a href="#" data-i18n="footer.returns">Returns</a>
+      <a href="#" data-i18n="footer.contactUs">Contact Us</a>
     </div>
     <div class="footer-col footer-news">
-      <h4>Jaankari Paayein</h4>
-      <p>Naye offers aur mandi bhaav seedha aapke phone par.</p>
+      <h4 data-i18n="footer.newsletterTitle">Jaankari Paayein</h4>
+      <p data-i18n="footer.newsletterSub">Naye offers aur mandi bhaav seedha aapke phone par.</p>
       <form class="news-form" onsubmit="return false;">
-        <input type="tel" placeholder="Mobile number" required>
-        <button type="submit">Join</button>
+        <input type="tel" data-i18n-placeholder="footer.mobilePlaceholder" placeholder="Mobile number" required>
+        <button type="submit" data-i18n="footer.join">Join</button>
       </form>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 ZatraMart. Sabhi adhikar surakshit. Made with 💚 for the Kisan of Bharat.</p>
+    <p data-i18n="footer.copyright">© 2026 ZatraMart. Sabhi adhikar surakshit. Made with 💚 for the Kisan of Bharat.</p>
   </div>
 </footer>
 
@@ -272,7 +272,8 @@
 <script src="js/data.js?v=22"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="js/supabase-client.js"></script>
-<script src="js/common.js?v=35"></script>
+<script src="js/i18n.js?v=1"></script>
+<script src="js/common.js?v=36"></script>
 <script src="js/become-seller.js?v=3"></script>
 </body>
 </html>

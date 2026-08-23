@@ -634,7 +634,8 @@ window.KM = (function () {
       if (!cartItemsEl) return;
       const c = api.getCart();
       if (c.length === 0) {
-        cartItemsEl.innerHTML = '<p class="cart-empty">Cart khaali hai. Kuch achha khareedein! 🌱</p>';
+        const emptyMsg = window.KM_I18N ? window.KM_I18N.t('cart.empty') : 'Cart khaali hai. Kuch achha khareedein!';
+        cartItemsEl.innerHTML = `<p class="cart-empty">🌱 ${emptyMsg}</p>`;
         cartTotalEl.textContent = '₹0';
       } else {
         cartItemsEl.innerHTML = c.map((item, i) => `
@@ -660,6 +661,7 @@ window.KM = (function () {
     }
     api.onCartChange(() => { renderCartUI(); bumpBadge(cartCountEl); });
     api.onWishlistChange(() => { renderWishUI(); bumpBadge(wishCountEl); });
+    document.addEventListener('km:langchange', renderCartUI);
     renderCartUI();
     renderWishUI();
 
@@ -796,12 +798,13 @@ window.KM = (function () {
       const accountMenuName = document.getElementById('accountMenuName');
       if (s) {
         if (loginBtnText) loginBtnText.textContent = s.name.split(' ')[0];
-        if (accountMenuName) accountMenuName.textContent = `Hi, ${s.name} 👋`;
+        if (accountMenuName) accountMenuName.textContent = window.KM_I18N ? window.KM_I18N.t('header.greeting', { name: s.name }) : `Hi, ${s.name} 👋`;
       } else {
-        if (loginBtnText) loginBtnText.textContent = 'Login';
+        if (loginBtnText) loginBtnText.textContent = window.KM_I18N ? window.KM_I18N.t('header.login') : 'Login';
         document.querySelectorAll('#topbarSellerCentralLink, #accountSellerCentralLink').forEach(el => { el.hidden = true; });
       }
     }
+    document.addEventListener('km:langchange', renderAccountUI);
     renderAccountUI();
     api.onAuthChange(renderAccountUI);
 
@@ -1015,7 +1018,7 @@ window.KM = (function () {
         const name = (document.getElementById('signupName').value || '').trim();
         const mobile = (document.getElementById('signupPhone').value || '').trim();
         const email = (document.getElementById('signupEmail').value || '').trim();
-        const role = (document.querySelector('#panelSignup .role-chip.active')?.textContent || '🌾 Kisan').trim();
+        const role = document.querySelector('#panelSignup .role-chip.active')?.dataset.role || 'Kisan';
         if (!name) { api.toast('⚠️ Apna naam daalein'); return; }
         if (!/^\d{10}$/.test(mobile)) { api.toast('⚠️ Sahi 10-digit mobile number daalein'); return; }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { api.toast('⚠️ Sahi email ID daalein'); return; }
@@ -1119,20 +1122,14 @@ window.KM = (function () {
       });
     }
 
-    /* ---------- Language toggle ---------- */
-    const langToggle = document.getElementById('langToggle');
-    if (langToggle) {
-      const langEn = langToggle.querySelector('.lang-en');
-      const langHi = langToggle.querySelector('.lang-hi');
-      let isHindi = false;
-      langToggle.addEventListener('click', () => {
-        isHindi = !isHindi;
-        langEn.classList.toggle('active', !isHindi);
-        langHi.classList.toggle('active', isHindi);
-        document.querySelectorAll('[data-en]').forEach(el => {
-          const hasCaret = !!el.querySelector('.caret');
-          el.childNodes[0].textContent = (isHindi ? el.dataset.hi : el.dataset.en) + (hasCaret ? ' ' : '');
-        });
+    /* ---------- Language switcher (en / hinglish / mr / hi — see js/i18n.js) ---------- */
+    const langSwitcher = document.getElementById('langSwitcher');
+    if (langSwitcher && window.KM_I18N) {
+      window.KM_I18N.ready.then(() => {
+        langSwitcher.value = window.KM_I18N.getLocale();
+      });
+      langSwitcher.addEventListener('change', () => {
+        window.KM_I18N.setLocale(langSwitcher.value);
       });
     }
 
@@ -1267,7 +1264,8 @@ window.KM = (function () {
           videoPlayerWrap.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0" title="${title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
           if (videoInfo) videoInfo.innerHTML = title ? `<h5>${title}</h5>${by ? `<p>👤 ${by}</p>` : ''}` : '';
         } else {
-          videoPlayerWrap.innerHTML = `<div class="video-fake">🎬<p>Yeh video jald hi upload hoga!<br><small>This video is coming soon.</small></p></div>`;
+          const t = window.KM_I18N ? window.KM_I18N.t : (k) => k;
+          videoPlayerWrap.innerHTML = `<div class="video-fake">🎬<p>${t('video.comingSoon')}<br><small>${t('video.comingSoonSub')}</small></p></div>`;
           if (videoInfo) videoInfo.innerHTML = '';
         }
         videoModal.classList.add('show');
