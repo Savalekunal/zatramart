@@ -130,9 +130,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .row1-nav a { position: relative; color: var(--text-dark); white-space: nowrap; padding: 4px 0; }
 .row1-nav a::after { content: ''; position: absolute; left: 0; bottom: -3px; height: 2px; width: 0; background: var(--orange); transition: width .25s var(--ease); }
 .row1-nav a:hover::after { width: 100%; }
-/* Bazaar/Reels & Gyan/Majdoor/Yojana live in row1-nav on desktop; hide their row-2 duplicates there
-   (row 2 still shows them on mobile, where row1-nav is hidden, so the hamburger menu keeps everything). */
-@media (min-width: 901px) { #navLinks .row1-duplicate { display: none; } }
+/* Bazaar/Reels & Gyan/Majdoor/Yojana live in row1-nav on both desktop and mobile; hide their
+   row-2 duplicates everywhere so the hamburger drawer doesn't repeat them. */
+#navLinks .row1-duplicate { display: none; }
 
 .search-bar { flex: 1; display: flex; max-width: 640px; min-width: 120px; border: 2px solid var(--border); border-radius: 50px; overflow: hidden; transition: border-color .25s; }
 .search-bar:focus-within { border-color: var(--green); }
@@ -622,9 +622,15 @@ ul.yojana-modal-list { list-style: disc; }
   .search-bar { display: none; }
   .nav-bar-row { display: contents; }
   .nav-links { display: none; }
-  .row1-nav { display: none; }
   .hamburger { display: flex; }
-  .navbar-inner, .navbar-row1 { justify-content: space-between; }
+  .navbar-inner, .navbar-row1 { justify-content: space-between; flex-wrap: wrap; }
+  /* Bazaar/Reels & Gyan/Majdoor/Yojana: always visible as their own row under the logo,
+     not tucked inside the hamburger drawer — same 4 links on every page. */
+  .row1-nav {
+    width: 100%; order: 3; justify-content: space-between; gap: 6px;
+    padding-top: 10px; margin-top: 10px; border-top: 1px solid var(--border);
+    font-size: .78rem;
+  }
   .store-grid { grid-template-columns: 1fr; }
   .store-img img { height: 280px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
