@@ -1,7 +1,7 @@
 /* ============================================
    ZatraMart — i18n engine
    4 languages: en (English), hinglish, mr (Marathi), hi (Hindi).
-   Locale dictionaries live in /locales/*.json — this file only loads them,
+   Locale dictionaries live in /assets/locales/*.json — this file only loads them,
    exposes t(key, vars), applies data-i18n attributes to the DOM, and lets
    page scripts re-render dynamic content (product cards, toasts, etc.)
    whenever the language changes via a 'km:langchange' event.
@@ -13,7 +13,7 @@
 
   // Every page lives at the site root, so a relative path always resolves correctly
   // whether served locally or under a GitHub Pages subpath like /zatramart/.
-  const LOCALE_URL = (code) => `locales/${code}.json`;
+  const LOCALE_URL = (code) => `assets/locales/${code}.json`;
 
   const dicts = {};
   let currentLocale = null;
