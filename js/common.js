@@ -1048,7 +1048,10 @@ window.KM = (function () {
           return;
         }
         signupSendOtpBtn.textContent = 'OTP bhej rahe hain...';
-        const { error: otpError } = await window.KM_SUPABASE.auth.signInWithOtp({ email });
+        const { error: otpError } = await window.KM_SUPABASE.auth.signInWithOtp({
+          email,
+          options: { data: { full_name: name, phone: mobile } },
+        });
         signupSendOtpBtn.disabled = false;
         signupSendOtpBtn.textContent = 'Account Banayein';
         if (otpError) {

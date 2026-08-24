@@ -2,7 +2,10 @@
    ZatraMart — Become a Seller (business profile, full page, 2-step)
    ============================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  if (window.KM_I18N) await window.KM_I18N.ready;
+  const t = window.KM_I18N ? window.KM_I18N.t : (k) => k;
+  const catName = (key) => t('catalog.category.' + key) !== ('catalog.category.' + key) ? t('catalog.category.' + key) : key;
   const { categories } = window.KM_DATA;
 
   const loginGuard = document.getElementById('loginGuard');
@@ -42,19 +45,23 @@ document.addEventListener('DOMContentLoaded', () => {
   let displayNameTaken = false;
   let displayNameCheckPending = null;
 
-  sellerCatChips.innerHTML = (categories || []).map(c => `<button class="role-chip" type="button" data-cat="${c.key}">${c.icon} ${c.name}</button>`).join('');
+  function renderCatChips() {
+    const activeCats = Array.from(sellerCatChips.querySelectorAll('.role-chip.active')).map(c => c.dataset.cat);
+    sellerCatChips.innerHTML = (categories || []).map(c => `<button class="role-chip ${activeCats.includes(c.key) ? 'active' : ''}" type="button" data-cat="${c.key}">${c.icon} ${catName(c.key)}</button>`).join('');
+    sellerCatChips.querySelectorAll('.role-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        chip.classList.toggle('active');
+        sellerCatError.classList.remove('show');
+      });
+    });
+  }
+  renderCatChips();
 
   sellerTypeToggle.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
       sellerType = btn.dataset.type;
       sellerTypeToggle.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
       sellerGstinWrap.hidden = sellerType !== 'business';
-    });
-  });
-  sellerCatChips.querySelectorAll('.role-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      chip.classList.toggle('active');
-      sellerCatError.classList.remove('show');
     });
   });
   document.getElementById('sellerGstin').addEventListener('input', () => {
@@ -92,13 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const gstinRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
 
     if (displayName.length < 3) {
-      sellerDisplayNameError.textContent = 'Dukaan ka naam kam se kam 3 characters ka hona chahiye.';
+      sellerDisplayNameError.textContent = t('seller.storeNameMinLength');
       sellerDisplayNameError.classList.add('show');
       sellerDisplayNameInput.classList.add('input-error');
       return;
     }
     if (displayNameTaken) {
-      sellerDisplayNameError.textContent = 'Yeh naam pehle se liya gaya hai, dusra try karein.';
+      sellerDisplayNameError.textContent = t('seller.nameTaken');
       sellerDisplayNameError.classList.add('show');
       return;
     }
@@ -132,8 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('sellerPickupCity').value = existing.pickupCity;
       document.getElementById('sellerPickupState').value = existing.pickupState;
       document.getElementById('sellerPickupPincode').value = existing.pickupPincode;
-      sellerBizSubmit.textContent = 'Update Karein';
-      document.getElementById('sellerPageTitle').textContent = '🏪 Store Details Edit Karein';
+      sellerBizSubmit.textContent = t('seller.updateBtn');
+      document.getElementById('sellerPageTitle').textContent = t('seller.editStoreTitle');
     }
   }
   init();
@@ -164,17 +171,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     sellerBizSubmit.disabled = true;
-    sellerBizSubmit.textContent = 'Save ho raha hai...';
+    sellerBizSubmit.textContent = t('product.savingReview');
     const ok = await window.KM.upsertSellerProfile({
       sellerType, displayName, description, gstin: sellerType === 'business' ? gstin : null,
       categories: catsSelected, pickupLine, pickupCity, pickupState, pickupPincode,
     });
     sellerBizSubmit.disabled = false;
-    sellerBizSubmit.textContent = 'Save & Submit';
+    sellerBizSubmit.textContent = t('seller.saveSubmitBtn');
     if (!ok) return; // upsertSellerProfile already toasts the specific reason (e.g. name taken, network error)
 
     formView.style.display = 'none';
     successView.style.display = '';
-    document.getElementById('sellerPageSuccessMsg').textContent = `✅ Dukaan "${displayName}" ban gayi!`;
+    document.getElementById('sellerPageSuccessMsg').textContent = t('seller.storeCreatedMsg', { name: displayName });
   });
+
+  document.addEventListener('km:langchange', renderCatChips);
 });

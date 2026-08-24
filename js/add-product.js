@@ -2,7 +2,10 @@
    ZatraMart — Add Product (Seller Bane product submission, full page, 2-step)
    ============================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  if (window.KM_I18N) await window.KM_I18N.ready;
+  const t = window.KM_I18N ? window.KM_I18N.t : (k) => k;
+  const catName = (key) => t('catalog.category.' + key) !== ('catalog.category.' + key) ? t('catalog.category.' + key) : key;
   const { categories } = window.KM_DATA;
 
   const loginGuard = document.getElementById('loginGuard');
@@ -30,7 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const prodCat = document.getElementById('prodCat');
-  prodCat.innerHTML = (categories || []).map(c => `<option value="${c.key}">${c.icon} ${c.name}</option>`).join('');
+  function renderCatOptions() {
+    const prevValue = prodCat.value;
+    prodCat.innerHTML = (categories || []).map(c => `<option value="${c.key}">${c.icon} ${catName(c.key)}</option>`).join('');
+    if (prevValue) prodCat.value = prevValue;
+  }
+  renderCatOptions();
 
   const prodNameInput = document.getElementById('prodName');
   const prodNameError = document.getElementById('prodNameError');
@@ -106,25 +114,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     addProdSubmit.disabled = true;
-    addProdSubmit.textContent = 'Upload ho raha hai...';
+    addProdSubmit.textContent = t('bazaar.uploading');
     const images = await window.KM.uploadListingImages(files, 'products');
     if (!images.length) {
       addProdSubmit.disabled = false;
-      addProdSubmit.textContent = 'Product Post Karein';
-      window.KM.toast('⚠️ Photo upload nahi ho paayi, dobara try karein');
+      addProdSubmit.textContent = t('addProduct.postBtn');
+      window.KM.toast(t('addProduct.uploadFailedToast'));
       return;
     }
     const ok = await window.KM.addSellerProduct({ id: 'sp' + Date.now(), name, cat, price, description, condition, negotiable, images });
     addProdSubmit.disabled = false;
-    addProdSubmit.textContent = 'Product Post Karein';
+    addProdSubmit.textContent = t('addProduct.postBtn');
     if (!ok) return;
 
     formView.style.display = 'none';
     successView.style.display = '';
-    document.getElementById('addProdSuccessMsg').textContent = `✅ "${name}" live ho gaya! ZatraMart Shop par ab sabko dikhega.`;
+    document.getElementById('addProdSuccessMsg').textContent = t('addProduct.liveMsg', { name });
   });
 
   document.getElementById('addAnotherBtn').addEventListener('click', resetForm);
 
   checkLogin();
+
+  document.addEventListener('km:langchange', renderCatOptions);
 });

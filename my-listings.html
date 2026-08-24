@@ -133,15 +133,15 @@
 <div class="seller-portal-banner">
   <div class="container seller-portal-banner-inner">
     <span class="seller-portal-badge">🏪 SELLER CENTRAL</span>
-    <h1 id="sellerPortalName">Seller Dashboard</h1>
+    <h1 id="sellerPortalName" data-i18n="listings.sellerDashboard">Seller Dashboard</h1>
   </div>
 </div>
 <div class="container orders-wrap">
 
   <div class="checkout-guard" id="loginGuard" hidden>
     <span class="guard-icon">🔒</span>
-    <p>Apni listings dekhne ke liye login karein.</p>
-    <button class="btn btn-primary" id="guardLoginBtn">Login Karein</button>
+    <p data-i18n="listings.loginToViewListings">Apni listings dekhne ke liye login karein.</p>
+    <button class="btn btn-primary" id="guardLoginBtn" data-i18n="header.login">Login Karein</button>
   </div>
 
   <div id="myListingsView">
@@ -150,20 +150,20 @@
     <div id="myStoreBlock"></div>
 
     <div id="enquiriesBlock" hidden>
-      <h4 class="my-listings-subhead">📩 Buyer Enquiries</h4>
+      <h4 class="my-listings-subhead">📩 <span data-i18n="listings.buyerEnquiries">Buyer Enquiries</span></h4>
       <div id="enquiriesList" class="my-listings-enquiries"></div>
     </div>
 
-    <h4 class="my-listings-subhead">🏷️ Bazaar Listings <span id="bazaarListCount"></span></h4>
+    <h4 class="my-listings-subhead">🏷️ <span data-i18n="listings.bazaarListingsHeading">Bazaar Listings</span> <span id="bazaarListCount"></span></h4>
     <div id="myBazaarList" class="my-listings-grid"></div>
 
-    <h4 class="my-listings-subhead">🏪 Shop Products <span id="shopProdCount"></span></h4>
+    <h4 class="my-listings-subhead">🏪 <span data-i18n="listings.shopProductsHeading">Shop Products</span> <span id="shopProdCount"></span></h4>
     <div id="mySellerList" class="my-listings-grid"></div>
 
-    <h4 class="my-listings-subhead">📋 My Job Posts <span id="jobPostCount2"></span></h4>
+    <h4 class="my-listings-subhead">📋 <span data-i18n="listings.myJobPostsHeading">My Job Posts</span> <span id="jobPostCount2"></span></h4>
     <div id="myJobPostList" class="my-listings-grid"></div>
 
-    <h4 class="my-listings-subhead">👷 My Majdoor Profile</h4>
+    <h4 class="my-listings-subhead">👷 <span data-i18n="listings.myWorkerProfileHeading">My Majdoor Profile</span></h4>
     <div id="myWorkerProfile" class="my-listings-grid"></div>
   </div>
 
@@ -229,7 +229,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="js/supabase-client.js"></script>
 <script src="js/i18n.js?v=1"></script>
-<script src="js/common.js?v=37"></script>
-<script src="js/my-listings.js?v=8"></script>
+<script src="js/common.js?v=38"></script>
+<script src="js/my-listings.js?v=10"></script>
 </body>
 </html>

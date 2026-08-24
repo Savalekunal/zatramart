@@ -133,72 +133,72 @@
 <div class="seller-portal-banner">
   <div class="container seller-portal-banner-inner">
     <span class="seller-portal-badge">🏪 SELLER CENTRAL</span>
-    <h1>Apni Dukaan Set Up Karein</h1>
+    <h1 data-i18n="seller.setUpStoreTitle">Apni Dukaan Set Up Karein</h1>
   </div>
 </div>
 <div class="seller-page-wrap">
 
   <div class="checkout-guard" id="loginGuard" hidden>
     <span class="guard-icon">🔒</span>
-    <p>Seller banne ke liye login karein.</p>
-    <button class="btn btn-primary" id="guardLoginBtn">Login Karein</button>
+    <p data-i18n="seller.loginToBecomeSeller">Seller banne ke liye login karein.</p>
+    <button class="btn btn-primary" id="guardLoginBtn" data-i18n="header.login">Login Karein</button>
   </div>
 
   <div id="sellerPageForm">
     <div class="seller-page-card">
       <div class="seller-page-steps" id="sellerSteps">
-        <span class="step active" data-step="1">① Business Details</span>
+        <span class="step active" data-step="1">① <span data-i18n="seller.businessDetailsStep">Business Details</span></span>
         <span class="sep">───────</span>
-        <span class="step" data-step="2">② Pickup Address</span>
+        <span class="step" data-step="2">② <span data-i18n="seller.pickupAddressStep">Pickup Address</span></span>
       </div>
 
       <div id="sellerStep1">
-        <div class="auth-logo" id="sellerPageTitle">🏪 Apni Dukaan Ke Baare Mein Bataayein</div>
-        <p class="auth-note">Ek baar set up karein — aapki dukaan ka naam aapke saare products/listings par dikhega.</p>
+        <div class="auth-logo" id="sellerPageTitle" data-i18n="seller.aboutYourStoreTitle">🏪 Apni Dukaan Ke Baare Mein Bataayein</div>
+        <p class="auth-note" data-i18n="seller.setupOnceNote">Ek baar set up karein — aapki dukaan ka naam aapke saare products/listings par dikhega.</p>
 
-        <label>Aap Kaun Hain?</label>
+        <label data-i18n="seller.whoAreYou">Aap Kaun Hain?</label>
         <div class="bazaar-post-type-toggle" id="sellerTypeToggle">
-          <button type="button" class="active" data-type="individual">🌾 Individual Farmer</button>
-          <button type="button" data-type="business">🏢 Business / Trader</button>
+          <button type="button" class="active" data-type="individual">🌾 <span data-i18n="listings.individualFarmer">Individual Farmer</span></button>
+          <button type="button" data-type="business">🏢 <span data-i18n="listings.businessTrader">Business / Trader</span></button>
         </div>
 
-        <label>Dukaan Ka Naam (Store Display Name)</label>
+        <label data-i18n="seller.storeDisplayName">Dukaan Ka Naam (Store Display Name)</label>
         <input type="text" class="auth-field" id="sellerDisplayName" placeholder="e.g. Ramesh Organic Farms">
-        <p class="auth-error" id="sellerDisplayNameError">Yeh naam pehle se liya gaya hai, dusra try karein.</p>
+        <p class="auth-error" id="sellerDisplayNameError" data-i18n="seller.nameTaken">Yeh naam pehle se liya gaya hai, dusra try karein.</p>
 
-        <label>Dukaan Ke Baare Mein (optional)</label>
-        <textarea class="auth-field" id="sellerDescription" rows="2" placeholder="Aap kya bechte hain, kitne saal se..."></textarea>
+        <label data-i18n="seller.aboutYourStore">Dukaan Ke Baare Mein (optional)</label>
+        <textarea class="auth-field" id="sellerDescription" rows="2" data-i18n-placeholder="seller.aboutStorePlaceholder" placeholder="Aap kya bechte hain, kitne saal se..."></textarea>
 
         <div id="sellerGstinWrap" hidden>
           <label>GSTIN</label>
           <input type="text" class="auth-field" id="sellerGstin" placeholder="e.g. 27ABCDE1234F1Z5" maxlength="15" style="text-transform:uppercase;">
-          <p class="auth-error" id="sellerGstinError">Sahi 15-character GSTIN daalein.</p>
+          <p class="auth-error" id="sellerGstinError" data-i18n="seller.gstinError">Sahi 15-character GSTIN daalein.</p>
         </div>
 
-        <label>Kya Bechna Chahte Hain? (kam se kam 1 chunein)</label>
+        <label data-i18n="seller.whatToSell">Kya Bechna Chahte Hain? (kam se kam 1 chunein)</label>
         <div id="sellerCatChips" class="role-pick" style="flex-wrap:wrap;"></div>
-        <p class="auth-error" id="sellerCatError">Kam se kam 1 category chunein.</p>
+        <p class="auth-error" id="sellerCatError" data-i18n="seller.selectAtLeastOneCat">Kam se kam 1 category chunein.</p>
 
-        <button class="btn btn-primary btn-block" id="sellerStep1Next" type="button">Aage Badhein →</button>
+        <button class="btn btn-primary btn-block" id="sellerStep1Next" type="button" data-i18n="checkout.continueBtn">Aage Badhein →</button>
       </div>
 
       <div id="sellerStep2" hidden>
-        <div class="auth-logo">📍 Pickup Address</div>
-        <p class="auth-note">Yahan se aapka saman pickup hoga — yeh address sirf logistics ke liye use hota hai, storefront par public nahi hota.</p>
+        <div class="auth-logo">📍 <span data-i18n="seller.pickupAddressStep">Pickup Address</span></div>
+        <p class="auth-note" data-i18n="seller.pickupAddressNote">Yahan se aapka saman pickup hoga — yeh address sirf logistics ke liye use hota hai, storefront par public nahi hota.</p>
 
-        <label>Pickup Address</label>
+        <label data-i18n="seller.pickupAddressStep">Pickup Address</label>
         <input type="text" class="auth-field" id="sellerPickupLine" placeholder="House no., Street, Village">
-        <p class="auth-error" id="sellerAddressError">Address, City aur State poora bharein.</p>
+        <p class="auth-error" id="sellerAddressError" data-i18n="seller.fillAddressCityState">Address, City aur State poora bharein.</p>
         <div class="form-row">
           <input type="text" class="auth-field" id="sellerPickupCity" placeholder="City / District">
           <input type="text" class="auth-field" id="sellerPickupState" placeholder="State">
         </div>
         <input type="text" class="auth-field" id="sellerPickupPincode" placeholder="Pincode (6-digit)" maxlength="6">
-        <p class="auth-error" id="sellerPincodeError">6-digit pincode daalein.</p>
+        <p class="auth-error" id="sellerPincodeError" data-i18n="seller.pincodeError">6-digit pincode daalein.</p>
 
         <div class="form-row">
-          <button class="btn btn-outline-light" id="sellerStep2Back" type="button" style="color:var(--text-dark); border-color:var(--border);">← Wapas</button>
-          <button class="btn btn-primary" id="sellerBizSubmit" type="button">Save &amp; Submit</button>
+          <button class="btn btn-outline-light" id="sellerStep2Back" type="button" style="color:var(--text-dark); border-color:var(--border);" data-i18n="yojana.prev">← Wapas</button>
+          <button class="btn btn-primary" id="sellerBizSubmit" type="button" data-i18n="seller.saveSubmitBtn">Save &amp; Submit</button>
         </div>
       </div>
     </div>
@@ -273,7 +273,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="js/supabase-client.js"></script>
 <script src="js/i18n.js?v=1"></script>
-<script src="js/common.js?v=37"></script>
-<script src="js/become-seller.js?v=3"></script>
+<script src="js/common.js?v=38"></script>
+<script src="js/become-seller.js?v=4"></script>
 </body>
 </html>

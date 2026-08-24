@@ -133,46 +133,46 @@
 <div class="seller-portal-banner">
   <div class="container seller-portal-banner-inner">
     <span class="seller-portal-badge">🏪 SELLER CENTRAL</span>
-    <h1>Apna Product List Karein</h1>
+    <h1 data-i18n="addProduct.pageTitle">Apna Product List Karein</h1>
   </div>
 </div>
 <div class="seller-page-wrap">
 
   <div class="checkout-guard" id="loginGuard" hidden>
     <span class="guard-icon">🔒</span>
-    <p>Product list karne ke liye login karein.</p>
-    <button class="btn btn-primary" id="guardLoginBtn">Login Karein</button>
+    <p data-i18n="addProduct.loginToList">Product list karne ke liye login karein.</p>
+    <button class="btn btn-primary" id="guardLoginBtn" data-i18n="header.login">Login Karein</button>
   </div>
 
   <div id="addProdForm">
     <div class="seller-page-card">
       <div class="seller-page-steps" id="addProdSteps">
-        <span class="step active" data-step="1">① Product Details</span>
+        <span class="step active" data-step="1">① <span data-i18n="addProduct.productDetailsStep">Product Details</span></span>
         <span class="sep">───────</span>
-        <span class="step" data-step="2">② Photos &amp; Post</span>
+        <span class="step" data-step="2">② <span data-i18n="addProduct.photosPostStep">Photos &amp; Post</span></span>
       </div>
 
       <div id="addProdStep1">
-        <div class="auth-logo">📦 Product Ke Baare Mein Bataayein</div>
-        <p class="auth-note">Yeh ZatraMart Shop par sabko dikhega — sahi jaankari bharein.</p>
+        <div class="auth-logo" data-i18n="addProduct.aboutProductTitle">📦 Product Ke Baare Mein Bataayein</div>
+        <p class="auth-note" data-i18n="addProduct.visibleToAllNote">Yeh ZatraMart Shop par sabko dikhega — sahi jaankari bharein.</p>
 
-        <label>Product Ka Naam</label>
+        <label data-i18n="addProduct.productName">Product Ka Naam</label>
         <input type="text" class="auth-field" id="prodName" placeholder="e.g. Organic Neem Khaad 5kg">
-        <p class="auth-error" id="prodNameError">Product ka naam daalein.</p>
+        <p class="auth-error" id="prodNameError" data-i18n="addProduct.enterProductName">Product ka naam daalein.</p>
 
-        <label>Category</label>
+        <label data-i18n="shop.category">Category</label>
         <select class="auth-field" id="prodCat"></select>
 
-        <label>Description</label>
-        <textarea class="auth-field" id="prodDesc" rows="3" placeholder="Product ke baare mein bataayein..."></textarea>
+        <label data-i18n="product.details">Description</label>
+        <textarea class="auth-field" id="prodDesc" rows="3" data-i18n-placeholder="addProduct.descPlaceholder" placeholder="Product ke baare mein bataayein..."></textarea>
 
-        <label>Price (₹)</label>
+        <label data-i18n="bazaar.price">Price (₹)</label>
         <input type="number" class="auth-field" id="prodPrice" placeholder="e.g. 450">
-        <p class="auth-error" id="prodPriceError">Sahi price daalein.</p>
+        <p class="auth-error" id="prodPriceError" data-i18n="bazaar.errPriceRequired">Sahi price daalein.</p>
 
         <div class="form-row">
           <div>
-            <label>Condition</label>
+            <label data-i18n="bazaar.condition">Condition</label>
             <select class="auth-field" id="prodCondition">
               <option value="New">New</option>
               <option value="Like New">Like New</option>
@@ -184,25 +184,25 @@
           <div>
             <label>&nbsp;</label>
             <label style="display:flex; align-items:center; gap:8px; font-weight:500; margin-top:11px;">
-              <input type="checkbox" id="prodNegotiable" checked style="width:auto; margin:0;"> Price Negotiable
+              <input type="checkbox" id="prodNegotiable" checked style="width:auto; margin:0;"> <span data-i18n="bazaar.priceNegotiable">Price Negotiable</span>
             </label>
           </div>
         </div>
 
-        <button class="btn btn-primary btn-block" id="addProdStep1Next" type="button">Aage Badhein →</button>
+        <button class="btn btn-primary btn-block" id="addProdStep1Next" type="button" data-i18n="checkout.continueBtn">Aage Badhein →</button>
       </div>
 
       <div id="addProdStep2" hidden>
-        <div class="auth-logo">📸 Photos Daalein</div>
-        <p class="auth-note">Asli product ki photo daalein (1-5) — stock/internet photo nahi, buyers ka bharosa isi se banega.</p>
+        <div class="auth-logo">📸 <span data-i18n="addProduct.addPhotosTitle">Photos Daalein</span></div>
+        <p class="auth-note" data-i18n="addProduct.realPhotosNote">Asli product ki photo daalein (1-5) — stock/internet photo nahi, buyers ka bharosa isi se banega.</p>
 
         <input type="file" id="prodPhotos" accept="image/*" multiple>
-        <p class="auth-error" id="prodPhotosError">Kam se kam 1 photo daalein.</p>
+        <p class="auth-error" id="prodPhotosError" data-i18n="bazaar.errPhotoRequired">Kam se kam 1 photo daalein.</p>
         <div class="listing-photo-preview" id="prodPhotosPreview"></div>
 
         <div class="form-row">
-          <button class="btn btn-outline-light" id="addProdStep2Back" type="button" style="color:var(--text-dark); border-color:var(--border);">← Wapas</button>
-          <button class="btn btn-primary" id="addProdSubmit" type="button">Product Post Karein</button>
+          <button class="btn btn-outline-light" id="addProdStep2Back" type="button" style="color:var(--text-dark); border-color:var(--border);" data-i18n="yojana.prev">← Wapas</button>
+          <button class="btn btn-primary" id="addProdSubmit" type="button" data-i18n="addProduct.postBtn">Product Post Karein</button>
         </div>
       </div>
     </div>
@@ -211,8 +211,8 @@
   <div id="addProdSuccess" class="seller-page-card auth-success" style="display:none;">
     <div class="auth-success-icon">✓</div>
     <p id="addProdSuccessMsg" style="margin-bottom:20px;"></p>
-    <button class="btn btn-primary btn-block" id="addAnotherBtn" style="max-width:320px; margin:0 auto 12px; display:block;">➕ Ek Aur Product Add Karein</button>
-    <a href="my-listings.html" class="btn btn-outline-light btn-block" style="max-width:320px; margin:0 auto; display:block; color:var(--text-dark); border-color:var(--border);">My Listings Dekhein</a>
+    <button class="btn btn-primary btn-block" id="addAnotherBtn" style="max-width:320px; margin:0 auto 12px; display:block;" data-i18n="addProduct.addAnotherBtn">➕ Ek Aur Product Add Karein</button>
+    <a href="my-listings.html" class="btn btn-outline-light btn-block" style="max-width:320px; margin:0 auto; display:block; color:var(--text-dark); border-color:var(--border);" data-i18n="addProduct.viewMyListings">My Listings Dekhein</a>
   </div>
 
 </div>
@@ -277,7 +277,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="js/supabase-client.js"></script>
 <script src="js/i18n.js?v=1"></script>
-<script src="js/common.js?v=37"></script>
-<script src="js/add-product.js"></script>
+<script src="js/common.js?v=38"></script>
+<script src="js/add-product.js?v=2"></script>
 </body>
 </html>
