@@ -416,10 +416,16 @@ window.KM = (function () {
     };
   }
 
-  async function loadProfile(userId) {
+  async function loadProfile(userId, attempt = 1) {
     const { data, error } = await window.KM_SUPABASE.from('profiles').select('*').eq('id', userId).maybeSingle();
     if (error) { console.error(error); return; }
-    if (data) { session = data; emit('auth'); }
+    if (data) { session = data; emit('auth'); return; }
+    // Right after a fresh login, this can briefly come back empty even
+    // though the profile really exists — a short retry clears it up
+    // instead of leaving the user looking logged out.
+    if (attempt < 3) {
+      setTimeout(() => loadProfile(userId, attempt + 1), 400 * attempt);
+    }
   }
   async function initAuth() {
     const { data: { session: authSession } } = await window.KM_SUPABASE.auth.getSession();
